@@ -4,7 +4,8 @@
   "description": "it helps to start a react-based application with simple settings",
   "dependencies": {
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "styled-components": "^3.2.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
