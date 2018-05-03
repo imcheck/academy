@@ -6,11 +6,14 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 
 module.exports = {
+  mode: 'development',
   entry: [
     'babel-polyfill',
-    `./src/app.js`
+    './src/app.js',
+    'webpack-hot-middleware/client'
   ],
   output: {
+    publicPath: '/',
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
@@ -25,5 +28,10 @@ module.exports = {
       }
     ]
   },
-  plugins: [new UglifyJSPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    // Use NoErrorsPlugin for webpack 1.x
+    new webpack.NoEmitOnErrorsPlugin(),
+    new UglifyJSPlugin()
+  ]
 }

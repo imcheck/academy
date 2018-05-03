@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 
 class App extends React.Component {
   render() {
-    return <div>Hello react</div>;
+    return <div>Hello react!!!!!!!</div>;
   }
 }
 ReactDOM.render(<App />, document.getElementById("root"));
+
+if(module.hot) module.hot.accept();
