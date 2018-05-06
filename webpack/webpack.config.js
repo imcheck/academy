@@ -12,7 +12,13 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '..', 'dist')
+  },
+  resolve: {
+    alias: {
+      "@redux": path.resolve(__dirname, '..', 'src', 'redux')
+    },
+    extensions: ['.js', '.jsx']
   },
   module: {
     rules: [

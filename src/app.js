@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import { Provider } from 'react-redux';
 
-const Container = styled.div `
-  height: 100px;
-  background-color: orange;
-  color: yellow;
-`
+import store from '@redux';
+
 class App extends React.Component {
   render() {
-    return <Container>Hello React Using styled-components</Container>;
+    console.log(store.getState());
+    return (
+      <Provider store={store}>
+        <div>hihi</div>
+      </Provider>
+    )
   }
 }
 ReactDOM.render(<App />, document.getElementById("root"));

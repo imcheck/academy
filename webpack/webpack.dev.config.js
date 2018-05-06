@@ -1,9 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-
-
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
 
 module.exports = {
   mode: 'development',
@@ -15,7 +12,13 @@ module.exports = {
   output: {
     publicPath: '/',
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '..', 'dist')
+  },
+  resolve: {
+    alias: {
+      "@redux": path.resolve(__dirname, '..', 'src', 'redux')
+    },
+    extensions: ['.js', '.jsx']
   },
   module: {
     rules: [
