@@ -16,6 +16,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      "@containers": path.resolve(__dirname, '..', 'src', 'containers'),
       "@redux": path.resolve(__dirname, '..', 'src', 'redux')
     },
     extensions: ['.js', '.jsx']
