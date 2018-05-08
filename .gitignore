@@ -85,6 +85,7 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
+yarn.lock
 
 # dotenv environment variables file
 .env
@@ -100,5 +101,3 @@ typings/
 
 
 # End of https://www.gitignore.io/api/node,macos,visualstudiocode
-
-dist/

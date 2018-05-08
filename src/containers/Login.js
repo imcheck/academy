@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ErrorHOC from '@hoc';
+
 const Container = styled.div`
   height: 30px;
   background-color: orange;
@@ -15,4 +17,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default ErrorHOC(Login);
