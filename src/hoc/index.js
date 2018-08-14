@@ -16,7 +16,7 @@ const ErrorHoc = ProtectedComponent =>
       if(hasError) {
         return <Error>Error!!</Error>;
       } else {
-        return <ProtectedComponent />
+        return React.cloneElement(<ProtectedComponent />, this.props);
       }
     }
   }

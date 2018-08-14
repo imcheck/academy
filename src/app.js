@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import store from '@redux';
+import { store } from '@redux';
 import Home from '@containers/Home';
 import Login from '@containers/Login';
 
 class App extends React.Component {
   render() {
-    console.log(store.getState());
     return (
       <Provider store={store}>
         <BrowserRouter>

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import reducer from './reducer';
+import page from './pageReducer';
 
 export default combineReducers({
-  reducer
+  page
 });

@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
+import { init } from '@redux/actions/pageActions';
 
 const Container = styled.div`
   height: 30px;
@@ -10,8 +12,20 @@ const Container = styled.div`
 `;
 
 class Home extends React.Component {
+  componentDidMount() {
+    this.props.init();
+  }
   render() {
-    return <Container>Home</Container>;
+    let Content = this.props.component;
+    if(!Content) Content = () => <div>Loading...</div>;
+    return <Container><Content /></Container>;
   }
 };
-export default ErrorHOC(Home);
+
+const mapStateToProps = state => ({
+  component: state.page.get("component")
+});
+const mapDispatchToProps = dispatch => ({
+  init: (params) => dispatch(init())
+});
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Home));
