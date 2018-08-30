@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
 import { init } from '@redux/actions/pageActions';
+import Debug from 'debug';
 
 const Container = styled.div``;
 

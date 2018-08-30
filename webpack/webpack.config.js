@@ -1,28 +1,28 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require("webpack");
+const path = require("path");
 
 
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 
 module.exports = {
   entry: [
-    'babel-polyfill',
-    './src/app.js'
+    "babel-polyfill",
+    "./src/app.js"
   ],
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, '..', 'dist')
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "..", "dist")
   },
   resolve: {
     alias: {
-      "@layouts": path.resolve(__dirname, '..', 'src', 'layouts'),
-      "@components": path.resolve(__dirname, '..', 'src', 'components'),
-      "@containers": path.resolve(__dirname, '..', 'src', 'containers'),
-      "@redux": path.resolve(__dirname, '..', 'src', 'redux'),
-      "@hoc": path.resolve(__dirname, '..', 'src', 'hoc')
+      "@layouts": path.resolve(__dirname, "..", "src", "layouts"),
+      "@components": path.resolve(__dirname, "..", "src", "components"),
+      "@containers": path.resolve(__dirname, "..", "src", "containers"),
+      "@redux": path.resolve(__dirname, "..", "src", "redux"),
+      "@hoc": path.resolve(__dirname, "..", "src", "hoc")
     },
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"]
   },
   module: {
     rules: [
@@ -30,10 +30,15 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: "babel-loader"
         }
       }
     ]
   },
-  plugins: [new UglifyJSPlugin()]
+  plugins: [
+    new UglifyJSPlugin(),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("production")
+    })
+  ]
 }
