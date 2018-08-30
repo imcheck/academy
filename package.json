@@ -4,11 +4,13 @@
   "description": "it helps to start a react-based application with simple settings",
   "dependencies": {
     "babel-preset-stage-2": "^6.24.1",
+    "history": "^4.7.2",
     "immutable": "^3.8.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
     "styled-components": "^3.2.6"

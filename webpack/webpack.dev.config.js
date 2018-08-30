@@ -16,6 +16,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      "@layouts": path.resolve(__dirname, '..', 'src', 'layouts'),
       "@components": path.resolve(__dirname, '..', 'src', 'components'),
       "@containers": path.resolve(__dirname, '..', 'src', 'containers'),
       "@redux": path.resolve(__dirname, '..', 'src', 'redux'),

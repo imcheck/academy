@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { store } from '@redux';
-import Home from '@containers/Home';
-import Login from '@containers/Login';
+import HomeLayout from '@layouts/HomeLayout';
+import LoginLayout from '@layouts/LoginLayout';
 
 class App extends React.Component {
   render() {
@@ -13,8 +13,8 @@ class App extends React.Component {
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login}/>
+            <Route exact path="/" component={HomeLayout} />
+            <Route path="/login" component={LoginLayout}/>
           </Switch>
         </BrowserRouter>
       </Provider>
