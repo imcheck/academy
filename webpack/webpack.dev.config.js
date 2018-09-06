@@ -20,7 +20,8 @@ module.exports = {
       "@components": path.resolve(__dirname, "..", "src", "components"),
       "@containers": path.resolve(__dirname, "..", "src", "containers"),
       "@redux": path.resolve(__dirname, "..", "src", "redux"),
-      "@hoc": path.resolve(__dirname, "..", "src", "hoc")
+      "@hoc": path.resolve(__dirname, "..", "src", "hoc"),
+      "@config": path.resolve(__dirname, "..", "src", "config")
     },
     extensions: [".js", ".jsx"]
   },

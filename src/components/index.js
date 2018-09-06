@@ -1,5 +1,7 @@
 import Input from './_components/Input';
+import _Input from './_components/_Input';
 
 export {
-  Input
+  Input,
+  _Input
 }
