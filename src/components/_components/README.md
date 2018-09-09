@@ -1,0 +1,84 @@
+# Template Components
+기본 컴포넌트들을 가지고 템플릿을 만듬.
+스타일은 커스터마이징이 가능하게 기본 기능 단위로 쪼개어 다룸.
+
+## How to use
+```javascript
+import { 
+  Input,
+  _Input,
+  File,
+  Table } from '@components';
+```
+## Input
+- 기본적인 input 컴포넌트에 스타일링 한 컴포넌트.
+```javascript
+// 기본
+<Input type="text" />
+// 밑줄만 있는 Input
+<_Input type="number" />
+```
+
+## File
+- Input 컴포넌트에서도 다룰 수 있으나 사용하기 쉽고 스타일링한 File 컴포넌트
+- onChange 핸들러에 해당 file 객체를 넘김
+- multi select는 아직 미구현 (`Files` 로 다시 만들 생각이 있음)
+```javascript
+<File onChange={(file) => console.log(file.name)}>
+```
+
+## Table
+- React Table
+```javascript
+<Table
+  data={[{
+    name: "Smith",
+    age: 41,
+  }, {
+    name: "Matthew",
+    age: 27,
+  }, {
+    name: "Alex",
+    age: 34,
+  }}
+  columns={[
+    {
+      header: <input type="checkbox" />,
+      component: ({rowData, row, col}) => <span>({row}, {col})</span>
+    },
+    {
+      header: "header1",
+      component: ({rowData, row, col}) => <span>({row}, {col})</span>
+    },
+  ]}
+/>
+```
+- Table Props
+  - data (`required`)
+    - 테이블에서 보여주려고 하는 데이터 필드
+    - 내부적으로 각 Row에 data.map을 해서 `rowData`를 매핑시켜주는 방식
+    - array
+  - columns (`required`)
+    - 테이블의 각 컬럼을 어떻게 표현할지 정의 하는 필드
+    - object array
+      - header: `component` / `string`
+      - component: `function ({rowData, row, col})`
+  - headerStyle
+    - 테이블 Header의 스타일을 정의하는 곳
+    - object (`default`)
+      - height: `50px`
+      - lineHeight: `50px`
+      - textAlign: `center`
+  - rowStyle
+    - 테이블 Row의 스타일을 정의하는 곳
+    - object (`default`)
+      - height: `50px`
+      - lineHeight: `50px`
+      - textAlign: `center`
+  - paginationStyle
+    - 테이블 Pagination의 타입을 정의하는 곳
+    - object
+      - type: Pagination을 나타내는 방식이 여러가지가 존재
+        - `none`: (default) Pagination을 나타내지 않음
+        - `more`: More 버튼을 끝에 나타냄
+        - `pagination`: 전형적인 Pagination

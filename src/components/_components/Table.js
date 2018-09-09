@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 class Table extends React.Component {
   _getHeaders = (columns, rowStyle) => {
-    const _columns = columns.map( col => {
+    const _columns = columns.map(col => {
       const { header } = col;
       return <Column>{header}</Column>;
     })
@@ -16,7 +16,6 @@ class Table extends React.Component {
       height: "50px",
       lineHeight: "50px",
       textAlign: "center",
-      pinned: false,
       ...headerStyle
     }
   }
@@ -24,7 +23,7 @@ class Table extends React.Component {
     return data.map((rowData, rowIndex) => {
       const _columns = columns.map((column, colIndex) => {
         const Component = column.component;
-        return <Column key={colIndex}><Component rowData={rowData} row={rowIndex} col={colIndex}/></Column>;
+        return <Column key={colIndex}><Component rowData={rowData} row={rowIndex} col={colIndex} /></Column>;
       });
       return <Row key={rowIndex} rowStyle={rowStyle}>{_columns}</Row>;
     });
@@ -37,8 +36,34 @@ class Table extends React.Component {
       ...rowStyle
     }
   }
+  _getPagination = (paginationStyle) => {
+    const _paginationStyle = {
+      type: "none",
+      ...paginationStyle
+    }
+    switch (_paginationStyle.type) {
+      case "more":
+        const { onMoreClick } = _paginationStyle;
+        return <More onClick={onMoreClick}>More +</More>
+        break;
+      case "pagination":
+        return <Pagination />
+        break;
+      case "none":
+        return null;
+        break;
+      default:
+        throw Error("pagination style isn't correct");
+        break;
+    }
+  }
   render() {
-    const { data, columns, headerStyle, rowStyle } = this.props;
+    const {
+      data,
+      columns,
+      headerStyle,
+      rowStyle,
+      paginationStyle } = this.props;
     const rowSize = data.length || data.size;
     const colSize = columns.length || columns.size;
 
@@ -46,7 +71,7 @@ class Table extends React.Component {
       <Container>
         <Header>{this._getHeaders(columns, this._getHeaderStyle(headerStyle))}</Header>
         <Contents>{this._getContents(columns, data, this._getRowStyle(rowStyle))}</Contents>
-        <Footer></Footer>
+        <Footer>{this._getPagination(paginationStyle)}</Footer>
       </Container>
     )
   }
@@ -54,7 +79,19 @@ class Table extends React.Component {
 
 export default Table;
 
-
+const More = styled.div`
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  background-color: #71a1ed;
+  color: white;
+  border-radius: 0px 0px 5px 5px;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #4286f4;
+  }
+`
 const Container = styled.div`
   & div {
     box-sizing: border-box;
@@ -74,8 +111,6 @@ const Contents = styled.div`
   }
 `;
 const Footer = styled.div`
-  height: 40px;
-  background-color: lightgreen;
 `;
 const Row = styled.div`
   height: ${props => props.rowStyle.height}

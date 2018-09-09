@@ -17,31 +17,36 @@ const Title = styled.div`
   border-bottom: 2px solid black;
 `
 class DevLayout extends React.Component {
+  _handleMoreClick = () => {
+    alert("More Button Clicked");
+  }
   render() {
     return (
       <Container>
         <Title>Input</Title>
         <Input />
         <_Input />
+        <Title>Table</Title>
         <Table
+          paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
           data={[
             { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
             { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
             { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
             { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
             { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
             { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
             { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
             { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" }]}
