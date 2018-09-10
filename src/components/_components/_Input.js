@@ -1,7 +1,7 @@
 // import React from 'react';
 import styled from 'styled-components';
 
-const _Input = styled.input`
+export const _Input = styled.input`
   height: 36px;
   width: 100%;
   font-size: 20px;
@@ -18,4 +18,3 @@ const _Input = styled.input`
     border-bottom: 2px solid #4286f4;
   }
 `
-export default _Input;

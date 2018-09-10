@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Input, _Input } from '@components';
+import {
+  Input,
+  _Input,
+  InputForm,
+  File } from '@components';
 import ErrorHOC from '@hoc';
 
 const Container = styled.div`
@@ -17,12 +21,22 @@ const Title = styled.div`
   border-bottom: 2px solid black;
 `
 class DevLayout extends React.Component {
+  state = {
+    file: ""
+  }
+  _handleChange = (file) => {
+    this.setState(() => ({ file }), () => {
+      console.log("after", this.state.file);
+    })
+  }
   render() {
     return (
       <Container>
-        <Title>Input</Title>
+        <Title>INPUT</Title>
         <Input />
         <_Input />
+        <InputForm name="InputForm"/>
+        <File onChange={this._handleChange} file={this.state.file}/>
       </Container>
     );
   }

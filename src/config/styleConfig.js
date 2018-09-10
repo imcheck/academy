@@ -5,6 +5,7 @@ export const theme = {
     blue:   "#4286f4",
     purple: "#6a5c93", // pantone
     gray:   "#63666a", // pantone
-    red:    "#e33125"  // pantone
+    red:    "#e33125",  // pantone
+    green:  "#00AB84"
   }
 }

@@ -1,7 +1,4 @@
-import Input from './_components/Input';
-import _Input from './_components/_Input';
-
-export {
-  Input,
-  _Input
-}
+export * from './_components/Input';
+export * from './_components/_Input';
+export * from './_components/InputForm';
+export * from './_components/File';
