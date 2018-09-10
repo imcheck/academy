@@ -5,7 +5,8 @@ import {
   Input,
   _Input,
   InputForm,
-  File } from '@components';
+  File,
+  Table } from '@components';
 import ErrorHOC from '@hoc';
 
 const Container = styled.div`
@@ -29,6 +30,9 @@ class DevLayout extends React.Component {
       console.log("after", this.state.file);
     })
   }
+  _handleMoreClick = () => {
+    alert("More Button Clicked");
+  }
   render() {
     return (
       <Container>
@@ -37,6 +41,56 @@ class DevLayout extends React.Component {
         <_Input />
         <InputForm name="InputForm"/>
         <File onChange={this._handleChange} file={this.state.file}/>
+        <Title>Table</Title>
+        <Table
+          paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
+          data={[
+            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
+            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" }]}
+          columns={[
+            {
+              header: "Attr1",
+              component: ({ rowData, row, col }) => <div>({row}, {col})</div>
+            },
+            {
+              header: "Attr2",
+              component: ({ rowData, row, col }) => <div>({row}, {col})</div>
+            },
+            {
+              header: "Attr3",
+              component: ({ rowData, row, col }) => <div>({row}, {col})</div>
+            },
+            {
+              header: "Attr4",
+              component: ({ rowData, row, col }) => <div>({row}, {col})</div>
+            },
+            {
+              header: "Attr5",
+              component: ({ rowData, row, col }) => <div>({row}, {col})</div>
+            },
+            {
+              header: "Attr6",
+              component: ({ rowData, row, col }) => <div>({row}, {col})</div>
+            }
+          ]} />
       </Container>
     );
   }
