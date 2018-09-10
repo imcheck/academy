@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Message from './Message';
 
-export class Notification extends React.PureComponent {
+class _Notification extends React.PureComponent {
   state = {
     notifications: []
   }
@@ -11,7 +11,7 @@ export class Notification extends React.PureComponent {
     this.setState((state) => {
       const _notis = [...state.notifications];
       _notis.push(<Message message={message} />);
-      return { notifications: _notis}
+      return { notifications: _notis }
     })
   }
   render() {
@@ -21,6 +21,16 @@ export class Notification extends React.PureComponent {
       </Container>
     )
   }
+}
+class Notification {
+  constructor(_notification) {
+    this._notification = _notification;
+  }
+}
+export const Notification = () => {
+  const notification = new Notification();
+
+  return notification;
 }
 
 const Container = styled.div``;
