@@ -6,21 +6,12 @@ import {
   _Input,
   InputForm,
   File,
-  Table } from '@components';
-import ErrorHOC from '@hoc';
+  Table,
+  Button,
+  Notification } from '@components';
 
-const Container = styled.div`
-  padding: 10px;
-  & > * {
-    margin: 10px 0px;
-  }
-`
-const Title = styled.div`
-  font-size: 32px;
-  color: black;
-  font-weight: bold;
-  border-bottom: 2px solid black;
-`
+  import ErrorHOC from '@hoc';
+
 class DevLayout extends React.Component {
   state = {
     file: ""
@@ -33,6 +24,11 @@ class DevLayout extends React.Component {
   _handleMoreClick = () => {
     alert("More Button Clicked");
   }
+  _handleBtnClick = () => {
+    Notification.open({
+      message: "Hello World!"
+    });
+  }
   render() {
     return (
       <Container>
@@ -41,6 +37,9 @@ class DevLayout extends React.Component {
         <_Input />
         <InputForm name="InputForm"/>
         <File onChange={this._handleChange} file={this.state.file}/>
+        <Title>Notification</Title>
+        <Notification />
+        <Button onClick={this._handleBtnClick}>Notification</Button>
         <Title>Table</Title>
         <Table
           paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
@@ -96,3 +95,18 @@ class DevLayout extends React.Component {
   }
 }
 export default ErrorHOC(DevLayout);
+
+
+
+const Container = styled.div`
+  padding: 10px;
+  & > * {
+    margin: 10px 0px;
+  }
+`
+const Title = styled.div`
+  font-size: 32px;
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+`

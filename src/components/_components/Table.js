@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 export class Table extends React.Component {
   _getHeaders = (columns, rowStyle) => {
-    const _columns = columns.map(col => {
+    const _columns = columns.map((col, index) => {
       const { header } = col;
-      return <Column>{header}</Column>;
+      return <Column key={index}>{header}</Column>;
     })
     return <Row rowStyle={rowStyle}>{_columns}</Row>;
   }

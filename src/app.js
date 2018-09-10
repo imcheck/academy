@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { store } from '@redux';
 import { theme } from '@config/styleConfig';
+
 import HomeLayout from '@layouts/HomeLayout';
 import LoginLayout from '@layouts/LoginLayout';
 import DevLayout from '@layouts/DevLayout';
