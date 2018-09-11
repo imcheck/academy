@@ -44,7 +44,7 @@ export class Table extends React.Component {
     switch (_paginationStyle.type) {
       case "more":
         const { onMoreClick } = _paginationStyle;
-        return <More onClick={onMoreClick}>More +</More>
+        return <More onClick={(e) => this._handleMoreClick(onMoreClick)}>More +</More>
         break;
       case "pagination":
         return <Pagination />
@@ -57,6 +57,18 @@ export class Table extends React.Component {
         break;
     }
   }
+  /*-------------------------------------------------------------------------*/
+  state = {
+    pageSize: 10,
+    pageStart: 1, // Row Index
+  }
+  _handleMoreClick = async (onClick) => {
+    console.log("Table More Button Clicked");
+    if(!onClick || onClick()) {
+      
+    }
+  }
+  /*-------------------------------------------------------------------------*/
   render() {
     const {
       data,
