@@ -82,3 +82,6 @@ import {
         - `none`: (default) Pagination을 나타내지 않음
         - `more`: More 버튼을 끝에 나타냄
         - `pagination`: 전형적인 Pagination
+      - onMoreClick: (`option`) 타입이 `more` 일 때 More 버튼을 누르면 실행되는 함수이며 `true`(default)/`false`를 반드시 return 해주어야 한다. 
+      `true`를 반환하면 정상적으로 다음 `pageSize`만큼 렌더링해주고 `false`를 리턴하면 더 이상 렌더링하지 않는다.
+

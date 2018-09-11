@@ -22,7 +22,8 @@ class DevLayout extends React.Component {
     })
   }
   _handleMoreClick = () => {
-    alert("More Button Clicked");
+    // alert("More Button Clicked");
+    return true;
   }
   _handleBtnClick = () => {
     Notification.open({
@@ -30,6 +31,12 @@ class DevLayout extends React.Component {
     });
   }
   render() {
+    const data = [];
+    for(let i=1; i<=100; i++){
+      data.push({
+        attr1: "row"+i,
+      })
+    }
     return (
       <Container>
         <Title>INPUT</Title>
@@ -42,31 +49,11 @@ class DevLayout extends React.Component {
         <Title>Table</Title>
         <Table
           paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
-          data={[
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            // { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" },
-            { attr1: "attr1", attr2: "attr2", attr3: "attr3", attr4: "attr4", attr5: "attr5", attr6: "attr6" }]}
+          data={data}
           columns={[
             {
               header: "Attr1",
-              component: ({ rowData, row, col }) => <div>({row}, {col})</div>
+              component: ({ rowData, row, col }) => <div>({row}, {col}) {rowData.attr1}</div>
             },
             {
               header: "Attr2",
