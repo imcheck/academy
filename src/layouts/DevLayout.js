@@ -38,7 +38,6 @@ class DevLayout extends React.Component {
         <InputForm name="InputForm"/>
         <File onChange={this._handleChange} file={this.state.file}/>
         <Title>Notification</Title>
-        <Notification />
         <Button onClick={this._handleBtnClick}>Notification</Button>
         <Title>Table</Title>
         <Table

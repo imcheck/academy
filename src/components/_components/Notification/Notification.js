@@ -1,36 +1,28 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 import Message from './Message';
 
-class _Notification extends React.PureComponent {
-  state = {
-    notifications: []
+export class Notification {
+  static isMount = false;
+  static open({message}) {
+    console.log(message);
+    if(!Notification.isMount) {
+      // Notification Render
+      // https://github.com/react-component/notification/blob/master/src/Notification.jsx
+      const div = document.createElement('div');
+      document.body.appendChild(div);
+      Notification.isMount = true;
+    }
   }
-  static open({ message, description, duration }) {
-    this.setState((state) => {
-      const _notis = [...state.notifications];
-      _notis.push(<Message message={message} />);
-      return { notifications: _notis }
-    })
-  }
+}
+
+class _Notification extends React.Component {
   render() {
     return (
       <Container>
-        {this.state.notifications}
       </Container>
     )
   }
 }
-class Notification {
-  constructor(_notification) {
-    this._notification = _notification;
-  }
-}
-export const Notification = () => {
-  const notification = new Notification();
-
-  return notification;
-}
-
-const Container = styled.div``;
