@@ -48,7 +48,8 @@ class DevLayout extends React.Component {
         <Button onClick={this._handleBtnClick}>Notification</Button>
         <Title>Table</Title>
         <Table
-          paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
+          // paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
+          paginationStyle={{type: "pagination"}}
           data={data}
           columns={[
             {

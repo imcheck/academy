@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import MoreBtn from './MoreButton';
+import Pagination from './Pagination';
 
 export class Table extends React.Component {
   static DefaultPageSize = 10;
@@ -49,7 +51,7 @@ export class Table extends React.Component {
     switch (paginationStyle.type) {
       case "more":
         const { onMoreClick } = paginationStyle;
-        return <More onClick={(e) => this._handleMoreClick(onMoreClick)}>More +</More>
+        return <MoreBtn onClick={(e) => this._handleMoreClick(onMoreClick)} />
         break;
       case "pagination":
         return <Pagination />
@@ -63,7 +65,7 @@ export class Table extends React.Component {
     }
   }
   /*-------------------------------------------------------------------------*/
-  _handleMoreClick = async (onClick) => {
+  _handleMoreClick = (onClick) => {
     if (!onClick || onClick()) {
       const { pageSize, page } = this.state;
       const dataSize = this.state.data.length || this.state.data.size;
@@ -125,19 +127,6 @@ export class Table extends React.Component {
   }
 }
 
-const More = styled.div`
-  height: 40px;
-  line-height: 40px;
-  font-size: 20px;
-  background-color: #71a1ed;
-  color: white;
-  border-radius: 0px 0px 5px 5px;
-  text-align: center;
-  cursor: pointer;
-  &:hover {
-    background-color: #4286f4;
-  }
-`
 const Container = styled.div`
   & div {
     box-sizing: border-box;
