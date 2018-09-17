@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Pagination = (props) => {
+const Pagination = ({ pageNumbers, onClick, page }) => {
   return (
     <Container>
       <BtnContainer>
         <Btn>&lt;</Btn>
-        <Btn>1</Btn>
-        <Btn>2</Btn>
-        <Btn>3</Btn>
-        <Btn>4</Btn>
-        <Btn>5</Btn>
+        {pageNumbers.map((no, index) => (
+          <Btn
+            key={index}
+            clicked={page == no}
+            onClick={() => onClick(no)}>{no}</Btn>
+        ))}
         <Btn>&gt;</Btn>
       </BtnContainer>
     </Container>
@@ -23,7 +24,6 @@ const Container = styled.div`
   height: 40px;
   line-height: 40px;
   font-size: 20px;
-  background-color: #f0f0f0;
   border-radius: 0px 0px 5px 5px;
   text-align: center;
 `
@@ -31,8 +31,25 @@ const BtnContainer = styled.div`
   float: right;
 `
 const Btn = styled.div`
-  width: 30px;
-  height: 30px;
-  margin-left: 5px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   display: inline-block;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  border-right: none;
+  background-color: ${props => props.clicked ? "#4286f4": "none"};
+  color: ${props => props.clicked ? "white": "#4286f4"};
+  &:first-child {
+    border-radius: 3px 0px 0px 3px;
+  }
+  &:last-child {
+    border: 1px solid #e8e8e8;
+    border-radius: 0px 3px 3px 0px;
+  }
+  box-sizing: border-box;
+  &:hover {
+    background-color: #68a2ff;
+    color: white;
+  }
 `

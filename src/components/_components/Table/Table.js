@@ -25,7 +25,7 @@ export class Table extends React.Component {
         if (rowIndex < pageSize * page) return true;
         break;
       case "pagination":
-        if (pageSize * page <= rowIndex && rowIndex < pageSize * (page + 1)) return true;
+        if (pageSize * ( page - 1 ) <= rowIndex && rowIndex < pageSize * page) return true;
         break;
       case "none":
         return true;
@@ -47,14 +47,30 @@ export class Table extends React.Component {
     });
   }
   _getPagination = () => {
-    const { paginationStyle } = this.state;
+    const { paginationStyle, page, pageSize, data } = this.state;
     switch (paginationStyle.type) {
       case "more":
         const { onMoreClick } = paginationStyle;
         return <MoreBtn onClick={(e) => this._handleMoreClick(onMoreClick)} />
         break;
       case "pagination":
-        return <Pagination />
+        const dataSize = data.length || data.size;
+        const maxPageNumber = Math.floor((dataSize + pageSize - 1) / pageSize);
+        console.log("dataSize", dataSize);
+        console.log("pageSize", pageSize);
+        console.log("maxPageNumber", maxPageNumber);
+        const pageNumbers = [];
+        if (page <= 3) {
+          for (let i = 1; i <= 5; i++)
+            pageNumbers.push(i);
+        } else if (page >= maxPageNumber - 2) {
+          for (let i = maxPageNumber - 4; i <= maxPageNumber; i++)
+            pageNumbers.push(i);
+        } else {
+          for (let i = page - 2; i <= page + 2; i++)
+            pageNumbers.push(i);
+        }
+        return <Pagination pageNumbers={pageNumbers} onClick={this._handlePaginationNoClick} page={page}/>
         break;
       case "none":
         return null;
@@ -75,6 +91,9 @@ export class Table extends React.Component {
         }))
       }
     }
+  }
+  _handlePaginationNoClick = (page) => {
+    this.setState(state => ({ page }));
   }
   /*-------------------------------------------------------------------------*/
   render() {
