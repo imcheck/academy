@@ -78,10 +78,14 @@ import {
   - paginationStyle
     - 테이블 Pagination의 타입을 정의하는 곳
     - object
-      - type: Pagination을 나타내는 방식이 여러가지가 존재
+      - `type`: Pagination을 나타내는 방식이 여러가지가 존재
         - `none`: (default) Pagination을 나타내지 않음
         - `more`: More 버튼을 끝에 나타냄
+      - `onMoreClick`: (`option`) 타입이 `more` 일 때 More 버튼의 Click Handler  
+        `true`, `false` 를 반드시 return 해줘야하고 `true`를 return 해야 다음 `pageSize` 만큼 렌더링이 된다.
         - `pagination`: 전형적인 Pagination
-      - onMoreClick: (`option`) 타입이 `more` 일 때 More 버튼을 누르면 실행되는 함수이며 `true`(default)/`false`를 반드시 return 해주어야 한다. 
-      `true`를 반환하면 정상적으로 다음 `pageSize`만큼 렌더링해주고 `false`를 리턴하면 더 이상 렌더링하지 않는다.
+      - `position`: (`option`) Pagination 테이블의 상단, 하단 또는 상하단에 위치시키는 설정
+        - `top`: Pagination을 상단에 위치
+        - `bottom`: (default) Pagination을 하단에 위치
+        - `both`: Pagination 을 상하단에 위치
 

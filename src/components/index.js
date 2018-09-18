@@ -5,3 +5,4 @@ export * from './_components/File';
 export * from './_components/Table/Table';
 export * from './_components/Notification/Notification';
 export * from './_components/Button';
+export * from './_components/Select';

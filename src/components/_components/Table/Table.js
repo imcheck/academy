@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 import MoreBtn from './MoreButton';
 import Pagination from './Pagination';
+import PageSize from './PageSize';
+import Debug from 'debug';
+const debug = Debug("Table");
 
 export class Table extends React.Component {
   static DefaultPageSize = 10;
@@ -25,7 +28,7 @@ export class Table extends React.Component {
         if (rowIndex < pageSize * page) return true;
         break;
       case "pagination":
-        if (pageSize * ( page - 1 ) <= rowIndex && rowIndex < pageSize * page) return true;
+        if (pageSize * (page - 1) <= rowIndex && rowIndex < pageSize * page) return true;
         break;
       case "none":
         return true;
@@ -56,9 +59,6 @@ export class Table extends React.Component {
       case "pagination":
         const dataSize = data.length || data.size;
         const maxPageNumber = Math.floor((dataSize + pageSize - 1) / pageSize);
-        console.log("dataSize", dataSize);
-        console.log("pageSize", pageSize);
-        console.log("maxPageNumber", maxPageNumber);
         const pageNumbers = [];
         if (page <= 3) {
           for (let i = 1; i <= 5; i++)
@@ -70,7 +70,7 @@ export class Table extends React.Component {
           for (let i = page - 2; i <= page + 2; i++)
             pageNumbers.push(i);
         }
-        return <Pagination pageNumbers={pageNumbers} onClick={this._handlePaginationNoClick} page={page}/>
+        return <Pagination pageNumbers={pageNumbers} onClick={this._handlePaginationNoClick} page={page} />
         break;
       case "none":
         return null;
@@ -95,15 +95,33 @@ export class Table extends React.Component {
   _handlePaginationNoClick = (page) => {
     this.setState(state => ({ page }));
   }
+  _handlePageSizeChange = (pageSize) => {
+    this.setState(state => ({ pageSize }));
+  }
   /*-------------------------------------------------------------------------*/
   render() {
     return (
       <Container>
-        <Header>{this._getHeaders()}</Header>
-        <Contents>{this._getContents()}</Contents>
-        <Footer>{this._getPagination()}</Footer>
+        <Header>
+          {this.state.paginationStyle.position !== "bottom"
+            ? <PaginationCont><PageSize page={this.state.pageSize} onChange={this._handlePageSizeChange} />{this._getPagination()}</PaginationCont>
+            : null}
+        </Header>
+        <TableCont>
+          <THeader>{this._getHeaders()}</THeader>
+          <Contents>{this._getContents()}</Contents>
+        </TableCont>
+        <Footer>
+          <PaginationCont>
+            <PageSize page={this.state.pageSize} onChange={this._handlePageSizeChange} />
+            {this._getPagination()}
+          </PaginationCont>
+        </Footer>
       </Container>
     )
+  }
+  componentDidMount() {
+    console.log(this.state);
   }
   static getDerivedStateFromProps(props) {
     return {
@@ -115,7 +133,8 @@ export class Table extends React.Component {
   }
   static GetPaginationStyle(paginationStyle) {
     const defaultPaginationStyle = {
-      type: "none"
+      type: "none",
+      position: "bottom"
     }
     return {
       ...defaultPaginationStyle,
@@ -151,7 +170,7 @@ const Container = styled.div`
     box-sizing: border-box;
   }
 `
-const Header = styled.div`
+const THeader = styled.div`
   border-radius: 5px 5px 0px 0px;
   background-color: #f0f0f0;
   border-bottom: 1px solid #e8e8e8;
@@ -160,11 +179,14 @@ const Contents = styled.div`
   & > div {
     border-bottom: 1px solid #e8e8e8;
   }
-  & > div:last-child {
-    border: none;
-  }
+  // & > div:last-child {
+  //   border: none;
+  // }
 `;
-const Footer = styled.div`
+const PaginationCont = styled.div``;
+const TableCont = styled.div`
+  margin: 10px 0px;
+  border-bottom: 1px solid 
 `;
 const Row = styled.div`
   height: ${props => props.rowStyle.height}
@@ -175,3 +197,5 @@ const Row = styled.div`
 const Column = styled.div`
   flex: 1;
 `;
+const Header = styled.div``
+const Footer = styled.div``

@@ -4,16 +4,14 @@ import styled from 'styled-components';
 const Pagination = ({ pageNumbers, onClick, page }) => {
   return (
     <Container>
-      <BtnContainer>
-        <Btn>&lt;</Btn>
-        {pageNumbers.map((no, index) => (
-          <Btn
-            key={index}
-            clicked={page == no}
-            onClick={() => onClick(no)}>{no}</Btn>
-        ))}
-        <Btn>&gt;</Btn>
-      </BtnContainer>
+      <Btn>&lt;</Btn>
+      {pageNumbers.map((no, index) => (
+        <Btn
+          key={index}
+          clicked={page == no}
+          onClick={() => onClick(no)}>{no}</Btn>
+      ))}
+      <Btn>&gt;</Btn>
     </Container>
   )
 }
@@ -26,8 +24,6 @@ const Container = styled.div`
   font-size: 20px;
   border-radius: 0px 0px 5px 5px;
   text-align: center;
-`
-const BtnContainer = styled.div`
   float: right;
 `
 const Btn = styled.div`
@@ -38,8 +34,8 @@ const Btn = styled.div`
   cursor: pointer;
   border: 1px solid #e8e8e8;
   border-right: none;
-  background-color: ${props => props.clicked ? "#4286f4": "none"};
-  color: ${props => props.clicked ? "white": "#4286f4"};
+  background-color: ${props => props.clicked ? "#4286f4" : "none"};
+  color: ${props => props.clicked ? "white" : "#4286f4"};
   &:first-child {
     border-radius: 3px 0px 0px 3px;
   }
