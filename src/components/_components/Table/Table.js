@@ -61,7 +61,7 @@ export class Table extends React.Component {
         const maxPageNumber = Math.floor((dataSize + pageSize - 1) / pageSize);
         const pageNumbers = [];
         if (page <= 3) {
-          for (let i = 1; i <= 5; i++)
+          for (let i = 1; i <= Math.min(5, maxPageNumber); i++)
             pageNumbers.push(i);
         } else if (page >= maxPageNumber - 2) {
           for (let i = maxPageNumber - 4; i <= maxPageNumber; i++)
@@ -70,7 +70,12 @@ export class Table extends React.Component {
           for (let i = page - 2; i <= page + 2; i++)
             pageNumbers.push(i);
         }
-        return <Pagination pageNumbers={pageNumbers} onClick={this._handlePaginationNoClick} page={page} />
+        return (
+          <React.Fragment>
+            <PageSize onChange={this._handlePageSizeChange} size={this.state.pageSize}/>
+            <Pagination pageNumbers={pageNumbers} onClick={this._handlePaginationNoClick} page={page} />
+          </React.Fragment>
+        )
         break;
       case "none":
         return null;
@@ -96,33 +101,12 @@ export class Table extends React.Component {
     this.setState(state => ({ page }));
   }
   _handlePageSizeChange = (pageSize) => {
-    this.setState(state => ({ pageSize }));
+    this.setState(state => ({
+      page: Table.DefaultStartPage,
+      pageSize
+    }));
   }
-  /*-------------------------------------------------------------------------*/
-  render() {
-    return (
-      <Container>
-        <Header>
-          {this.state.paginationStyle.position !== "bottom"
-            ? <PaginationCont><PageSize page={this.state.pageSize} onChange={this._handlePageSizeChange} />{this._getPagination()}</PaginationCont>
-            : null}
-        </Header>
-        <TableCont>
-          <THeader>{this._getHeaders()}</THeader>
-          <Contents>{this._getContents()}</Contents>
-        </TableCont>
-        <Footer>
-          <PaginationCont>
-            <PageSize page={this.state.pageSize} onChange={this._handlePageSizeChange} />
-            {this._getPagination()}
-          </PaginationCont>
-        </Footer>
-      </Container>
-    )
-  }
-  componentDidMount() {
-    console.log(this.state);
-  }
+
   static getDerivedStateFromProps(props) {
     return {
       ...props,
@@ -131,16 +115,18 @@ export class Table extends React.Component {
       rowStyle: Table.GetRowStyle(props.rowStyle)
     }
   }
+
   static GetPaginationStyle(paginationStyle) {
     const defaultPaginationStyle = {
       type: "none",
-      position: "bottom"
+      position: "bottom",
     }
     return {
       ...defaultPaginationStyle,
       ...paginationStyle
     }
   }
+
   static GetHeaderStyle(headerStyle) {
     const defaultHeaderStyle = {
       height: "50px",
@@ -152,6 +138,7 @@ export class Table extends React.Component {
       ...headerStyle
     }
   }
+
   static GetRowStyle(rowStyle) {
     const defaultRowStyle = {
       height: "40px",
@@ -162,6 +149,32 @@ export class Table extends React.Component {
       ...defaultRowStyle,
       ...rowStyle
     }
+  }
+
+  /*-------------------------------------------------------------------------*/
+  render() {
+    return (
+      <Container>
+        <Header>
+          {this.state.paginationStyle.position !== "bottom"
+            ? <PaginationCont>{this._getPagination()}</PaginationCont>
+            : null}
+        </Header>
+        <TableCont>
+          <THeader>{this._getHeaders()}</THeader>
+          <Contents>{this._getContents()}</Contents>
+        </TableCont>
+        <Footer>
+          <PaginationCont>
+            {this._getPagination()}
+          </PaginationCont>
+        </Footer>
+      </Container>
+    )
+  }
+
+  componentDidMount() {
+    console.log(this.state);
   }
 }
 
@@ -179,9 +192,6 @@ const Contents = styled.div`
   & > div {
     border-bottom: 1px solid #e8e8e8;
   }
-  // & > div:last-child {
-  //   border: none;
-  // }
 `;
 const PaginationCont = styled.div``;
 const TableCont = styled.div`
