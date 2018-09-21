@@ -6,6 +6,7 @@ import MoreBtn from './MoreButton';
 import Pagination from './Pagination';
 import PageSize from './PageSize';
 import Debug from 'debug';
+
 const debug = Debug("Table");
 
 export class Table extends React.Component {
@@ -44,7 +45,7 @@ export class Table extends React.Component {
     return data.filter(this._filter).map((rowData, rowIndex) => {
       const _columns = columns.map((column, colIndex) => {
         const Component = column.component;
-        return <Column key={colIndex}><Component rowData={rowData} row={rowIndex} col={colIndex} /></Column>;
+        return <Column key={colIndex}><Component rowData={rowData} row={rowIndex} col={colIndex}/></Column>;
       });
       return <Row key={rowIndex} rowStyle={rowStyle}>{_columns}</Row>;
     });
@@ -54,7 +55,7 @@ export class Table extends React.Component {
     switch (paginationStyle.type) {
       case "more":
         const { onMoreClick } = paginationStyle;
-        return <MoreBtn onClick={(e) => this._handleMoreClick(onMoreClick)} />
+        return <MoreBtn onClick={(e) => this._handleMoreClick(onMoreClick)}/>
         break;
       case "pagination":
         const dataSize = data.length || data.size;
@@ -73,7 +74,7 @@ export class Table extends React.Component {
         return (
           <React.Fragment>
             <PageSize onChange={this._handlePageSizeChange} size={this.state.pageSize}/>
-            <Pagination pageNumbers={pageNumbers} onClick={this._handlePaginationNoClick} page={page} />
+            <Pagination pageNumbers={pageNumbers} onClick={this._handlePaginationNoClick} page={page}/>
           </React.Fragment>
         )
         break;
@@ -165,16 +166,16 @@ export class Table extends React.Component {
           <Contents>{this._getContents()}</Contents>
         </TableCont>
         <Footer>
-          <PaginationCont>
-            {this._getPagination()}
-          </PaginationCont>
+          {this.state.paginationStyle.position !== "top"
+            ? <PaginationCont>{this._getPagination()}</PaginationCont>
+            : null}
         </Footer>
       </Container>
     )
   }
 
   componentDidMount() {
-    console.log(this.state);
+    // console.log(this.state);
   }
 }
 
@@ -193,7 +194,9 @@ const Contents = styled.div`
     border-bottom: 1px solid #e8e8e8;
   }
 `;
-const PaginationCont = styled.div``;
+const PaginationCont = styled.div`
+  height: 40px;
+`;
 const TableCont = styled.div`
   margin: 10px 0px;
   border-bottom: 1px solid 

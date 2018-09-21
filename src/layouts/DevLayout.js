@@ -49,7 +49,7 @@ class DevLayout extends React.Component {
         <Title>Table</Title>
         <Table
           // paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
-          paginationStyle={{type: "pagination"}}
+          paginationStyle={{type: "pagination", position: "top"}}
           data={data}
           columns={[
             {
