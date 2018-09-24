@@ -91,3 +91,17 @@ import {
         - `both`: Pagination 을 상하단에 위치
       - `pageSizes`: (option) 페이지의 크기를 배열로 정의할 수 있는 속성
         - `array`: (default) [10, 20, 50, 100]
+
+- Notification
+  - Method
+    - `open`
+    ```js
+    Notification.open({
+      title: "Hello World!",
+      message: "Message for you",
+      duration: 3
+    })
+    ```
+    - `title`
+    - `message`
+    - `duration` (option)

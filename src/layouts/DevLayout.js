@@ -25,10 +25,12 @@ class DevLayout extends React.Component {
     // alert("More Button Clicked");
     return true;
   }
+  cnt = 1;
   _handleBtnClick = () => {
     Notification.open({
-      message: "Hello World!"
+      message: "Hello World!" + this.cnt
     });
+    this.cnt++;
   }
   render() {
     const data = [];

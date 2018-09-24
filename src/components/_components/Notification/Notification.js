@@ -1,28 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
 
+import Messages from './Messages';
 import Message from './Message';
 
 export class Notification {
   static isMount = false;
-  static open({message}) {
-    console.log(message);
-    if(!Notification.isMount) {
-      // Notification Render
-      // https://github.com/react-component/notification/blob/master/src/Notification.jsx
+  static Container;
+  static Messages = [];
+
+  static open({ title, message, duration = 3 }) {
+    if (!Notification.isMount) {
       const div = document.createElement('div');
       document.body.appendChild(div);
       Notification.isMount = true;
+      Notification.Container = div;
     }
+    Notification.Messages.push({
+      component: <Message title={title} message={message} duration={duration}/>
+    });
+    ReactDOM.render(<Messages messages={Notification.Messages}/>, Notification.Container);
   }
 }
 
-class _Notification extends React.Component {
-  render() {
-    return (
-      <Container>
-      </Container>
-    )
-  }
-}
+
+// https://github.com/react-component/notification/blob/master/src/Notification.jsx
