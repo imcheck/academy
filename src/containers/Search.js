@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
-import { Input } from '@components';
+import { SearchInput } from '@components';
 
 import { updatePage } from '@redux/actions/pageActions';
 
@@ -20,7 +20,7 @@ class Search extends React.PureComponent {
   render() {
     return (
       <Container>
-        <Input
+        <SearchInput
           // defaultValue={this.props.search.get("text")}
           placeholder="통합검색"
           onKeyUp={(e) => e.which==13 ? this._handleSearch() : null}
