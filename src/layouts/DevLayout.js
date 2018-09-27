@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {
   Input,
   _Input,
+  SearchInput,
   InputForm,
   File,
   Table,
@@ -44,6 +45,7 @@ class DevLayout extends React.Component {
         <Title>INPUT</Title>
         <Input />
         <_Input />
+        <SearchInput />
         <InputForm name="InputForm"/>
         <File onChange={this._handleChange} file={this.state.file}/>
         <Title>Notification</Title>
