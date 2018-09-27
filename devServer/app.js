@@ -24,9 +24,9 @@ app.use('/', function (req, res) {
   res.sendFile(file);
 })
 
-app.listen(8080, function (err) {
+app.listen("8002", function (err) {
   if (err) {
     return console.error(err);
   }
-  console.log('Listening at http://localhost:8080/');
+  console.log('Listening at http://localhost:8002/');
 });
