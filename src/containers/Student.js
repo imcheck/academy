@@ -17,7 +17,7 @@ class Student extends React.Component {
           <FontAwesomeIcon icon={faUserGraduate}/>
           &nbsp;학생
         </Title>
-        <Filter type="student" />
+        <Filter type="student"/>
         <StudentTable />
       </CommonLayout>
     )
