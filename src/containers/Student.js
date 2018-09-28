@@ -13,6 +13,10 @@ class Student extends React.Component {
   render() {
     return (
       <CommonLayout>
+        <Title>
+          <FontAwesomeIcon icon={faUserGraduate}/>
+          &nbsp;학생
+        </Title>
         <Filter type="student" />
         <StudentTable />
       </CommonLayout>
@@ -26,7 +30,13 @@ class Student extends React.Component {
 const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
-
 });
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Student));
+
+const Title = styled.div`
+  text-align: center;
+  font-size: 48px;
+  line-height: 48px;
+  margin-bottom: 10px;
+`

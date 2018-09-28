@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
-import { SearchInput } from '@components';
+import { SearchForm } from '@components';
 
 import { updatePage } from '@redux/actions/pageActions';
 
@@ -20,7 +20,7 @@ class Search extends React.PureComponent {
   render() {
     return (
       <Container>
-        <SearchInput
+        <SearchForm
           // defaultValue={this.props.search.get("text")}
           placeholder="통합검색"
           onKeyUp={(e) => e.which==13 ? this._handleSearch() : null}
@@ -42,5 +42,4 @@ export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Search));
 const Container = styled.div`
   height: 40px;
   width: 100%;
-  padding: 0px 10px 0px 5px;
 `;
