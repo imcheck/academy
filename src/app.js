@@ -11,7 +11,7 @@ import { theme } from '@config/styleConfig';
 import { history } from './redux';
 
 import HomeLayout from '@layouts/HomeLayout';
-import StudentLayout from '@layouts/StudentLayout';
+import Student from '@containers/Student';
 import LoginLayout from '@layouts/LoginLayout';
 import DevLayout from '@layouts/DevLayout';
 
@@ -24,7 +24,7 @@ class App extends React.Component {
           <ConnectedRouter history={history}>
             <Switch>
               <Route exact path="/" component={HomeLayout} />
-              <Route exact path="/student" component={StudentLayout} />
+              <Route exact path="/student" component={Student} />
               <Route path="/login" component={LoginLayout} />
               <Route path="/components" component={DevLayout} />
             </Switch>

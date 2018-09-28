@@ -7,8 +7,13 @@ const searchRecord = Record({
   text: ""
 })
 
+const tableRecord = Record({
+  search: searchRecord(),
+  tableData: []
+})
 const pageRecord = Record({
-  search: searchRecord()
+  search: searchRecord(),
+  student: tableRecord()
 })
 
 
