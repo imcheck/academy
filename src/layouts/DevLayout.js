@@ -10,9 +10,10 @@ import {
   File,
   Table,
   Button,
-  Notification } from '@components';
+  Notification
+} from '@components';
 
-  import ErrorHOC from '@hoc';
+import ErrorHOC from '@hoc';
 
 class DevLayout extends React.Component {
   state = {
@@ -34,20 +35,23 @@ class DevLayout extends React.Component {
     });
     this.cnt++;
   }
+
   render() {
     const data = [];
-    for(let i=1; i<=100; i++){
+    for (let i = 1; i <= 100; i++) {
       data.push({
-        attr1: "row"+i,
+        attr1: "row" + i,
       })
     }
     return (
       <Container>
         <Title>INPUT</Title>
-        <Input />
-        <_Input />
-        <SearchForm />
-        <SearchFilter options={["name", "age"]} optionIndex={0} onOptionChange={(e) => alert(e.target.value)}/>
+        <Input/>
+        <_Input/>
+        <SearchForm/>
+        <SearchFilter options={[{ value: "name", text: "이름" }, { value: "age", text: "나이" }]}
+                      value="age"
+                      onOptionChange={(e) => alert(e.target.value)}/>
         <InputForm name="InputForm"/>
         <File onChange={this._handleChange} file={this.state.file}/>
         <Title>Notification</Title>
@@ -55,7 +59,7 @@ class DevLayout extends React.Component {
         <Title>Table</Title>
         <Table
           // paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
-          paginationStyle={{type: "pagination", position: "top"}}
+          paginationStyle={{ type: "pagination", position: "top" }}
           data={data}
           columns={[
             {
@@ -82,13 +86,13 @@ class DevLayout extends React.Component {
               header: "Attr6",
               component: ({ rowData, row, col }) => <div>({row}, {col})</div>
             }
-          ]} />
+          ]}/>
       </Container>
     );
   }
 }
-export default ErrorHOC(DevLayout);
 
+export default ErrorHOC(DevLayout);
 
 
 const Container = styled.div`

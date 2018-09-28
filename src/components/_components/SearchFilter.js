@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import { SearchForm } from './SearchForm';
 
-export const SearchFilter = ({ options, optionIndex, onOptionChange, ...props }) => {
-  const _options = options.map((option) => <Option value={option}>{option}</Option>);
+export const SearchFilter = ({ options, value, onOptionChange, ...props }) => {
+  const _options = options.map((option) => <Option value={option.value}>{option.text}</Option>);
   const newSearchForm = React.cloneElement(<SearchForm/>, props);
   return (
     <Container>
-      <SelectContainer><Select value={options[optionIndex]} onChange={onOptionChange}>{_options}</Select></SelectContainer>
+      <SelectContainer><Select value={value} onChange={onOptionChange}>{_options}</Select></SelectContainer>
       <InputContainer>{newSearchForm}</InputContainer>
     </Container>
   )
