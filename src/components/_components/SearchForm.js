@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const SearchInput = (props) => {
+export const SearchForm = (props) => {
   const NewSearchInput = React.cloneElement(<Input />, props);
   return (
     <Container>
@@ -39,7 +39,7 @@ const Input = styled.input`
 `
 
 const Button = styled.div`
-  pointer: cursor;
+  cursor: pointer;
   background-color: ${props => props.theme._components.blue}
   width: 72px;
   height: 36px;

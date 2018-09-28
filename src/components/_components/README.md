@@ -18,7 +18,9 @@ import {
 // 밑줄만 있는 Input
 <_Input type="number" />
 // 검색용 Input ( 검색 버튼 클릭시 onSearchClick 함수 실행, 나머진 Input 과 같음 )
-<SearchInput onSearchClick={} .../>
+<SearchForm onSearchClick={} .../>
+// options, optionIndex, onOptionChange 만 select 관련, 나머진 Input에 대응됨 )
+<SearchFilter options={[]} optionIndex={} onOptionChange={} ... /> 
 ```
 
 ## File

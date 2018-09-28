@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import {
   Input,
   _Input,
-  SearchInput,
+  SearchForm,
+  SearchFilter,
   InputForm,
   File,
   Table,
@@ -45,7 +46,8 @@ class DevLayout extends React.Component {
         <Title>INPUT</Title>
         <Input />
         <_Input />
-        <SearchInput />
+        <SearchForm />
+        <SearchFilter options={["name", "age"]} optionIndex={0} onOptionChange={(e) => alert(e.target.value)}/>
         <InputForm name="InputForm"/>
         <File onChange={this._handleChange} file={this.state.file}/>
         <Title>Notification</Title>
