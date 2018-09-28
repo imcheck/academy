@@ -4,13 +4,15 @@ import { Record } from 'immutable';
 import { pageActions } from '@redux/actions/pageActions';
 
 const searchRecord = Record({
-  text: ""
+  text: "",
+  optionValue: "",
 })
 
 const tableRecord = Record({
   search: searchRecord(),
   tableData: []
 })
+
 const pageRecord = Record({
   search: searchRecord(),
   student: tableRecord()
