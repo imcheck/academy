@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { SearchForm } from './SearchForm';
 
 export const SearchFilter = ({ options, value, onOptionChange, ...props }) => {
-  const _options = options.map((option) => <Option value={option.value}>{option.text}</Option>);
+  const _options = options.map((option, key) => <Option key={key} value={option.value}>{option.text}</Option>);
   const newSearchForm = React.cloneElement(<SearchForm/>, props);
   return (
     <Container>
