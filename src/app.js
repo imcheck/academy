@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
+import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
+
 
 import { store } from '@redux';
 import { theme } from '@config/styleConfig';
+import { history } from './redux';
 
 import HomeLayout from '@layouts/HomeLayout';
 import LoginLayout from '@layouts/LoginLayout';
@@ -17,13 +20,13 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <BrowserRouter>
+          <ConnectedRouter history={history}>
             <Switch>
               <Route exact path="/" component={HomeLayout} />
               <Route path="/login" component={LoginLayout} />
               <Route path="/components" component={DevLayout} />
             </Switch>
-          </BrowserRouter>
+          </ConnectedRouter>
         </ThemeProvider>
       </Provider>
     )
