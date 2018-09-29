@@ -10,14 +10,16 @@ import {
   File,
   Table,
   Button,
-  Notification
+  Notification,
+  Modal
 } from '@components';
 
 import ErrorHOC from '@hoc';
 
 class DevLayout extends React.Component {
   state = {
-    file: ""
+    file: "",
+    visible: false // for Modal
   }
   _handleChange = (file) => {
     this.setState(() => ({ file }), () => {
@@ -35,7 +37,11 @@ class DevLayout extends React.Component {
     });
     this.cnt++;
   }
-
+  _handleModal = () => {
+    this.setState(state => ({
+      visible: true
+    }))
+  }
   render() {
     const data = [];
     for (let i = 1; i <= 100; i++) {
@@ -54,8 +60,20 @@ class DevLayout extends React.Component {
                       onOptionChange={(e) => alert(e.target.value)}/>
         <InputForm name="InputForm"/>
         <File onChange={this._handleChange} file={this.state.file}/>
+        <Title>Button</Title>
+        <Button primary>Primary</Button>
+        <Button>Normal</Button>
         <Title>Notification</Title>
         <Button onClick={this._handleBtnClick}>Notification</Button>
+        <Title>Modal</Title>
+        <Button onClick={this._handleModal}>Open</Button>
+        <Modal
+          title="Modal"
+          width={600}
+          height={400}
+          footer={[<Button>저장</Button>, <Button>닫기</Button>]}
+          visible={this.state.visible}>
+        </Modal>
         <Title>Table</Title>
         <Table
           // paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}

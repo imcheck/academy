@@ -109,3 +109,13 @@ import {
     - `title`
     - `message`
     - `duration` (option)
+    
+- Modal
+  - Handler
+    - `onBackgroundClick`: 백그라운드 클릭 했을 때 실행되는 함수
+  - Member
+    - `visible`
+    - `width`
+    - `height`
+    - `title`
+    - `footer`: (array) 모달의 하단 오른쪽에 배치되는 컴포넌트들을 정의할 수 있음
