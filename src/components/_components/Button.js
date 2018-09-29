@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Button = styled.div`
+  display: inline-block;
   width: ${props => props.width ? props.width : "100px"};
   height: ${props => props.height ? props.height: "40px"};
   line-height: ${props => props.height ? props.height: "40px"};
