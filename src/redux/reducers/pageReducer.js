@@ -1,4 +1,5 @@
 import { Record } from 'immutable';
+import { CommonData } from '@models';
 
 
 import { pageActions } from '@redux/actions/pageActions';
@@ -8,14 +9,16 @@ const searchRecord = Record({
   optionValue: "",
 })
 
-const tableRecord = Record({
+const dataRecord = Record({
   search: searchRecord(),
-  tableData: []
+  data: new CommonData(),
+  isTableLoading: false
 })
 
 const pageRecord = Record({
   search: searchRecord(),
-  student: tableRecord()
+  student: dataRecord(),
+  class: dataRecord()
 })
 
 

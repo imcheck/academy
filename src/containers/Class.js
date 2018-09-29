@@ -2,23 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import { faShapes } from '@fortawesome/free-solid-svg-icons';
 
 import ErrorHOC from '@hoc';
-import StudentTable from '@containers/StudentTable';
+import ClassTable from '@containers/ClassTable';
 import CommonLayout from '@layouts/CommonLayout';
 import Filter from '@containers/TableFilter';
 
-class Student extends React.Component {
+class Class extends React.Component {
   render() {
     return (
       <CommonLayout>
         <Title>
-          <FontAwesomeIcon icon={faUserGraduate}/>
-          &nbsp;학생
+          <FontAwesomeIcon icon={faShapes}/>
+          &nbsp;클래스 관리
         </Title>
-        <Filter type="student"/>
-        <StudentTable />
+        <Filter type="class"/>
+        <ClassTable />
       </CommonLayout>
     )
   }
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 });
 
-export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Student));
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Class));
 
 const Title = styled.div`
   text-align: center;

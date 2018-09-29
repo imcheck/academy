@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ErrorHOC from '@hoc';
 import { SearchFilter } from '@components';
 import { updatePage } from '@redux/actions/pageActions';
+import { getTableData } from '@redux/actions/requestActions';
 
 class TableFilter extends React.Component {
   _getOptions = (type) => {
@@ -17,7 +18,12 @@ class TableFilter extends React.Component {
           { value: "tel", text: "전화번호"}
         ];
       case "class":
-        break;
+        return [
+          { value: "", text: "전체" },
+          { value: "name", text: "이름" },
+          { value: "day", text: "요일" },
+          { value: "teacher", text: "선생님"}
+        ]
       case "teacher":
         break;
       default:
@@ -33,6 +39,7 @@ class TableFilter extends React.Component {
     this.props.updatePage(params);
   }
   _handleSearchTextChange = (e) => {
+    const { type } = this.props;
     const params = [{
       path: [type, "search", "text"],
       data: e.target.value
@@ -58,22 +65,26 @@ class TableFilter extends React.Component {
   }
   componentDidMount() {
     const { type } = this.props;
-    const params = [{
+    let params;
+    params = [{
       path: [type, "search", "optionValue"],
       data: this._getOptions(this.props.type)[0].value
     }];
     this.props.updatePage(params);
 
-    console.log(this.props.state);
+    params = {
+      type
+    }
+    this.props.getTableData(params);
   }
 }
 
 const mapStateToProps = (state) => ({
-  search: state.page.student.search,
-  state
+  search: state.page.getIn([state.router.location.pathname.slice(1), "search"]),
 });
 const mapDispatchToProps = (dispatch) => ({
-  updatePage: params => dispatch(updatePage(params))
+  updatePage: params => dispatch(updatePage(params)),
+  getTableData: params => dispatch(getTableData(params))
 });
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(TableFilter));

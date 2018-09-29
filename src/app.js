@@ -12,6 +12,7 @@ import { history } from './redux';
 
 import HomeLayout from '@layouts/HomeLayout';
 import Student from '@containers/Student';
+import Class from '@containers/Class';
 import LoginLayout from '@layouts/LoginLayout';
 import DevLayout from '@layouts/DevLayout';
 
@@ -24,7 +25,8 @@ class App extends React.Component {
           <ConnectedRouter history={history}>
             <Switch>
               <Route exact path="/" component={HomeLayout} />
-              <Route exact path="/student" component={Student} />
+              <Route path="/student" component={Student} />
+              <Route path="/class" component={Class} />
               <Route path="/login" component={LoginLayout} />
               <Route path="/components" component={DevLayout} />
             </Switch>
