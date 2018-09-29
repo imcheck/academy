@@ -39,6 +39,7 @@ const Input = styled.input`
 `
 
 const Button = styled.div`
+  border-radius: 0px 5px 5px 0px;
   cursor: pointer;
   background-color: ${props => props.theme._components.blue}
   width: 72px;
