@@ -186,7 +186,7 @@ const Container = styled.div`
 `
 const THeader = styled.div`
   border-radius: 5px 5px 0px 0px;
-  background-color: #f0f0f0;
+  background-color: ${props => props.theme._components.blue};
   border-bottom: 1px solid #e8e8e8;
 `;
 const Contents = styled.div`
