@@ -72,6 +72,7 @@ const Header = styled.div`
 const Body = styled.div`
   padding: 10px;
   height: ${props => props.height}px;
+  overflow: auto;
   // border-top: 1px solid ${props => props.theme._components.blue}
   // border-bottom: 1px solid ${props => props.theme._components.blue}
 `
