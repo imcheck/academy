@@ -157,7 +157,7 @@ export class Table extends React.Component {
     return (
       <Container>
         <Header>
-          {this.state.paginationStyle.position !== "bottom" && this.state.paginationStyle.position !== "none"
+          {this.state.paginationStyle.position !== "bottom" && this.state.paginationStyle.type !== "none"
             ? <PaginationCont>{this._getPagination()}</PaginationCont>
             : null}
         </Header>
@@ -166,7 +166,7 @@ export class Table extends React.Component {
           <Contents>{this._getContents()}</Contents>
         </TableCont>
         <Footer>
-          {this.state.paginationStyle.position !== "top" && this.state.paginationStyle.position !== "none"
+          {this.state.paginationStyle.position !== "top" && this.state.paginationStyle.type !== "none"
             ? <PaginationCont>{this._getPagination()}</PaginationCont>
             : null}
         </Footer>
