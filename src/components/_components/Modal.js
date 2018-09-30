@@ -21,7 +21,7 @@ export class Modal extends React.Component {
       return (
         <Fragment>
           <Background onClick={onBackgroundClick}/>
-          <Container width={width} height={height+300}>
+          <Container width={width} height={height+200}>
             <Header>
               <Title>{title}</Title>
             </Header>
