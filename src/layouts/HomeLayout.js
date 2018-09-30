@@ -17,6 +17,9 @@ class HomeLayout extends React.Component {
   render() {
     return (
       <Layout>
+        <Container>
+          <ImgContainer><img src="logo.png" height="100%"/></ImgContainer>
+        </Container>
         <Container><Search /></Container>
         <Container>
           <Link to="/student">
@@ -56,7 +59,7 @@ const mapDispatchToProps = dispatch => ({
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(HomeLayout));
 
 const Layout = styled.div`
-  padding-top: calc(50vh - 150px)
+  padding-top: calc(50vh - 400px)
 `;
 const Container = styled.div`
   margin: 0 auto;
@@ -103,4 +106,10 @@ const FinancialManagement = styled(Button)`
 const Text = styled.div`
   font-size: 20px;
   margin-top: 10px;
+`
+
+const ImgContainer = styled.div`
+  height: 300px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 `

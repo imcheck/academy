@@ -25,7 +25,7 @@ const Layout = styled.div`
 `;
 const Header = styled.div`
   padding: 20px;
-  border-bottom: 3px solid ${props => props.theme._components.gray};
+  border-bottom: 1px solid ${props => props.theme._components.gray};
 `
 const Body = styled.div`
   padding: 20px;

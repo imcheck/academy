@@ -33,7 +33,7 @@ const Select = styled.select`
   outline: none;
   border: none;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 1px);
   background-color: inherit;
   color: white;
   font-size: 15px;
