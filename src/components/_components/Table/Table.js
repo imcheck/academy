@@ -188,6 +188,7 @@ const THeader = styled.div`
   border-radius: 5px 5px 0px 0px;
   background-color: ${props => props.theme._components.blue};
   border-bottom: 1px solid #e8e8e8;
+  color: white;
 `;
 const Contents = styled.div`
   & > div {
