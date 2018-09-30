@@ -17,6 +17,10 @@ import {
 <Input type="text" />
 // 밑줄만 있는 Input
 <_Input type="number" />
+// InputForm
+<InputForm name="" />
+// InputForm인데 readonly 전용
+<InputForm name="" disabled>Hello World</InputForm>
 // 검색용 Input ( 검색 버튼 클릭시 onSearchClick 함수 실행, 나머진 Input 과 같음 )
 <SearchForm onSearchClick={} .../>
 // options, optionIndex, onOptionChange 만 select 관련, 나머진 Input에 대응됨 )
