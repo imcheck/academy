@@ -1,5 +1,5 @@
 // import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const _Input = styled.input`
   height: 36px;
@@ -11,9 +11,12 @@ export const _Input = styled.input`
   border: none;
   border-bottom: 2px solid black;
   color: black;
-  &:hover {
-    border-bottom: 2px solid #76a5f2;
-  }
+  font-family: inherit;
+  ${props => !props.disabled && css`
+    &:hover {
+      border-bottom: 2px solid #76a5f2;
+    }  
+  `}
   &:focus {
     border-bottom: 2px solid #4286f4;
   }
