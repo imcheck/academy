@@ -76,12 +76,13 @@ class DevLayout extends React.Component {
         <Title>Table</Title>
         <Table
           // paginationStyle={{type: "more", onMoreClick: this._handleMoreClick}}
-          // paginationStyle={{ type: "pagination", position: "top" }}
+          paginationStyle={{ type: "pagination", position: "top" }}
           data={data}
           columns={[
             {
               header: "Attr1",
-              component: ({ rowData, row, col }) => <div>({row}, {col}) {rowData.attr1}</div>
+              width: "200px",
+              component: ({ rowData, row, col }) => <div>({row}, {col}) {rowData.attr1} sdfjisdjifjasdfasdfasdassidfasdfsdf</div>
             },
             {
               header: "Attr2",

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import MoreBtn from './MoreButton';
 import Pagination from './Pagination';
@@ -16,8 +16,16 @@ export class Table extends React.Component {
   /*-------------------------------------------------------------------------*/
   _getHeaders = () => {
     const { columns, rowStyle } = this.state;
-    const _columns = columns.map((col, index) => {
-      const { header } = col;
+    const _columns = columns.map((column, index) => {
+      const { header, width, widthRatio } = column;
+      if(width) {
+        return <Column key={index} width={width}>{header}</Column>;
+      } else if(widthRatio) {
+        return <Column key={index} widthRatio={widthRatio}>{header}</Column>;
+      } else {
+        return <Column key={index} widthRatio={1}>{header}</Column>;
+      }
+
       return <Column key={index}>{header}</Column>;
     })
     return <Row rowStyle={rowStyle}>{_columns}</Row>;
@@ -45,7 +53,14 @@ export class Table extends React.Component {
     return data.filter(this._filter).map((rowData, rowIndex) => {
       const _columns = columns.map((column, colIndex) => {
         const Component = column.component;
-        return <Column key={colIndex}><Component rowData={rowData} row={rowIndex} col={colIndex}/></Column>;
+        const { width, widthRatio } = column;
+        if(width) {
+          return <Column key={colIndex} width={width}><Component rowData={rowData} row={rowIndex} col={colIndex}/></Column>;
+        } else if(widthRatio) {
+          return <Column key={colIndex} widthRatio={widthRatio}><Component rowData={rowData} row={rowIndex} col={colIndex}/></Column>;
+        } else {
+          return <Column key={colIndex} widthRatio={1}><Component rowData={rowData} row={rowIndex} col={colIndex}/></Column>;
+        }
       });
       return <Row key={rowIndex} rowStyle={rowStyle}>{_columns}</Row>;
     });
@@ -205,7 +220,13 @@ const Row = styled.div`
   display: flex;
 `;
 const Column = styled.div`
-  flex: 1;
+  ${props => props.width && css`width: ${props.width}`}
+  ${props => props.widthRatio && css`flex: ${props.widthRatio}`}
+  & > * {
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    white-space: nowrap;
+  }
 `;
 const Header = styled.div``
 const Footer = styled.div``
