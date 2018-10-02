@@ -22,10 +22,9 @@ class DevLayout extends React.Component {
     visible: false // for Modal
   }
   _handleChange = (file) => {
-    this.setState(() => ({ file }), () => {
-      console.log("after", this.state.file);
-    })
+    this.setState(() => ({ file }));
   }
+
   _handleMoreClick = () => {
     // alert("More Button Clicked");
     return true;

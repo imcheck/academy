@@ -173,10 +173,6 @@ export class Table extends React.Component {
       </Container>
     )
   }
-
-  componentDidMount() {
-    // console.log(this.state);
-  }
 }
 
 const Container = styled.div`

@@ -19,7 +19,6 @@ const InputContainer = styled.div`
   flex: 1;
 `
 export const InputForm = ({name, children, ...props}) => {
-  console.log(props);
   const Input = children ? (
     React.cloneElement(<_Input value={children} disabled></_Input>, props)
   ) : (
