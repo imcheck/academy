@@ -70,6 +70,8 @@ import {
     - 테이블의 각 컬럼을 어떻게 표현할지 정의 하는 필드
     - object array
       - header: `component` / `string`
+      - width: `string` ex) "40px"
+      - widthRatio: `number` ex) 1 (default), 2, 3
       - component: `function ({rowData, row, col})`
   - headerStyle
     - 테이블 Header의 스타일을 정의하는 곳
