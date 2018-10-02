@@ -8,7 +8,7 @@ export async function getClassData(action) {
     pdate: [{
       day: "월",
       stime: "13:00",
-      dtime: "180"
+      etime: "16:00"
     }]
   },{
     name: "중1-1 심화반",
@@ -17,7 +17,7 @@ export async function getClassData(action) {
     pdate: [{
       day: "월",
       stime: "13:00",
-      dtime: "180"
+      etime: "16:00"
     }]
   },{
     name: "중2-1 기초반",
@@ -26,7 +26,7 @@ export async function getClassData(action) {
     pdate: [{
       day: "월",
       stime: "13:00",
-      dtime: "180"
+      etime: "16:00"
     }]
   },{
     name: "중2-1 심화반",
@@ -35,7 +35,7 @@ export async function getClassData(action) {
     pdate: [{
       day: "월",
       stime: "13:00",
-      dtime: "180"
+      etime: "16:00"
     }]
   }])
 }

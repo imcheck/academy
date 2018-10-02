@@ -8,18 +8,18 @@ import ErrorHOC from '@hoc';
 import StudentTable from '@containers/StudentTable';
 import CommonLayout from '@layouts/CommonLayout';
 import Filter from '@containers/TableFilter';
-import { Button, Modal, InputForm } from '@components';
-// import { Student } from '@models';
+import { Button, Modal, InputForm, Table } from '@components';
+import { Student } from '@models';
 
 class _Student extends React.Component {
   state = {
-    student: {},
+    student: new Student(),
     studentModalVisible: false
   }
   _handleStudentModal = (type) => {
     if(type === "open") {
       this.setState(state => ({
-        student: {},
+        student: new Student(),
         studentModalVisible: true
       }));
     } else {
@@ -33,7 +33,7 @@ class _Student extends React.Component {
     student[key] = value;
     this.setState(state => ({
       student
-    }), () => console.log(value));
+    }));
   }
   render() {
     return (
@@ -97,8 +97,52 @@ class _Student extends React.Component {
             </Col>
           </Row2>
           <Row2>
-            <Col><InputForm name="등록일" placeholder="예) 2018-07-08"/></Col>
+            <Col>
+              <InputForm
+                name="등록일"
+                placeholder="예) 2018-07-08"
+                value={this.state.student.rdate}
+                onChange={(e) => this._handleStudentEdit("rdate", e.target.value)}/>
+            </Col>
           </Row2>
+          <SubTitle>가족 관계</SubTitle>
+          <Table
+            data={[{ name: "Alice", school: "화명중", grade: "중1", state: "재원"}, { name: "Lily", school: "용수중", grade: "초6", state: "휴원"}]}
+            columns={[
+              {
+                header: "이름",
+                component: ({rowData}) => <span>{rowData.name}</span>
+              },
+              {
+                header: "학교",
+                component: ({rowData}) => <span>{rowData.school}</span>
+              },
+              {
+                header: "학년",
+                component: ({rowData}) => <span>{rowData.grade}</span>
+              },
+              {
+                header: "상태",
+                component: ({rowData}) => <span>{rowData.state}</span>
+              },
+            ]}/>
+          <SubTitle>클래스</SubTitle>
+          <Table
+            data={[{ name: "중1-1 심화반", teacher: "Matthew", pdate: [{ day: "월", stime: "13:00", etime: "16:00" }], state: "재원"}, { name: "중2-1 선행반", teacher: "July", pdate: [{ day: "월", stime: "13:00", etime: "16:00" }], state: "휴원"}]}
+            columns={[
+              {
+                header: "클래스",
+                component: ({rowData}) => <span>{rowData.name}</span>
+              },
+              {
+                header: "선생님",
+                component: ({rowData}) => <span>{rowData.teacher}</span>
+              },
+              {
+                header: "수업 시간",
+                component: ({rowData}) => <span>{rowData.pdate[0].day} ( {rowData.pdate[0].stime} ~ {rowData.pdate[0].etime} )</span>
+              }
+            ]}/>
         </Modal>
       </CommonLayout>
     )

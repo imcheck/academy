@@ -92,7 +92,7 @@ class StudentTable extends React.Component {
             ]}/>
           <Title>클래스</Title>
           <Table
-            data={[{ name: "중1-1 심화반", teacher: "Matthew", pdate: [{ day: "월", stime: "13:00", dtime: "180" }], state: "재원"}, { name: "중2-1 선행반", teacher: "July", pdate: [{ day: "월", stime: "13:00", dtime: "180" }], state: "휴원"}]}
+            data={[{ name: "중1-1 심화반", teacher: "Matthew", pdate: [{ day: "월", stime: "13:00", etime: "16:00" }], state: "재원"}, { name: "중2-1 선행반", teacher: "July", pdate: [{ day: "월", stime: "13:00", etime: "16:00" }], state: "휴원"}]}
             columns={[
               {
                 header: "클래스",
@@ -103,13 +103,9 @@ class StudentTable extends React.Component {
                 component: ({rowData}) => <span>{rowData.teacher}</span>
               },
               {
-                header: "요일",
-                component: ({rowData}) => <span>{rowData.pdate[0].day}</span>
-              },
-              {
-                header: "#",
-                component: ({rowData}) => <Button height="30px" width="50px" primary>상세</Button>
-              },
+                header: "수업 시간",
+                component: ({rowData}) => <span>{rowData.pdate[0].day} ( {rowData.pdate[0].stime} ~ {rowData.pdate[0].etime} )</span>
+              }
             ]}/>
         </Modal>
       </Container>
