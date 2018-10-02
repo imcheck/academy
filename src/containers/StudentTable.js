@@ -40,7 +40,7 @@ class StudentTable extends React.Component {
             },
             {
               header: "부모 번호",
-              component: ({rowData}) => <span>{rowData.tel2}</span>
+              component: ({rowData}) => <span>{rowData.ptel}</span>
             },
             {
               header: "#",

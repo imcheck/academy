@@ -26,7 +26,6 @@ export function* GetTableData() {
           break;
         case "class":
           const classes = yield call(getClassData);
-          console.log(classes);
           params = [{
             path: [type, "data"],
             data: classes
