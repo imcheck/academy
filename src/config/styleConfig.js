@@ -5,12 +5,14 @@ export const theme = {
 
     blue:    "#4286f4",
     blue2:   "#68a2ff",
+    blue3:   "#3872d1",
 
     purple:  "#6a5c93", // pantone
     purple2: "#9385bc",
 
     green:   "#00AB84",
     green2:  "#1ccca3",
+    green3:  "#017c60",
 
     gray:    "#63666a", // pantone
     gray2:   "#8e9296",

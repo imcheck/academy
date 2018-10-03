@@ -7,10 +7,12 @@ export const Button = styled.div`
   line-height: ${props => props.height ? props.height: "40px"};
   text-align: center;
   border-radius: 5px;
-  background-color: ${props => props.primary? "#4286f4" : props.theme._components.green};
+  background-color: ${props => props.primary? props.theme._components.blue : props.theme._components.green};
   color: white;
   cursor: pointer;
   &:hover {
-    background-color: ${props => props.primary? "#76a5f2" : props.theme._components.green2};
+    background-color: ${props => props.primary? props.theme._components.blue2 : props.theme._components.green2};
+    box-shadow: 0px 5px 1px ${props => props.primary ? props.theme._components.blue :props.theme._components.green}
   }
+  box-shadow: 0px 5px 1px ${props => props.primary ? props.theme._components.blue3 :props.theme._components.green3}
 `
