@@ -9,13 +9,31 @@ import { Init } from "../redux/sagas/pageSaga";
 class MiniClassSelectModal extends React.Component {
   state = {
     searchText: "",
+    classIds: []
   }
   _handleSearchTextChange = (e) => {
+    const { value } = e.target;
     this.setState(state => ({
-      searchText: e.target.value
+      searchText: value
+    }));
+  }
+  _handleCheck = (v, _classId) => {
+    const { classIds } = this.state;
+    if(v) {
+      classIds.push(_classId);
+    } else {
+      const index = this.state.classIds.findIndex( classId => {
+        if(classId === _classId) return true;
+        return false;
+      });
+      classIds.splice(index, 1);
+    }
+    this.setState(state => ({
+      classIds
     }));
   }
   render() {
+    const classes = this.props.classes.toJS().filter(_class => _class.name.includes(this.state.searchText) || _class.teacher.includes(this.state.searchText));
     return (
       <Modal
         title="클래스 선택"
@@ -24,14 +42,15 @@ class MiniClassSelectModal extends React.Component {
         height={400}
         footer={[<Button key="select">선택</Button>, <Button key="close" onClick={this.props.onClose}>닫기</Button>]}>
         <Wrapper><SubTitle>선택 가능한 클래스</SubTitle></Wrapper>
+        {this.state.classIds.length ? <Result>선택된 개수: {this.state.classIds.length}</Result> : null}
         <Input placeholder="검색" value={this.state.searchText} onChange={this._handleSearchTextChange}/>
         <Table
-          data={this.props.classes.toJS()}
+          data={classes}
           columns={[
             {
               header: "",
               width: "40px",
-              component: ({rowData}) => <input type="checkbox" />
+              component: ({rowData}) => <input type="checkbox" checked={this.state.classIds.indexOf(rowData.classId) >= 0} onChange={(e) => this._handleCheck(e.target.checked, rowData.classId)}/>
             },
             {
               header: "클래스",
@@ -69,5 +88,11 @@ const SubTitle = styled.div`
 `
 const Wrapper = styled.div`
   height: 30px;
+  margin-bottom: 10px;
+`
+
+const Result = styled.div`
+  color: ${props => props.theme._components.blue}
+  font-size: 12px;
   margin-bottom: 10px;
 `

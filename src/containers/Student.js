@@ -58,8 +58,6 @@ class _Student extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  student: state.page.student,
-  class: state.page.class
 });
 const mapDispatchToProps = (dispatch) => ({
   init: () => dispatch(init())

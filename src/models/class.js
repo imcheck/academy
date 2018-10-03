@@ -1,12 +1,13 @@
 export class Class {
-  constructor({name, teacher, sdate, pdate}) {
+  constructor({classId='', name, teacher, sdate, pdate}) {
+    this.classId = classId;
     this.name = name;
     this.teacher = teacher;
     this.sdate = sdate;
     this.pdate = pdate;
   }
   toObject() {
-    const { name, teacher, sdate, pdate } = this;
-    return { name, teacher, sdate, pdate };
+    const { classId, name, teacher, sdate, pdate } = this;
+    return { classId, name, teacher, sdate, pdate };
   }
 }

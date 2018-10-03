@@ -1,12 +1,12 @@
 import { all, call } from 'redux-saga/effects';
 
-import { 
-  Init
-} from './pageSaga';
+import * as page from './pageSaga';
+import * as user from './userSaga';
 
 
 export default function* SagaRunner() {
   yield all([
-    call(Init)
+    call(page.Init),
+    call(user.Init)
   ])
 }
