@@ -3,11 +3,19 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
-import { Modal, Button, Table } from '@components';
+import { Modal, Button, Table, Input } from '@components';
+import { Init } from "../redux/sagas/pageSaga";
 
 class MiniClassSelectModal extends React.Component {
+  state = {
+    searchText: "",
+  }
+  _handleSearchTextChange = (e) => {
+    this.setState(state => ({
+      searchText: e.target.value
+    }));
+  }
   render() {
-    console.log(this.props.classes.toJS());
     return (
       <Modal
         title="클래스 선택"
@@ -16,6 +24,7 @@ class MiniClassSelectModal extends React.Component {
         height={400}
         footer={[<Button key="select">선택</Button>, <Button key="close" onClick={this.props.onClose}>닫기</Button>]}>
         <Wrapper><SubTitle>선택 가능한 클래스</SubTitle></Wrapper>
+        <Input placeholder="검색" value={this.state.searchText} onChange={this._handleSearchTextChange}/>
         <Table
           data={this.props.classes.toJS()}
           columns={[
@@ -44,7 +53,7 @@ class MiniClassSelectModal extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  classes: state.page.class.data
+  classes: state.user.classes
 });
 const mapDispatchToProps = (dispatch) => ({});
 

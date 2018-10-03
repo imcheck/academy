@@ -1,4 +1,6 @@
 import { Students, Classes } from '@models';
+import { getClassData } from '@controllers/class';
+import { getStudentData } from '@controllers/student';
 
 export class Teacher {
   constructor(props) {
@@ -32,5 +34,22 @@ export class Teacher {
       students: students.toJS(),
       classes: classes.toJS()
     };
+  }
+  getClasses = async () => {
+    if(this.classes.size()) return this.classes;
+    else {
+      const classes = await getClassData(this);
+      this.classes = classes;
+      return classes;
+    }
+  }
+
+  getStudents = async () => {
+    if(this.students.size()) return this.students;
+    else {
+      const students = await getStudentData(this);
+      this.students = students;
+      return students;
+    }
   }
 }

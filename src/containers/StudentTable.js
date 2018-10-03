@@ -114,7 +114,7 @@ class StudentTable extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.page.student.data
+  data: state.user.students
 });
 
 const mapDispatchToProps = (dispatch) => ({

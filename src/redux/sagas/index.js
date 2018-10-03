@@ -4,13 +4,9 @@ import {
   Init
 } from './pageSaga';
 
-import {
-  GetData
-} from './requestSaga';
 
 export default function* SagaRunner() {
   yield all([
-    call(Init),
-    call(GetData)
+    call(Init)
   ])
 }

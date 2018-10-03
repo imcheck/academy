@@ -11,4 +11,7 @@ export class Teachers {
   toJS() {
     return this.teachers.map((teacher) => teacher.toObject());
   }
+  size() {
+    return this.teachers.length;
+  }
 }

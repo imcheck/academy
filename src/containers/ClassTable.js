@@ -32,7 +32,7 @@ class ClassTable extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.page.class.data
+  data: state.user.classes
 });
 
 const mapDispatchToProps = (dispatch) => ({

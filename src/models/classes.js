@@ -11,4 +11,7 @@ export class Classes {
   toJS() {
     return this.classes.map((_class) => _class.toObject());
   }
+  size() {
+    return this.classes.length;
+  }
 }
