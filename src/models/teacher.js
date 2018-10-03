@@ -1,12 +1,10 @@
 import { Students, Classes } from '@models';
 
-export class Student {
+export class Teacher {
   constructor(props) {
     if (props) {
-      const { name, grade, school, tel, ptel, rdate, state, students, classes } = props;
+      const { name, tel, ptel, rdate, state, students, classes } = props;
       this.name = name;
-      this.grade = grade;
-      this.school = school;
       this.tel = tel;
       this.ptel = ptel;
       this.rdate = rdate;
@@ -15,8 +13,6 @@ export class Student {
       this.classes = new Classes(classes);
     } else {
       this.name = '';
-      this.grade = '';
-      this.school = '';
       this.tel = '';
       this.ptel = '';
       this.rdate = '';
@@ -25,13 +21,10 @@ export class Student {
       this.classes = new Classes();
     }
   }
-
   toObject() {
-    const { name, grade, school, tel, ptel, rdate, state, students, classes } = this;
+    const { name, tel, ptel, rdate, state, students, classes } = this;
     return {
       name,
-      grade,
-      school,
       tel,
       ptel,
       rdate,

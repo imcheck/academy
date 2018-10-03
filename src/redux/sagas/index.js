@@ -5,12 +5,12 @@ import {
 } from './pageSaga';
 
 import {
-  GetTableData
+  GetData
 } from './requestSaga';
 
 export default function* SagaRunner() {
   yield all([
     call(Init),
-    call(GetTableData)
+    call(GetData)
   ])
 }

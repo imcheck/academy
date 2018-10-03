@@ -1,10 +1,12 @@
-import { CommonData } from './common';
 import { Student } from './student';
 
-export class Students extends CommonData {
+export class Students {
   constructor(studentList) {
-    super();
-    this.students = studentList.map((student) => new Student(student));
+    if(studentList) {
+      this.students = studentList.map((student) => new Student(student));
+    } else {
+      this.students = [];
+    }
   }
   toJS() {
     return this.students.map((student) => student.toObject());

@@ -1,5 +1,5 @@
 import { Record } from 'immutable';
-import { CommonData } from '@models';
+import { Students, Classes, Teachers } from '@models';
 
 
 import { pageActions } from '@redux/actions/pageActions';
@@ -9,16 +9,27 @@ const searchRecord = Record({
   optionValue: "",
 })
 
-const dataRecord = Record({
+const studentDataRecord = Record({
   search: searchRecord(),
-  data: new CommonData(),
-  isTableLoading: false
+  data: new Students(),
+  isDataLoading: false
+})
+const classDataRecord = Record({
+  search: searchRecord(),
+  data: new Classes(),
+  isDataLoading: false
+})
+const teacherDataRecord = Record({
+  search: searchRecord(),
+  data: new Teachers(),
+  isDataLoading: false
 })
 
 const pageRecord = Record({
   search: searchRecord(),
-  student: dataRecord(),
-  class: dataRecord()
+  student: studentDataRecord(),
+  class: classDataRecord(),
+  teacher: teacherDataRecord()
 })
 
 

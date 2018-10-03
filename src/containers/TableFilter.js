@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import ErrorHOC from '@hoc';
 import { SearchFilter } from '@components';
 import { updatePage } from '@redux/actions/pageActions';
-import { getTableData } from '@redux/actions/requestActions';
 
 class TableFilter extends React.Component {
   _getOptions = (type) => {
@@ -71,11 +70,6 @@ class TableFilter extends React.Component {
       data: this._getOptions(this.props.type)[0].value
     }];
     this.props.updatePage(params);
-
-    params = {
-      type
-    }
-    this.props.getTableData(params);
   }
 }
 

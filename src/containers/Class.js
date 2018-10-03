@@ -8,6 +8,7 @@ import ErrorHOC from '@hoc';
 import ClassTable from '@containers/ClassTable';
 import CommonLayout from '@layouts/CommonLayout';
 import Filter from '@containers/TableFilter';
+import { init } from '@redux/actions/pageActions';
 
 class Class extends React.Component {
   render() {
@@ -22,11 +23,15 @@ class Class extends React.Component {
       </CommonLayout>
     )
   }
+  componentDidMount() {
+    this.props.init();
+  }
 }
 
 const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
+  init: () => dispatch(init())
 });
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Class));
