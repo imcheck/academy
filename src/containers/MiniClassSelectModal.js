@@ -69,6 +69,16 @@ class MiniClassSelectModal extends React.Component {
       </Modal>
     )
   }
+  static getDerivedStateFromProps(props) {
+    if(!props.visible) {
+      return {
+        searchText: "",
+        classIds: []
+      }
+    } else {
+      return null;
+    }
+  }
 }
 
 const mapStateToProps = (state) => ({
