@@ -3,7 +3,8 @@ import { Student } from './student';
 export class Students {
   constructor(studentList) {
     if(studentList) {
-      this.students = studentList.map((student) => new Student(student));
+      if(studentList instanceof Students) this.students = studentList.students;
+      else this.students = studentList.map((student) => new Student(student));
     } else {
       this.students = [];
     }
@@ -13,5 +14,10 @@ export class Students {
   }
   size() {
     return this.students.length;
+  }
+  getById(studentId) {
+    const index = this.students.findIndex(student => student.studentId === studentId);
+    if(index >= 0) return this.students[index];
+    return index;
   }
 }

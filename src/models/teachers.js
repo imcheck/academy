@@ -14,4 +14,8 @@ export class Teachers {
   size() {
     return this.teachers.length;
   }
+  getByIndex(index) {
+    if(index < 0 || this.teachers.length <= index) return -1;
+    return this.teachers[index];
+  }
 }

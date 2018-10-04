@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
-import { Classes } from '@models';
+import { Students } from '@models';
 import { Modal, Button, Table, Input } from '@components';
 
-class MiniClassSelectModal extends React.Component {
+class MiniStudentSelectModal extends React.Component {
   state = {
     searchText: "",
-    classIds: []
+    studentIds: []
   }
   _handleSearchTextChange = (e) => {
     const { value } = e.target;
@@ -17,57 +17,60 @@ class MiniClassSelectModal extends React.Component {
       searchText: value
     }));
   }
-  _handleCheck = (v, _classId) => {
-    const { classIds } = this.state;
+  _handleCheck = (v, _studentId) => {
+    const { studentIds } = this.state;
     if(v) {
-      classIds.push(_classId);
+      studentIds.push(_studentId);
     } else {
-      const index = this.state.classIds.findIndex( classId => {
-        if(classId === _classId) return true;
+      const index = this.state.studentIds.findIndex( studentId => {
+        if(studentId === _studentId) return true;
         return false;
       });
-      classIds.splice(index, 1);
+      studentIds.splice(index, 1);
     }
     this.setState(state => ({
-      classIds
+      studentIds
     }));
   }
   _handleFinishSelect = () => {
-    const classes = this.state.classIds.map(classId => this.props.classes.getById(classId));
-    console.log(classes);
-    this.props.onSelectClick(new Classes(classes));
+    const students = this.state.studentIds.map(studentId => this.props.students.getById(studentId));
+    this.props.onSelectClick(new Students(students));
   }
   render() {
-    const classes = this.props.classes.toJS().filter(_class => _class.name.includes(this.state.searchText) || _class.teacher.includes(this.state.searchText));
+    const { searchText } = this.state;
+    const filter = (student) => {
+      return student.name.includes(searchText) || student.grade.includes(searchText) || student.school.includes(searchText);
+    }
+    const students = this.props.students.toJS().filter(filter);
     return (
       <Modal
-        title="클래스 선택"
+        title="학생 선택"
         visible={this.props.visible}
         width={600}
         height={400}
         footer={[<Button key="select" onClick={this._handleFinishSelect}>선택</Button>, <Button key="close" onClick={this.props.onClose}>닫기</Button>]}>
-        <Wrapper><SubTitle>선택 가능한 클래스</SubTitle></Wrapper>
-        {this.state.classIds.length ? <Result>선택된 개수: {this.state.classIds.length}</Result> : null}
+        <Wrapper><SubTitle>선택 가능한 학생</SubTitle></Wrapper>
+        {this.state.studentIds.length ? <Result>선택된 개수: {this.state.studentIds.length}</Result> : null}
         <Input placeholder="검색" value={this.state.searchText} onChange={this._handleSearchTextChange}/>
         <Table
-          data={classes}
+          data={students}
           columns={[
             {
               header: "",
               width: "40px",
-              component: ({rowData}) => <input type="checkbox" checked={this.state.classIds.indexOf(rowData.classId) >= 0} onChange={(e) => this._handleCheck(e.target.checked, rowData.classId)}/>
+              component: ({rowData}) => <input type="checkbox" checked={this.state.studentIds.indexOf(rowData.studentId) >= 0} onChange={(e) => this._handleCheck(e.target.checked, rowData.studentId)}/>
             },
             {
-              header: "클래스",
+              header: "학생",
               component: ({rowData}) => <span>{rowData.name}</span>
             },
             {
-              header: "선생님",
-              component: ({rowData}) => <span>{rowData.teacher}</span>
+              header: "학교",
+              component: ({rowData}) => <span>{rowData.school}</span>
             },
             {
-              header: "수업 시간",
-              component: ({rowData}) => <span>{rowData.pdate[0].day} ( {rowData.pdate[0].stime} ~ {rowData.pdate[0].etime} )</span>
+              header: "학년",
+              component: ({rowData}) => <span>{rowData.grade}</span>
             }
           ]}
         />
@@ -78,7 +81,7 @@ class MiniClassSelectModal extends React.Component {
     if(!props.visible) {
       return {
         searchText: "",
-        classIds: []
+        studentIds: []
       }
     } else {
       return null;
@@ -87,11 +90,11 @@ class MiniClassSelectModal extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  classes: state.user.classes
+  students: state.user.students
 });
 const mapDispatchToProps = (dispatch) => ({});
 
-export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(MiniClassSelectModal));
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(MiniStudentSelectModal));
 
 const SubTitle = styled.div`
   font-weight: bold;

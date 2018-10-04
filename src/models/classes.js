@@ -3,7 +3,8 @@ import { Class } from './class';
 export class Classes {
   constructor(classList) {
     if(classList) {
-      this.classes = classList.map((_class) => new Class(_class));
+      if(classList instanceof Classes) this.classes = classList.classes;
+      else this.classes = classList.map((_class) => new Class(_class));
     } else {
       this.classes = [];
     }
@@ -13,5 +14,10 @@ export class Classes {
   }
   size() {
     return this.classes.length;
+  }
+  getById(classId) {
+    const index = this.classes.findIndex(_class => _class.classId === classId);
+    if(index >= 0) return this.classes[index];
+    return index;
   }
 }

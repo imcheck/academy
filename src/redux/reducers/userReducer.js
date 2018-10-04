@@ -6,6 +6,7 @@ const reducer = (state, action) => {
     case userActions.SET_USER:
       return action.params.teacher;
     default:
+      if(state) return state;
       return new Teacher();
   }
 }

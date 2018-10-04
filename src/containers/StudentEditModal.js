@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
 import { Student } from '@models';
+import { upsertStudent } from '@redux/actions/userActions';
 import { Modal, Button, InputForm, Table } from '@components';
-
 import MiniClassSelectModal from '@containers/MiniClassSelectModal';
+import MiniStudentSelectModal from '@containers/MiniStudentSelectModal';
 
 class StudentEditModal extends React.Component {
   state = {
@@ -21,14 +22,9 @@ class StudentEditModal extends React.Component {
     }));
   }
   _handleSaveClick = () => {
-    console.log(this.state.student.toObject());
-  }
-  _handleFamilyAddModal = (type) => {
-    if (type === "open") {
-
-    } else {
-
-    }
+    const { student } = this.state;
+    const params = { student };
+    this.props.upsertStudent(params);
   }
   _handleClassSelectModal = (type) => {
     if (type === "open") {
@@ -39,6 +35,18 @@ class StudentEditModal extends React.Component {
   }
   _handleClassSelect = (classes) => {
     this._handleStudentEdit("classes", classes);
+    this._handleClassSelectModal("close");
+  }
+  _handleStudentSelectModal = (type) => {
+    if (type === "open") {
+      this.setState(state => ({ miniStudentModalVisible: true}));
+    } else {
+      this.setState(state => ({ miniStudentModalVisible: false}));
+    }
+  }
+  _handleStudentSelect = (students) => {
+    this._handleStudentEdit("students", students);
+    this._handleStudentSelectModal("close");
   }
   render() {
     return (
@@ -101,7 +109,7 @@ class StudentEditModal extends React.Component {
           </Row2>
           <Wrapper>
             <SubTitle>가족 관계</SubTitle>
-            <FloatRight><Button onClick={() => this._handleFamilyAddModal("open")} height="30px">+
+            <FloatRight><Button onClick={() => this._handleStudentSelectModal("open")} height="30px">+
               추가</Button></FloatRight>
           </Wrapper>
           <Table
@@ -151,6 +159,10 @@ class StudentEditModal extends React.Component {
           visible={this.state.miniClassModalVisible}
           onSelectClick={this._handleClassSelect}
           onClose={() => this._handleClassSelectModal("close")} />
+        <MiniStudentSelectModal
+          visible={this.state.miniStudentModalVisible}
+          onSelectClick={this._handleStudentSelect}
+          onClose={() => this._handleStudentSelectModal("close")} />
       </React.Fragment>
     )
   }
@@ -161,7 +173,9 @@ class StudentEditModal extends React.Component {
 }
 
 const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  upsertStudent: (params) => dispatch(upsertStudent(params))
+});
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentEditModal));
 

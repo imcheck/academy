@@ -114,6 +114,7 @@ class StudentTable extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  user: state.user,
   data: state.user.students
 });
 
