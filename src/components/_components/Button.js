@@ -38,7 +38,7 @@ const  _Button = styled.div`
   background-color: ${props => props.colorStyle.backgroundColor};
   color: ${props => props.colorStyle.color};
   cursor: pointer;
-  box-shadow: 0px 5px 1px ${props => props.colorStyle.boxShadowColor};
+  box-shadow: 0px 3px 1px ${props => props.colorStyle.boxShadowColor};
   border: 1px solid ${props => props.colorStyle.borderColor};
   &:hover {
     opacity: 0.9;
