@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import ErrorHOC from '@hoc';
 import StudentTable from '@containers/StudentTable';
@@ -33,7 +33,7 @@ class _Student extends React.Component {
       <CommonLayout>
         <Header>
           <Title>
-            <FontAwesomeIcon icon={faUserGraduate}/>
+            <FontAwesomeIcon icon={faUsers}/>
             &nbsp;학생
           </Title>
           <Container>

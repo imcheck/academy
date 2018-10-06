@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
 
-import ErrorHOC from '@hoc';
-import { SearchForm } from '@components';
+import ErrorHOC from "@hoc";
+import { SearchForm } from "@components";
 
-import { updatePage } from '@redux/actions/pageActions';
+import { updatePage } from "@redux/actions/pageActions";
 
 class Search extends React.PureComponent {
   _handleSearch = () => {

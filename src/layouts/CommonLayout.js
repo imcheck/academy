@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import Search from '@containers/Search';
-
 import React from "react";
+
+import styled from "styled-components";
+import Navigation from "@components/Navigation";
 
 
 const CommonLayout = (props) => {
   return (
     <Layout>
       <Header>
-        <Search />
+        <Navigation />
       </Header>
       <Body>
         {props.children}
@@ -24,7 +24,7 @@ const Layout = styled.div`
   margin: 0 auto;
 `;
 const Header = styled.div`
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   border-bottom: 1px solid ${props => props.theme._components.gray};
 `
 const Body = styled.div`

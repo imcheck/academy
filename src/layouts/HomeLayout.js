@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserGraduate, faShapes, faCreditCard, faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faShapes, faCreditCard, faCalculator } from '@fortawesome/free-solid-svg-icons';
 
 import ErrorHOC from '@hoc';
 import { init } from '@redux/actions/pageActions';
-import Search from '@containers/Search';
 
 class HomeLayout extends React.Component {
   componentDidMount() {
@@ -18,13 +17,9 @@ class HomeLayout extends React.Component {
     return (
       <Layout>
         <Container>
-          <ImgContainer><img src="logo.png" height="100%"/></ImgContainer>
-        </Container>
-        <Container><Search /></Container>
-        <Container>
           <Link to="/student">
             <StudentManagement>
-              <FontAwesomeIcon icon={faUserGraduate} size="7x"/>
+              <FontAwesomeIcon icon={faUsers} size="7x"/>
               <Text>학생 관리</Text>
             </StudentManagement>
           </Link>
@@ -69,7 +64,6 @@ const Container = styled.div`
 const Button = styled.div`
   width: 200px;
   height: 200px;
-  // line-height: 200px;
   text-align: center;
   border-radius: 5px;
   border: 1px solid gray;
@@ -106,10 +100,4 @@ const FinancialManagement = styled(Button)`
 const Text = styled.div`
   font-size: 20px;
   margin-top: 10px;
-`
-
-const ImgContainer = styled.div`
-  height: 300px;
-  margin: 0 auto;
-  margin-bottom: 20px;
 `
