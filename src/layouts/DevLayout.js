@@ -64,7 +64,9 @@ class DevLayout extends React.Component {
         <File onChange={this._handleChange} file={this.state.file}/>
         <Title>Button</Title>
         <Button primary>Primary</Button>
-        <Button>Normal</Button>
+        <Button positive>Positive</Button>
+        <Button negative>Negative</Button>
+        <Button>Default</Button>
         <Title>Notification</Title>
         <Button onClick={this._handleBtnClick}>Notification</Button>
         <Title>Modal</Title>

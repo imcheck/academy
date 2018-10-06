@@ -18,6 +18,11 @@ export const theme = {
     gray2:   "#8e9296",
     gray3:   "#e8e8e8", // table header
 
-    red:     "#e33125"  // pantone
+    red:     "#e33125", // pantone
+
+    pink:    "#ea6079",
+    pink2:   "#ea4664",
+    pink3:   "#e896a5"
+
   }
 }
