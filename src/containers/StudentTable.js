@@ -73,7 +73,7 @@ class StudentTable extends React.Component {
             },
             {
               header: "#",
-              component: ({rowData}) => <Button onClick={() => this._handleDetailModal("open")} height="30px" width="50px" primary>상세</Button>
+              component: ({rowData}) => <Button onClick={() => this._handleDetailModal("open")} height="30px" width="50px">상세</Button>
             }
           ]}
         />
@@ -82,7 +82,7 @@ class StudentTable extends React.Component {
           visible={this.state.visible}
           width={800}
           height={600}
-          footer={[<Button key="close" onClick={() => this._handleDetailModal("close")}>닫기</Button>]}>
+          footer={[<Button key="close" onClick={() => this._handleDetailModal("close")} negative>닫기</Button>]}>
           <Title>개인 정보</Title>
           <Row>
             <Col><InputForm name="이름">imcheck</InputForm></Col>

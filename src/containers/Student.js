@@ -38,7 +38,7 @@ class _Student extends React.Component {
           <Container>
             <Row>학생 추가, 수정, 검색기능을 할 수 있습니다.</Row>
             <Row>
-              <Button onClick={() => this._handleStudentModal("open")} height="30px" type="green">학생 추가</Button>
+              <Button onClick={() => this._handleStudentModal("open")} height="30px" positive>+ 학생 추가</Button>
             </Row>
           </Container>
         </Header>

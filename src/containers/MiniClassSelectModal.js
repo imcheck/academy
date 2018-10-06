@@ -45,7 +45,7 @@ class MiniClassSelectModal extends React.Component {
         visible={this.props.visible}
         width={600}
         height={400}
-        footer={[<Button key="select" onClick={this._handleFinishSelect}>선택</Button>, <Button key="close" onClick={this.props.onClose}>닫기</Button>]}>
+        footer={[<Button key="select" onClick={this._handleFinishSelect} positive>선택</Button>, <Button key="close" onClick={this.props.onClose} negative>취소</Button>]}>
         <Wrapper><SubTitle>선택 가능한 클래스</SubTitle></Wrapper>
         {this.state.classIds.length ? <Result>선택된 개수: {this.state.classIds.length}</Result> : null}
         <Input placeholder="검색" value={this.state.searchText} onChange={this._handleSearchTextChange}/>

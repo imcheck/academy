@@ -56,8 +56,8 @@ class StudentEditModal extends React.Component {
           visible={this.props.visible}
           width={800}
           height={600}
-          footer={[<Button key="save" onClick={this._handleSaveClick}>저장</Button>,
-            <Button key="close" onClick={this.props.onClose}>취소</Button>]}>
+          footer={[<Button key="save" onClick={this._handleSaveClick} positive>저장</Button>,
+            <Button key="close" onClick={this.props.onClose} negative>취소</Button>]}>
           <Wrapper>
             <SubTitle>개인 정보</SubTitle>
           </Wrapper>
@@ -109,7 +109,7 @@ class StudentEditModal extends React.Component {
           </Row2>
           <Wrapper>
             <SubTitle>가족 관계</SubTitle>
-            <FloatRight><Button onClick={() => this._handleStudentSelectModal("open")} height="30px">+
+            <FloatRight><Button onClick={() => this._handleStudentSelectModal("open")} height="30px" positive>+
               추가</Button></FloatRight>
           </Wrapper>
           <Table
@@ -134,7 +134,7 @@ class StudentEditModal extends React.Component {
             ]}/>
           <Wrapper>
             <SubTitle>클래스</SubTitle>
-            <FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px">+
+            <FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px" positive>+
               추가</Button></FloatRight>
           </Wrapper>
           <Table
