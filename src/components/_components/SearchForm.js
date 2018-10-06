@@ -25,6 +25,7 @@ const Input = styled.input`
   outline: none;
   box-sizing: border-box;
   padding: 0px 10px;
+  font-family: inherit;
   border: 1px solid black;
   border-right: none;
   color: ${props => props.theme._components.black}
