@@ -55,7 +55,7 @@ class DevLayout extends React.Component {
         <_Input/>
         <SearchForm/>
         <SearchFilter options={[{ value: "name", text: "이름" }, { value: "age", text: "나이" }]}
-                      value="age"
+                      optionValue="age"
                       onOptionChange={(e) => alert(e.target.value)}/>
         <InputForm name="InputForm"></InputForm>
         <File onChange={this._handleChange} file={this.state.file}/>
