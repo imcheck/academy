@@ -34,6 +34,6 @@ const Container = styled.div`
   }
 `
 const Text = styled.div`
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 10px;
 `

@@ -49,6 +49,11 @@ class StudentEditModal extends React.Component {
     this._handleStudentSelectModal("close");
   }
   render() {
+    const { disabled } = this.props;
+    const buttons = [];
+    if(!disabled) buttons.push(<Button key="save" onClick={this._handleSaveClick} positive>저장</Button>);
+    else buttons.push(<Button key="edit" onClick={() => this.props.onChangeDisabled(false)} positive>수정</Button>);
+    buttons.push(<Button key="close" onClick={this.props.onClose} negative>취소</Button>);
     return (
       <React.Fragment>
         <Modal
@@ -56,14 +61,14 @@ class StudentEditModal extends React.Component {
           visible={this.props.visible}
           width={800}
           height={600}
-          footer={[<Button key="save" onClick={this._handleSaveClick} positive>저장</Button>,
-            <Button key="close" onClick={this.props.onClose} negative>취소</Button>]}>
+          footer={buttons}>
           <Wrapper>
             <SubTitle>개인 정보</SubTitle>
           </Wrapper>
           <Row2>
             <Col>
               <InputForm
+                disabled={disabled}
                 name="이름"
                 value={this.state.student.name}
                 onChange={(e) => this._handleStudentEdit("name", e.target.value)}/>
@@ -72,12 +77,14 @@ class StudentEditModal extends React.Component {
           <Row2>
             <Col>
               <InputForm
+                disabled={disabled}
                 name="학교"
                 value={this.state.student.school}
                 onChange={(e) => this._handleStudentEdit("school", e.target.value)}/>
             </Col>
             <Col>
               <InputForm
+                disabled={disabled}
                 name="학년"
                 placeholder="예) 중1, 고2"
                 value={this.state.student.grade}
@@ -87,12 +94,14 @@ class StudentEditModal extends React.Component {
           <Row2>
             <Col>
               <InputForm
+                disabled={disabled}
                 name="학생 번호"
                 value={this.state.student.tel}
                 onChange={(e) => this._handleStudentEdit("tel", e.target.value)}/>
             </Col>
             <Col>
               <InputForm
+                disabled={disabled}
                 name="부모 번호"
                 value={this.state.student.ptel}
                 onChange={(e) => this._handleStudentEdit("ptel", e.target.value)}/>
@@ -101,6 +110,7 @@ class StudentEditModal extends React.Component {
           <Row2>
             <Col>
               <InputForm
+                disabled={disabled}
                 name="등록일"
                 placeholder="예) 2018-07-08"
                 value={this.state.student.rdate}
@@ -109,8 +119,9 @@ class StudentEditModal extends React.Component {
           </Row2>
           <Wrapper>
             <SubTitle>가족 관계</SubTitle>
-            <FloatRight><Button onClick={() => this._handleStudentSelectModal("open")} height="30px" positive>+
-              추가</Button></FloatRight>
+            {!disabled ? (
+              <FloatRight><Button onClick={() => this._handleStudentSelectModal("open")} height="30px" positive>+ 추가</Button></FloatRight>
+              ) : null }
           </Wrapper>
           <Table
             data={this.state.student.students.toJS()}
@@ -134,8 +145,8 @@ class StudentEditModal extends React.Component {
             ]}/>
           <Wrapper>
             <SubTitle>클래스</SubTitle>
-            <FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px" positive>+
-              추가</Button></FloatRight>
+            {!disabled ? ( <FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px" positive>+ 추가</Button></FloatRight>
+              ) : null }
           </Wrapper>
           <Table
             data={this.state.student.classes.toJS()}
@@ -167,7 +178,7 @@ class StudentEditModal extends React.Component {
     )
   }
 
-  static getDerivedStateFromProps(props) {
+  static getDerivedStateFromProps(props, state) {
     return { ...props };
   }
 }

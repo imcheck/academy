@@ -3,7 +3,7 @@ import { Students, Classes } from '@models';
 export class Student {
   constructor(props) {
     if (props) {
-      const { studentId, name, grade, school, tel, ptel, rdate, state, students, classes } = props;
+      const { studentId="", name="", grade="", school="", tel="", ptel="", rdate="", state="", students="", classes="" } = props;
       this.studentId = studentId;
       this.name = name;
       this.grade = grade;
@@ -15,14 +15,14 @@ export class Student {
       this.students = new Students(students);
       this.classes = new Classes(classes);
     } else {
-      this.studentId = '';
-      this.name = '';
-      this.grade = '';
-      this.school = '';
-      this.tel = '';
-      this.ptel = '';
-      this.rdate = '';
-      this.state = '';
+      this.studentId = "";
+      this.name = "";
+      this.grade = "";
+      this.school = "";
+      this.tel = "";
+      this.ptel = "";
+      this.rdate = "";
+      this.state = "";
       this.students = new Students();
       this.classes = new Classes();
     }
@@ -43,9 +43,9 @@ export class Student {
     };
   }
   static async Update(student) {
-    alert("업데이트")
+    console.log("Update", student);
   }
   static async Insert(student) {
-    alert("추가")
+    console.log("Insert", student);
   }
 }

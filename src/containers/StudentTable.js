@@ -5,18 +5,24 @@ import { connect } from 'react-redux';
 import ErrorHOC from '@hoc';
 import { Table, Button, Modal, InputForm } from '@components';
 import Filter from '@components/TableFilter';
+import StudentEditModal from "@containers/StudentEditModal";
+import { Student } from "@models";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 class StudentTable extends React.Component {
   state = {
+    student: new Student(),
     visible: false,
     filter: {
       optionValue: "",
       searchText: ""
-    }
+    },
+    disabled: true
   }
-  _handleDetailModal = (type) => {
+  _handleDetailModal = (type, student) => {
     if(type === "open") {
-      this.setState(state => ({ visible: true }));
+      this.setState(state => ({ visible: true, student: new Student(student) }));
     } else {
       this.setState(state => ({ visible: false }));
     }
@@ -36,6 +42,9 @@ class StudentTable extends React.Component {
     } else {
       return student.name.includes(searchText) || student.school.includes(searchText) || student.tel.includes(searchText);
     }
+  }
+  _handleDisabled = (disabled) => {
+    this.setState(state => ({ disabled }));
   }
   render() {
     const filterOptions = [
@@ -73,70 +82,16 @@ class StudentTable extends React.Component {
             },
             {
               header: "#",
-              component: ({rowData}) => <Button onClick={() => this._handleDetailModal("open")} height="30px" width="50px">상세</Button>
+              component: ({rowData}) => <BorderBtn onClick={() => this._handleDetailModal("open", rowData)}>상세</BorderBtn>
             }
           ]}
         />
-        <Modal
-          title="학생 정보"
+        <StudentEditModal
+          disabled={this.state.disabled}
+          onChangeDisabled={this._handleDisabled}
+          student={this.state.student}
           visible={this.state.visible}
-          width={800}
-          height={600}
-          footer={[<Button key="close" onClick={() => this._handleDetailModal("close")} negative>닫기</Button>]}>
-          <Title>개인 정보</Title>
-          <Row>
-            <Col><InputForm name="이름">imcheck</InputForm></Col>
-          </Row>
-          <Row>
-            <Col><InputForm name="학교">풍무중학교</InputForm></Col>
-            <Col><InputForm name="학년">중1</InputForm></Col>
-          </Row>
-          <Row>
-            <Col><InputForm name="학생 번호">010-1234-5678</InputForm></Col>
-            <Col><InputForm name="부모 번호">010-5678-1234</InputForm></Col>
-          </Row>
-          <Row>
-            <Col><InputForm name="등록일">2018-03-01</InputForm></Col>
-          </Row>
-          <Title>가족 관계</Title>
-          <Table
-            data={[{ name: "Alice", school: "화명중", grade: "중1", state: "재원"}, { name: "Lily", school: "용수중", grade: "초6", state: "휴원"}]}
-            columns={[
-              {
-                header: "이름",
-                component: ({rowData}) => <span>{rowData.name}</span>
-              },
-              {
-                header: "학교",
-                component: ({rowData}) => <span>{rowData.school}</span>
-              },
-              {
-                header: "학년",
-                component: ({rowData}) => <span>{rowData.grade}</span>
-              },
-              {
-                header: "상태",
-                component: ({rowData}) => <span>{rowData.state}</span>
-              },
-            ]}/>
-          <Title>클래스</Title>
-          <Table
-            data={[{ name: "중1-1 심화반", teacher: "Matthew", pdate: [{ day: "월", stime: "13:00", etime: "16:00" }], state: "재원"}, { name: "중2-1 선행반", teacher: "July", pdate: [{ day: "월", stime: "13:00", etime: "16:00" }], state: "휴원"}]}
-            columns={[
-              {
-                header: "클래스",
-                component: ({rowData}) => <span>{rowData.name}</span>
-              },
-              {
-                header: "선생님",
-                component: ({rowData}) => <span>{rowData.teacher}</span>
-              },
-              {
-                header: "수업 시간",
-                component: ({rowData}) => <span>{rowData.pdate[0].day} ( {rowData.pdate[0].stime} ~ {rowData.pdate[0].etime} )</span>
-              }
-            ]}/>
-        </Modal>
+          onClose={() => this._handleDetailModal("close")}/>
       </Container>
     )
   }
@@ -156,19 +111,19 @@ export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentTabl
 const Container = styled.div`
 `
 
-const Row = styled.div`
-  margin-bottom: 10px;
-  display: flex;
-`
-const Col = styled.div`
-  flex: 1;
-`
-const Title = styled.div`
-  font-weight: bold;
+const BorderBtn = styled.div`
+  width: 70px;
   height: 30px;
   line-height: 30px;
-  margin-bottom: 10px;
-  padding: 0px 10px;
-  margin: 5px 0px;
-  border-left: 3px solid ${props => props.theme._components.gray}
+  margin-top: 5px;
+  border: 1px solid ${props => props.theme._components.blue};
+  color: ${props => props.theme._components.blue};
+  border-radius: 3px;
+  display: inline-block;
+  &:hover {
+    color: ${props => props.theme._components.blue2};
+    border: 1px solid ${props => props.theme._components.blue2};
+  }
+  cursor: pointer;
 `
+
