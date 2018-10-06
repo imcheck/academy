@@ -42,10 +42,10 @@ export class Student {
       classes: classes.toJS()
     };
   }
-  static async Update(student) {
-    console.log("Update", student);
+  async update() {
+    console.log("Update", this);
   }
-  static async Insert(student) {
-    console.log("Insert", student);
+  async insert() {
+    console.log("Insert", this);
   }
 }
