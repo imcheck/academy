@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
 import { Table, Button, Modal, InputForm } from '@components';
+import Filter from '@components/TableFilter';
 
 class StudentTable extends React.Component {
   state = {
-    visible: false
+    visible: false,
+    filter: {
+      optionValue: "",
+      searchText: ""
+    }
   }
   _handleDetailModal = (type) => {
     if(type === "open") {
@@ -16,11 +21,35 @@ class StudentTable extends React.Component {
       this.setState(state => ({ visible: false }));
     }
   }
+  _handleSearch = ({optionValue, searchText }) => {
+    this.setState(state => ({
+      filter: {
+        optionValue,
+        searchText
+      }
+    }))
+  }
+  _filter = (student) => {
+    const { optionValue, searchText } = this.state.filter;
+    if(optionValue) {
+      return student[optionValue].includes(searchText);
+    } else {
+      return student.name.includes(searchText) || student.school.includes(searchText) || student.tel.includes(searchText);
+    }
+  }
   render() {
+    const filterOptions = [
+      { value: "", text: "전체" },
+      { value: "name", text: "이름" },
+      { value: "school", text: "학교" },
+      { value: "tel", text: "전화번호"}
+    ]
+    const data = this.props.data.toJS().filter(this._filter);
     return (
       <Container>
+        <Filter filterOptions={filterOptions} onSearch={this._handleSearch}/>
         <Table
-          data={this.props.data.toJS()}
+          data={data}
           columns={[
             {
               header: "이름",

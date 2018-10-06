@@ -26,7 +26,6 @@ const teacherDataRecord = Record({
 })
 
 const pageRecord = Record({
-  search: searchRecord(),
   student: studentDataRecord(),
   class: classDataRecord(),
   teacher: teacherDataRecord()

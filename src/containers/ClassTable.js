@@ -4,11 +4,22 @@ import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
 import { Table } from '@components';
+import Filter from '@components/TableFilter';
 
 class ClassTable extends React.Component {
+  _handleSearch = ({optionValue, searchText }) => {
+    console.log(optionValue, searchText);
+  }
+
   render() {
+    const filterOptions = [
+      { value: "", text: "전체" },
+      { value: "name", text: "수업명" },
+      { value: "teacher", text: "강사" }
+    ]
     return (
       <Container>
+        <Filter filterOptions={filterOptions} onSearch={this._handleSearch} />
         <Table
           data={this.props.data.toJS()}
           columns={[

@@ -8,7 +8,6 @@ import ErrorHOC from '@hoc';
 import StudentTable from '@containers/StudentTable';
 import StudentEditModal from '@containers/StudentEditModal';
 import CommonLayout from '@layouts/CommonLayout';
-import Filter from '@containers/TableFilter';
 import { Button, Modal, InputForm, Table } from '@components';
 import { Student } from '@models';
 import { init } from '@redux/actions/pageActions';
@@ -43,7 +42,6 @@ class _Student extends React.Component {
             </Row>
           </Container>
         </Header>
-        <Filter type="student"/>
         <StudentTable/>
         <StudentEditModal
           student={new Student()}

@@ -7,7 +7,6 @@ import { faShapes } from '@fortawesome/free-solid-svg-icons';
 import ErrorHOC from '@hoc';
 import ClassTable from '@containers/ClassTable';
 import CommonLayout from '@layouts/CommonLayout';
-import Filter from '@containers/TableFilter';
 import { init } from '@redux/actions/pageActions';
 
 class Class extends React.Component {
@@ -18,7 +17,6 @@ class Class extends React.Component {
           <FontAwesomeIcon icon={faShapes}/>
           &nbsp;클래스 관리
         </Title>
-        <Filter type="class"/>
         <ClassTable />
       </CommonLayout>
     )
