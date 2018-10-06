@@ -41,6 +41,7 @@ class DevLayout extends React.Component {
       visible: true
     }))
   }
+
   render() {
     const data = [];
     for (let i = 1; i <= 100; i++) {
@@ -54,9 +55,11 @@ class DevLayout extends React.Component {
         <Input/>
         <_Input/>
         <SearchForm/>
-        <SearchFilter options={[{ value: "name", text: "이름" }, { value: "age", text: "나이" }]}
-                      optionValue="age"
-                      onOptionChange={(e) => alert(e.target.value)}/>
+        <SearchFilter
+          options={[{ value: "name", text: "이름" }, { value: "age", text: "나이" }]}
+          optionValue="age"
+          onOptionChange={(e) => alert(e.target.value)}
+          onSearchClick={() => alert("Search!!")}/>
         <InputForm name="InputForm"></InputForm>
         <File onChange={this._handleChange} file={this.state.file}/>
         <Title>Button</Title>
@@ -82,7 +85,8 @@ class DevLayout extends React.Component {
             {
               header: "Attr1",
               width: "200px",
-              component: ({ rowData, row, col }) => <div>({row}, {col}) {rowData.attr1} sdfjisdjifjasdfasdfasdassidfasdfsdf</div>
+              component: ({ rowData, row, col }) =>
+                <div>({row}, {col}) {rowData.attr1} sdfjisdjifjasdfasdfasdassidfasdfsdf</div>
             },
             {
               header: "Attr2",

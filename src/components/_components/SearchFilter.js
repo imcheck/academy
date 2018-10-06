@@ -5,7 +5,7 @@ import { SearchForm } from './SearchForm';
 
 export const SearchFilter = ({ options, optionValue, onOptionChange, ...props }) => {
   const _options = options.map((option, key) => <Option key={key} value={option.value}>{option.text}</Option>);
-  const newSearchForm = React.cloneElement(<SearchForm/>, props);
+  const newSearchForm = React.cloneElement(<SearchForm onKeyUp={(e) => e.keyCode==13 ? props.onSearchClick() : null}/>, props);
   return (
     <Container>
       <SelectContainer><Select value={optionValue} onChange={onOptionChange}>{_options}</Select></SelectContainer>
