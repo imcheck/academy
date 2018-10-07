@@ -7,7 +7,7 @@ import { faShapes } from '@fortawesome/free-solid-svg-icons';
 import ErrorHOC from '@hoc';
 import ClassTable from '@containers/ClassTable';
 import CommonLayout from '@layouts/CommonLayout';
-import { init } from '@redux/actions/pageActions';
+import { init } from '@redux/actions/userActions';
 
 class Class extends React.Component {
   render() {

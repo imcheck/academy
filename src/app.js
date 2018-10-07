@@ -6,15 +6,14 @@ import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 
 
-import { store } from '@redux';
+import { store, history } from '@redux';
 import { theme } from '@config/styleConfig';
-import { history } from './redux';
 
-import HomeLayout from '@layouts/HomeLayout';
+import Home from '@layouts/Home';
 import Student from '@containers/Student';
 import Class from '@containers/Class';
-import LoginLayout from '@layouts/LoginLayout';
-import DevLayout from '@layouts/DevLayout';
+import Login from '@layouts/Login';
+import Dev from '@layouts/Dev';
 
 
 class App extends React.Component {
@@ -24,11 +23,12 @@ class App extends React.Component {
         <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
             <Switch>
-              <Route exact path="/" component={HomeLayout} />
+              <Route exact path="/" component={Home} />
               <Route path="/student" component={Student} />
               <Route path="/class" component={Class} />
-              <Route path="/login" component={LoginLayout} />
-              <Route path="/components" component={DevLayout} />
+              <Route path="/login" component={Login} />
+              <Route path="/components" component={Dev} />
+              <Route path="*" component={() => <div>No Match</div>}/>
             </Switch>
           </ConnectedRouter>
         </ThemeProvider>

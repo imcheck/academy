@@ -6,13 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faShapes, faCreditCard, faCalculator } from '@fortawesome/free-solid-svg-icons';
 
 import ErrorHOC from '@hoc';
-import { init } from '@redux/actions/pageActions';
+import { init } from '@redux/actions/userActions';
 
-class HomeLayout extends React.Component {
+class Home extends React.Component {
   componentDidMount() {
     this.props.init();
   }
-
   render() {
     return (
       <Layout>
@@ -51,7 +50,7 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   init: () => dispatch(init())
 });
-export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(HomeLayout));
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Home));
 
 const Layout = styled.div`
   padding-top: calc(50vh - 400px)

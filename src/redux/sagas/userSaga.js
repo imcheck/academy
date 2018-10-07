@@ -1,14 +1,17 @@
 import { takeEvery, put, select, call } from 'redux-saga/effects';
+import { push } from "connected-react-router";
 
-import { pageSagaActions, init } from '@redux/actions/pageActions';
 import { updateUser, userSagaActions } from '@redux/actions/userActions';
-import { Student } from '@models';
+import { Student, Auth } from '@models';
 
 export function* Init() {
-  yield takeEvery(pageSagaActions.INIT, function* (action) {
+  yield takeEvery(userSagaActions.INIT, function* (action) {
     try {
+      const user = yield Auth.Authenticate();
+      if(!user) {
+        yield put(push('/login'));
+      }
       const teacher = yield select(state => state.user);
-
       yield teacher.getClasses();
       yield teacher.getStudents();
       yield teacher.getTeachers();

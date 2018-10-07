@@ -16,7 +16,7 @@ import {
 
 import ErrorHOC from '@hoc';
 
-class DevLayout extends React.Component {
+class Dev extends React.Component {
   state = {
     file: "",
     visible: false // for Modal
@@ -116,7 +116,7 @@ class DevLayout extends React.Component {
   }
 }
 
-export default ErrorHOC(DevLayout);
+export default ErrorHOC(Dev);
 
 
 const Container = styled.div`

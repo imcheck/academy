@@ -10,7 +10,7 @@ import StudentEditModal from '@containers/StudentEditModal';
 import CommonLayout from '@layouts/CommonLayout';
 import { Button, Modal, InputForm, Table } from '@components';
 import { Student } from '@models';
-import { init } from '@redux/actions/pageActions';
+import { init } from '@redux/actions/userActions';
 
 class _Student extends React.Component {
   state = {
