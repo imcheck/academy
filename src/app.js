@@ -10,10 +10,12 @@ import { store, history } from '@redux';
 import { theme } from '@config/styleConfig';
 
 import Home from '@layouts/Home';
-import Student from '@containers/Student';
-import Class from '@containers/Class';
 import Login from '@layouts/Login';
 import Dev from '@layouts/Dev';
+
+// CommonLayout 을 사용하는 컴포넌트들
+import Student from '@containers/Student';
+import Class from '@containers/Class';
 
 
 class App extends React.Component {

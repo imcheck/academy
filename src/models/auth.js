@@ -19,7 +19,6 @@ export class Auth {
   static async Validate(tokenType) {
     if(tokenType==="google") {
       const token = Auth.ACCESS_TOKENS[tokenType];
-      // const token = "ya29.GlsvBqNywVXjv3eL_JjzVH9aGD989sWDRObxRES3rSik-ra_A00z15Z__aolysm2iXxBDIElIM6qrPY3C5PYGyjwBE3nv9bmBjqYTpjlIrjjKuLQOvN_9jYLP90b";
       try {
         const result = await axios.get(authConfig.getTokenAuthorizationURL(token));
         return true;
