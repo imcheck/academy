@@ -7,8 +7,6 @@ import { Table, Button, Modal, InputForm } from '@components';
 import Filter from '@components/TableFilter';
 import StudentEditModal from "@containers/StudentEditModal";
 import { Student } from "@models";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 class StudentTable extends React.Component {
   state = {
@@ -95,20 +93,7 @@ class StudentTable extends React.Component {
       </Container>
     )
   }
-}
-
-const mapStateToProps = (state) => ({
-  user: state.user,
-  data: state.user.students
-});
-
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
-export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentTable));
-
-const Container = styled.div`
+}const Container = styled.div`
 `
 
 const BorderBtn = styled.div`
@@ -126,4 +111,16 @@ const BorderBtn = styled.div`
   }
   cursor: pointer;
 `
+
+
+
+const mapStateToProps = (state) => ({
+  data: state.user.students
+});
+
+const mapDispatchToProps = (dispatch) => ({
+
+});
+
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentTable));
 

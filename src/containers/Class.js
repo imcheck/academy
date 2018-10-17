@@ -7,30 +7,26 @@ import { faShapes } from '@fortawesome/free-solid-svg-icons';
 import ErrorHOC from '@hoc';
 import ClassTable from '@containers/ClassTable';
 import CommonLayout from '@layouts/CommonLayout';
-import { init } from '@redux/actions/userActions';
+import PageLoad from '@containers/PageLoad';
 
 class Class extends React.Component {
   render() {
     return (
-      <CommonLayout>
-        <Title>
-          <FontAwesomeIcon icon={faShapes}/>
-          &nbsp;클래스 관리
-        </Title>
-        <ClassTable />
-      </CommonLayout>
+      <PageLoad>
+        <CommonLayout>
+          <Title>
+            <FontAwesomeIcon icon={faShapes}/>
+            &nbsp;클래스 관리
+          </Title>
+          <ClassTable/>
+        </CommonLayout>
+      </PageLoad>
     )
-  }
-  componentDidMount() {
-    this.props.init();
   }
 }
 
-const mapStateToProps = (state) => ({
-});
-const mapDispatchToProps = (dispatch) => ({
-  init: () => dispatch(init())
-});
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Class));
 

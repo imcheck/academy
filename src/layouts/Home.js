@@ -3,53 +3,59 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faShapes, faCreditCard, faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faShapes, faCreditCard, faCalculator, faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
 
 import ErrorHOC from '@hoc';
 import { init } from '@redux/actions/userActions';
+import PageLoad from '@containers/PageLoad';
 
 class Home extends React.Component {
-  componentDidMount() {
-    this.props.init();
-  }
   render() {
     return (
-      <Layout>
-        <Container>
-          <Link to="/student">
-            <StudentManagement>
-              <FontAwesomeIcon icon={faUsers} size="7x"/>
-              <Text>학생 관리</Text>
-            </StudentManagement>
-          </Link>
-          <Link to="/class">
-            <ClassManagement>
-              <FontAwesomeIcon icon={faShapes} size="7x"/>
-              <Text>클래스 관리</Text>
-            </ClassManagement>
-          </Link>
-          <Link to="/receipt">
-            <ReceiptManagement>
-              <FontAwesomeIcon icon={faCreditCard} size="7x"/>
-              <Text>수납 관리</Text>
-            </ReceiptManagement>
-          </Link>
-          <Link to="/financial">
-            <FinancialManagement>
-              <FontAwesomeIcon icon={faCalculator} size="7x"/>
-              <Text>회계 관리</Text>
-            </FinancialManagement>
-          </Link>
-        </Container>
-      </Layout>
+      <PageLoad>
+        <Layout>
+          <Container>
+            <Link to="/student">
+              <StudentManagement>
+                <FontAwesomeIcon icon={faUsers} size="7x"/>
+                <Text>학생 관리</Text>
+              </StudentManagement>
+            </Link>
+            <Link to="/class">
+              <ClassManagement>
+                <FontAwesomeIcon icon={faShapes} size="7x"/>
+                <Text>클래스 관리</Text>
+              </ClassManagement>
+            </Link>
+            <Link to="/teacher">
+              <TeacherManagement>
+                <FontAwesomeIcon icon={faChalkboardTeacher} size="7x"/>
+                <Text>강사 관리</Text>
+              </TeacherManagement>
+            </Link>
+          </Container>
+          <Container>
+            <Link to="/receipt">
+              <ReceiptManagement>
+                <FontAwesomeIcon icon={faCreditCard} size="7x"/>
+                <Text>수납 관리</Text>
+              </ReceiptManagement>
+            </Link>
+            <Link to="/financial">
+              <FinancialManagement>
+                <FontAwesomeIcon icon={faCalculator} size="7x"/>
+                <Text>회계 관리</Text>
+              </FinancialManagement>
+            </Link>
+          </Container>
+        </Layout>
+      </PageLoad>
     );
   }
 };
 
 const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({
-  init: () => dispatch(init())
-});
+const mapDispatchToProps = dispatch => ({});
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Home));
 
 const Layout = styled.div`
@@ -58,7 +64,7 @@ const Layout = styled.div`
 const Container = styled.div`
   margin: 0 auto;
   display: flex;
-  width: 845px;
+  width: fit-content;
 `
 const Button = styled.div`
   width: 200px;
@@ -93,6 +99,13 @@ const FinancialManagement = styled(Button)`
   background-color: ${props => props.theme._components.gray};
   &:hover {
     background-color: ${props => props.theme._components.gray2}
+  }
+`
+
+const TeacherManagement = styled(Button)`
+  background-color: ${props => props.theme._components.pink}
+  &:hover {
+    background-color: ${props => props.theme._components.pink2}
   }
 `
 

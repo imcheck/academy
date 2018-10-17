@@ -4,33 +4,10 @@ import { Students, Classes, Teachers } from '@models';
 
 import { pageActions } from '@redux/actions/pageActions';
 
-const searchRecord = Record({
-  text: "",
-  optionValue: "",
-})
-
-const studentDataRecord = Record({
-  search: searchRecord(),
-  data: new Students(),
-  isDataLoading: false
-})
-const classDataRecord = Record({
-  search: searchRecord(),
-  data: new Classes(),
-  isDataLoading: false
-})
-const teacherDataRecord = Record({
-  search: searchRecord(),
-  data: new Teachers(),
-  isDataLoading: false
-})
 
 const pageRecord = Record({
-  student: studentDataRecord(),
-  class: classDataRecord(),
-  teacher: teacherDataRecord()
+  pageLoading: true
 })
-
 
 const initState = pageRecord();
 export default (state = initState, action) => {

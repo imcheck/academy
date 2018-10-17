@@ -12,7 +12,3 @@ export function getURL(state) {
     "&client_id=" + CLIENT_ID
   )
 }
-
-export function getTokenAuthorizationURL(token) {
-  return "https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=" + token;
-}

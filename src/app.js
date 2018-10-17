@@ -1,21 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router';
-import { ConnectedRouter } from 'connected-react-router';
-import { ThemeProvider } from 'styled-components';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { Route, Switch } from "react-router";
+import { ConnectedRouter } from "connected-react-router";
+import { ThemeProvider } from "styled-components";
 
 
-import { store, history } from '@redux';
-import { theme } from '@config/styleConfig';
+import { store, history } from "@redux";
+import { theme } from "@config/styleConfig";
 
-import Home from '@layouts/Home';
-import Login from '@layouts/Login';
-import Dev from '@layouts/Dev';
+import Home from "@layouts/Home";
+import Login from "@layouts/Login";
+import Dev from "@layouts/Dev";
 
 // CommonLayout 을 사용하는 컴포넌트들
-import Student from '@containers/Student';
-import Class from '@containers/Class';
+import Student from "@containers/Student";
+import Class from "@containers/Class";
+import Teacher from "@containers/Teacher";
 
 
 class App extends React.Component {
@@ -29,6 +30,7 @@ class App extends React.Component {
               <Route path="/student" component={Student} />
               <Route path="/class" component={Class} />
               <Route path="/login" component={Login} />
+              <Route path="/teacher" component={Teacher} />
               <Route path="/components" component={Dev} />
               <Route path="*" component={() => <div>No Match</div>}/>
             </Switch>

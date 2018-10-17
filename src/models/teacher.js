@@ -1,39 +1,42 @@
-import { Students, Classes, Teachers } from '@models';
-import { getClassData } from '@controllers/class';
-import { getStudentData } from '@controllers/student';
-import { getTeacherData } from '@controllers/teacher';
+import { Students, Classes, Teachers } from "@models";
+import { getClassData } from "@controllers/class";
+import { getStudentData } from "@controllers/student";
+import { getTeacherData } from "@controllers/teacher";
 
 export class Teacher {
   constructor(props) {
     if (props) {
-      const { name, tel, ptel, rdate, state, students, classes, teachers } = props;
+      const { name, tel, ptel, rdate, state, email, students, classes, teachers } = props;
       this.name = name;
       this.tel = tel;
       this.ptel = ptel;
       this.rdate = rdate;
       this.state = state;
+      this.email = email;
       this.students = new Students(students);
       this.classes = new Classes(classes);
       this.teachers = new Teachers(teachers);
     } else {
-      this.name = '';
-      this.tel = '';
-      this.ptel = '';
-      this.rdate = '';
-      this.state = '';
+      this.name = "";
+      this.tel = "";
+      this.ptel = "";
+      this.rdate = "";
+      this.state = "";
+      this.email = "";
       this.students = new Students();
       this.classes = new Classes();
       this.teachers = new Teachers();
     }
   }
   toObject() {
-    const { name, tel, ptel, rdate, state, students, classes, teachers } = this;
+    const { name, tel, ptel, rdate, state, email, students, classes, teachers } = this;
     return {
       name,
       tel,
       ptel,
       rdate,
       state,
+      email,
       students: students.toJS(),
       classes: classes.toJS(),
       teachers: teachers.toJS()
