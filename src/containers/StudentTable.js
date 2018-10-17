@@ -18,7 +18,7 @@ class StudentTable extends React.Component {
     },
     disabled: true
   }
-  _handleDetailModal = (type, student) => {
+  _handleModal = (type, student) => {
     if(type === "open") {
       this.setState(state => ({ visible: true, student: new Student(student) }));
     } else {
@@ -80,7 +80,7 @@ class StudentTable extends React.Component {
             },
             {
               header: "#",
-              component: ({rowData}) => <BorderBtn onClick={() => this._handleDetailModal("open", rowData)}>상세</BorderBtn>
+              component: ({rowData}) => <BorderBtn onClick={() => this._handleModal("open", rowData)}>상세</BorderBtn>
             }
           ]}
         />
@@ -89,7 +89,7 @@ class StudentTable extends React.Component {
           onChangeDisabled={this._handleDisabled}
           student={this.state.student}
           visible={this.state.visible}
-          onClose={() => this._handleDetailModal("close")}/>
+          onClose={() => this._handleModal("close")}/>
       </Container>
     )
   }

@@ -5,11 +5,12 @@ import { connect } from "react-redux";
 import ErrorHOC from "@hoc";
 import { Table, Button, Modal, InputForm } from "@components";
 import Filter from "@components/TableFilter";
+import TeacherEditModal from "@containers/TeacherEditModal";
 import { Teacher } from "@models";
 
 class TeacherTable extends React.Component {
   state = {
-    Teacher: new Teacher(),
+    teacher: new Teacher(),
     visible: false,
     filter: {
       optionValue: "",
@@ -38,7 +39,13 @@ class TeacherTable extends React.Component {
   _handleDisabled = (disabled) => {
     this.setState(state => ({ disabled }));
   }
-
+  _handleModal = (type, teacher) => {
+    if(type === "open") {
+      this.setState(state => ({ visible: true, teacher: new Teacher(teacher) }));
+    } else {
+      this.setState(state => ({ visible: false }));
+    }
+  }
   render() {
     const filterOptions = [
       { value: "", text: "전체"},
@@ -66,10 +73,16 @@ class TeacherTable extends React.Component {
             },
             {
               header: "#",
-              component: ({rowData}) => <BorderBtn onClick={() => this._handleDetailModal("open", rowData)}>상세</BorderBtn>
+              component: ({rowData}) => <BorderBtn onClick={() => this._handleModal("open", rowData)}>상세</BorderBtn>
             }
           ]}
         />
+        <TeacherEditModal
+          disabled={this.state.disabled}
+          onChangeDisabled={this._handleDisabled}
+          teacher={this.state.teacher}
+          visible={this.state.visible}
+          onClose={() => this._handleModal("close")}/>
       </Container>
     )
   }
