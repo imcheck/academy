@@ -6,50 +6,46 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faShapes, faCreditCard, faCalculator, faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
 
 import ErrorHOC from '@hoc';
-import { init } from '@redux/actions/userActions';
-import PageLoad from '@containers/PageLoad';
 
 class Home extends React.Component {
   render() {
     return (
-      <PageLoad>
-        <Layout>
-          <Container>
-            <Link to="/student">
-              <StudentManagement>
-                <FontAwesomeIcon icon={faUsers} size="7x"/>
-                <Text>학생 관리</Text>
-              </StudentManagement>
-            </Link>
-            <Link to="/class">
-              <ClassManagement>
-                <FontAwesomeIcon icon={faShapes} size="7x"/>
-                <Text>클래스 관리</Text>
-              </ClassManagement>
-            </Link>
-            <Link to="/teacher">
-              <TeacherManagement>
-                <FontAwesomeIcon icon={faChalkboardTeacher} size="7x"/>
-                <Text>강사 관리</Text>
-              </TeacherManagement>
-            </Link>
-          </Container>
-          <Container>
-            <Link to="/receipt">
-              <ReceiptManagement>
-                <FontAwesomeIcon icon={faCreditCard} size="7x"/>
-                <Text>수납 관리</Text>
-              </ReceiptManagement>
-            </Link>
-            <Link to="/financial">
-              <FinancialManagement>
-                <FontAwesomeIcon icon={faCalculator} size="7x"/>
-                <Text>회계 관리</Text>
-              </FinancialManagement>
-            </Link>
-          </Container>
-        </Layout>
-      </PageLoad>
+      <Layout>
+        <Container>
+          <Link to="/student">
+            <StudentManagement>
+              <FontAwesomeIcon icon={faUsers} size="7x" />
+              <Text>학생 관리</Text>
+            </StudentManagement>
+          </Link>
+          <Link to="/class">
+            <ClassManagement>
+              <FontAwesomeIcon icon={faShapes} size="7x" />
+              <Text>클래스 관리</Text>
+            </ClassManagement>
+          </Link>
+          <Link to="/teacher">
+            <TeacherManagement>
+              <FontAwesomeIcon icon={faChalkboardTeacher} size="7x" />
+              <Text>강사 관리</Text>
+            </TeacherManagement>
+          </Link>
+        </Container>
+        <Container>
+          <Link to="/receipt">
+            <ReceiptManagement>
+              <FontAwesomeIcon icon={faCreditCard} size="7x" />
+              <Text>수납 관리</Text>
+            </ReceiptManagement>
+          </Link>
+          <Link to="/financial">
+            <FinancialManagement>
+              <FontAwesomeIcon icon={faCalculator} size="7x" />
+              <Text>회계 관리</Text>
+            </FinancialManagement>
+          </Link>
+        </Container>
+      </Layout>
     );
   }
 };

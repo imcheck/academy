@@ -1,7 +1,7 @@
 import { Students, Classes, Teachers } from "@models";
 import { getClassData } from "@services/class";
-import { getStudentData } from "@services/student";
 import { getTeacherData } from "@services/teacher";
+import Axios from "axios";
 
 export class Teacher {
   constructor(props) {
@@ -80,11 +80,15 @@ export class Teacher {
   }
 
   getStudents = async () => {
-    if (this.students.size()) return this.students;
-    else {
-      const students = await getStudentData(this);
-      this.students = students;
-      return students;
+    const result = await Axios.get("http://localhost:8001/student", {
+      headers: {
+        Authorization: localStorage.getItem("id_token")
+      }
+    });
+    if(result.data.status === 401) { // 권한이 없습니다.
+    }
+    else if(result.data.status === 200) {
+      return new Students(result.data.data);
     }
   }
 
@@ -92,7 +96,6 @@ export class Teacher {
     if (this.teachers.size()) return this.teachers;
     else {
       const teachers = await getTeacherData(this);
-      this.teachers = teachers;
       return teachers;
     }
   }

@@ -27,7 +27,7 @@ class App extends React.Component {
         <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" render={() => <PageLoad><Home /></PageLoad>} />
               <Route path="/student" render={() => <PageLoad><Student /></PageLoad>} />
               <Route path="/class" render={() => <PageLoad><Class /></PageLoad>} />
               <Route path="/teacher" render={() => <PageLoad><Teacher /></PageLoad>} />

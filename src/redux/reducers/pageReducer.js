@@ -5,8 +5,13 @@ import { Students, Classes, Teachers } from '@models';
 import { pageActions } from '@redux/actions/pageActions';
 
 
+const studentRecord = Record({
+  pageLoading: true,
+  students: new Students()
+})
 const pageRecord = Record({
-  pageLoading: true
+  pageLoading: true,
+  student: studentRecord()
 })
 
 const initState = pageRecord();

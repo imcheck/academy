@@ -52,9 +52,7 @@ class _Student extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-});
+const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({});
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(_Student));

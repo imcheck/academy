@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
-import { Table, Button, Modal, InputForm } from '@components';
+import { Table } from '@components';
 import Filter from '@components/TableFilter';
 import StudentEditModal from "@containers/StudentEditModal";
 import { Student } from "@models";
+import { getStudents } from "@redux/actions/studentActions";
 
 class StudentTable extends React.Component {
   state = {
@@ -19,13 +20,13 @@ class StudentTable extends React.Component {
     disabled: true
   }
   _handleModal = (type, student) => {
-    if(type === "open") {
+    if (type === "open") {
       this.setState(state => ({ visible: true, student: new Student(student) }));
     } else {
       this.setState(state => ({ visible: false }));
     }
   }
-  _handleSearch = ({optionValue, searchText }) => {
+  _handleSearch = ({ optionValue, searchText }) => {
     this.setState(state => ({
       filter: {
         optionValue,
@@ -35,7 +36,7 @@ class StudentTable extends React.Component {
   }
   _filter = (student) => {
     const { optionValue, searchText } = this.state.filter;
-    if(optionValue) {
+    if (optionValue) {
       return student[optionValue].includes(searchText);
     } else {
       return student.name.includes(searchText) || student.school.includes(searchText) || student.phoneNumber.includes(searchText);
@@ -49,38 +50,38 @@ class StudentTable extends React.Component {
       { value: "", text: "전체" },
       { value: "name", text: "이름" },
       { value: "school", text: "학교" },
-      { value: "phoneNumber", text: "전화번호"}
-    ]
+      { value: "phoneNumber", text: "전화번호" }
+    ];
     const data = this.props.data.toJS().filter(this._filter);
     return (
       <Container>
-        <Filter filterOptions={filterOptions} onSearch={this._handleSearch}/>
+        <Filter filterOptions={filterOptions} onSearch={this._handleSearch} />
         <Table
           data={data}
           columns={[
             {
               header: "이름",
-              component: ({rowData}) => <span>{rowData.name}</span>
+              component: ({ rowData }) => <span>{rowData.name}</span>
             },
             {
               header: "학년",
-              component: ({rowData}) => <span>{rowData.grade}</span>
+              component: ({ rowData }) => <span>{rowData.grade}</span>
             },
             {
               header: "학교",
-              component: ({rowData}) => <span>{rowData.school}</span>
+              component: ({ rowData }) => <span>{rowData.school}</span>
             },
             {
               header: "학생 번호",
-              component: ({rowData}) => <span>{rowData.phoneNumber}</span>
+              component: ({ rowData }) => <span>{rowData.phoneNumber}</span>
             },
             {
               header: "부모 번호",
-              component: ({rowData}) => <span>{rowData.parentPhoneNumber}</span>
+              component: ({ rowData }) => <span>{rowData.parentPhoneNumber}</span>
             },
             {
               header: "#",
-              component: ({rowData}) => <BorderBtn onClick={() => this._handleModal("open", rowData)}>상세</BorderBtn>
+              component: ({ rowData }) => <BorderBtn onClick={() => this._handleModal("open", rowData)}>상세</BorderBtn>
             }
           ]}
         />
@@ -89,11 +90,29 @@ class StudentTable extends React.Component {
           onChangeDisabled={this._handleDisabled}
           student={this.state.student}
           visible={this.state.visible}
-          onClose={() => this._handleModal("close")}/>
+          onClose={() => this._handleModal("close")} />
       </Container>
     )
   }
-}const Container = styled.div`
+  componentDidMount() {
+    this.props.getStudents(this.props.user)
+  }
+}
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+  data: state.page.student.students
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getStudents: (teacher) => dispatch(getStudents(teacher))
+});
+
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentTable));
+
+
+
+const Container = styled.div`
 `
 
 const BorderBtn = styled.div`
@@ -111,16 +130,3 @@ const BorderBtn = styled.div`
   }
   cursor: pointer;
 `
-
-
-
-const mapStateToProps = (state) => ({
-  data: state.user.students
-});
-
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
-export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentTable));
-
