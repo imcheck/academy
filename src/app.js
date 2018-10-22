@@ -33,7 +33,7 @@ class App extends React.Component {
               <Route path="/teacher" render={() => <PageLoad><Teacher /></PageLoad>} />
               <Route path="/login" component={Login} />
               <Route path="/components" component={Dev} />
-              <Route path="*" component={() => <div>No Match</div>}/>
+              <Route render={() => <div>No Match</div>}/>
             </Switch>
           </ConnectedRouter>
         </ThemeProvider>
