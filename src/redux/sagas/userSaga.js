@@ -12,7 +12,6 @@ export function* Init() {
   yield takeEvery(userSagaActions.INIT, function* (action) {
     try {
       let params;
-
       params = [{
         path: ["pageLoading"],
         data: true
