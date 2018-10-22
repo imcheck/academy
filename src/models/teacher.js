@@ -1,7 +1,7 @@
 import { Students, Classes, Teachers } from "@models";
 import { getClassData } from "@services/class";
 import { getTeacherData } from "@services/teacher";
-import Axios from "axios";
+import * as request from "@services/request";
 
 export class Teacher {
   constructor(props) {
@@ -17,7 +17,8 @@ export class Teacher {
         academyCode,
         students,
         classes,
-        teachers } = props;
+        teachers
+      } = props;
       this.name = name;
       this.phoneNumber = phoneNumber;
       this.parentPhoneNumber = parentPhoneNumber;
@@ -43,6 +44,7 @@ export class Teacher {
       this.teachers = new Teachers();
     }
   }
+
   toObject() {
     const {
       name,
@@ -55,7 +57,8 @@ export class Teacher {
       academyCode,
       students,
       classes,
-      teachers } = this;
+      teachers
+    } = this;
     return {
       name,
       phoneNumber,
@@ -70,23 +73,22 @@ export class Teacher {
       teachers: teachers.toJS()
     };
   }
+
   getClasses = async () => {
-    if (this.classes.size()) return this.classes;
-    else {
-      const classes = await getClassData(this);
-      this.classes = classes;
-      return classes;
+    const data = await request.get("/class");
+    if(data) {
+      return new Classes(data);
+    } else {
+      alert("학생들 정보를 가져오는데 문제가 발생했습니다.");
     }
   }
 
   getStudents = async () => {
-    const result = await Axios.get("http://localhost:8001/student", {
-      headers: {
-        Authorization: localStorage.getItem("id_token")
-      }
-    });
-    if(result.data.status === 200) {
-      return new Students(result.data.data);
+    const data = await request.get("/student");
+    if (data) {
+      return new Students(data);
+    } else {
+      alert("학생들 정보를 가져오는데 문제가 발생했습니다.");
     }
   }
 

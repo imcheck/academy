@@ -9,7 +9,7 @@ export async function getClassData(by) {
       name: "중1-1 기초반",
       teacher: "Matthew",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -19,7 +19,7 @@ export async function getClassData(by) {
       name: "중1-1 심화반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -29,7 +29,7 @@ export async function getClassData(by) {
       name: "중2-1 기초반",
       teacher: "Matthew",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -39,7 +39,7 @@ export async function getClassData(by) {
       name: "중2-1 심화반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -49,7 +49,7 @@ export async function getClassData(by) {
       name: "중3-1 기초반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -59,7 +59,7 @@ export async function getClassData(by) {
       name: "중3-1 심화반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -69,7 +69,7 @@ export async function getClassData(by) {
       name: "고1-1 기초반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -79,7 +79,7 @@ export async function getClassData(by) {
       name: "고1-1 심화반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -91,7 +91,7 @@ export async function getClassData(by) {
       name: "중1-1 기초반",
       teacher: "Matthew",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -101,7 +101,7 @@ export async function getClassData(by) {
       name: "중1-1 심화반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -111,7 +111,7 @@ export async function getClassData(by) {
       name: "중2-1 기초반",
       teacher: "Matthew",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -121,7 +121,7 @@ export async function getClassData(by) {
       name: "중2-1 심화반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -131,7 +131,7 @@ export async function getClassData(by) {
       name: "중3-1 기초반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -141,7 +141,7 @@ export async function getClassData(by) {
       name: "중3-1 심화반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -151,7 +151,7 @@ export async function getClassData(by) {
       name: "고1-1 기초반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"
@@ -161,7 +161,7 @@ export async function getClassData(by) {
       name: "고1-1 심화반",
       teacher: "Homes",
       sdate: moment().format('YYYY-MM-DD HH:mm:ss'),
-      pdate: [{
+      times: [{
         day: "월",
         stime: "13:00",
         etime: "16:00"

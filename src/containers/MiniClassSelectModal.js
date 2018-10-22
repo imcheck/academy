@@ -34,7 +34,6 @@ class MiniClassSelectModal extends React.Component {
   }
   _handleFinishSelect = () => {
     const classes = this.state.classIds.map(classId => this.props.classes.getById(classId));
-    console.log(classes);
     this.props.onSelectClick(new Classes(classes));
   }
   render() {
@@ -67,7 +66,7 @@ class MiniClassSelectModal extends React.Component {
             },
             {
               header: "수업 시간",
-              component: ({rowData}) => <span>{rowData.pdate[0].day} ( {rowData.pdate[0].stime} ~ {rowData.pdate[0].etime} )</span>
+              component: ({rowData}) => <span>{rowData.times[0].day} ( {rowData.times[0].stime} ~ {rowData.times[0].etime} )</span>
             }
           ]}
         />
@@ -87,7 +86,7 @@ class MiniClassSelectModal extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  classes: state.user.classes
+  classes: state.page.class.classes
 });
 const mapDispatchToProps = (dispatch) => ({});
 

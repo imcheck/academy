@@ -1,15 +1,17 @@
 import { all, call } from "redux-saga/effects";
 
-import * as page from "./pageSaga";
-import * as user from "./userSaga";
-import * as student from "./studentSaga";
+import * as Page from "./pageSaga";
+import * as User from "./userSaga";
+import * as Student from "./studentSaga";
+import * as Class from "./classSaga";
 
 
 export default function* SagaRunner() {
   yield all([
-    call(page.Init),
-    call(user.Init),
-    call(user.UpsertStudent),
-    call(student.GetStudents)
+    call(Page.Init),
+    call(User.Init),
+    call(User.UpsertStudent),
+    call(Student.GetStudents),
+    call(Class.GetClasses)
   ])
 }

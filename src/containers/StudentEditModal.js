@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
 import { Student } from '@models';
-import { upsertStudent } from '@redux/actions/userActions';
+// import { upsertStudent } from '@redux/actions/userActions';
+import { getClasses } from "@redux/actions/classActions";
 import { Modal, Button, InputForm, Table } from '@components';
 import MiniClassSelectModal from '@containers/MiniClassSelectModal';
 import MiniStudentSelectModal from '@containers/MiniStudentSelectModal';
@@ -24,10 +25,11 @@ class StudentEditModal extends React.Component {
   _handleSaveClick = () => {
     const { student } = this.state;
     const params = { student };
-    this.props.upsertStudent(params);
+    // this.props.upsertStudent(params);
   }
   _handleClassSelectModal = (type) => {
     if (type === "open") {
+      this.props.getClasses(this.props.user);
       this.setState(state => ({ miniClassModalVisible: true}));
     } else {
       this.setState(state => ({ miniClassModalVisible: false}));
@@ -162,7 +164,7 @@ class StudentEditModal extends React.Component {
               {
                 header: "수업 시간",
                 component: ({ rowData }) =>
-                  <span>{rowData.pdate[0].day} ( {rowData.pdate[0].stime} ~ {rowData.pdate[0].etime} )</span>
+                  <span>{rowData.times[0].day} ( {rowData.times[0].stime} ~ {rowData.times[0].etime} )</span>
               }
             ]}/>
         </Modal>
@@ -183,9 +185,11 @@ class StudentEditModal extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  user: state.user
+});
 const mapDispatchToProps = (dispatch) => ({
-  upsertStudent: (params) => dispatch(upsertStudent(params))
+  getClasses: (teacher) => dispatch(getClasses(teacher))
 });
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentEditModal));

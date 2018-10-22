@@ -113,7 +113,7 @@ class TeacherEditModal extends React.Component {
               {
                 header: "수업 시간",
                 component: ({ rowData }) =>
-                  <span>{rowData.pdate[0].day} ( {rowData.pdate[0].stime} ~ {rowData.pdate[0].etime} )</span>
+                  <span>{rowData.times[0].day} ( {rowData.times[0].stime} ~ {rowData.times[0].etime} )</span>
               }
             ]}/>
         </Modal>
