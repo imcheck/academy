@@ -28,7 +28,6 @@ class _Student extends React.Component {
   }
 
   render() {
-    console.log("user", this.props.user.toObject());    
     return (
       <CommonLayout>
         <Header>

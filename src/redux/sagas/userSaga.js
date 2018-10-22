@@ -27,13 +27,10 @@ export function* Init() {
           if(result.status == 200) {
             const newTeacher = new Teacher(result.data);
             params = { teacher: newTeacher };
-            yield put(updateUser(params));  
+            yield put(updateUser(params));
           } else {
-            yield push("/login");
+            yield put(push("/login"));
           }
-          // yield teacher.getClasses();
-          // yield teacher.getStudents();
-          // yield teacher.getTeachers();
         }
         params = [{
           path: ["pageLoading"],
@@ -42,7 +39,7 @@ export function* Init() {
         yield put(updatePage(params));
       }
       else {
-        yield push("/login");
+        yield put(push("/login"));
       }
     } catch (e) {
       console.log(e);

@@ -16,7 +16,7 @@ export async function authIdToken() {
       if(data.status === 200) {
         localStorage.setItem("id_token", data.data);
         return true;
-      } else {
+      } else { // 404
         return false;
       }
     } else {
