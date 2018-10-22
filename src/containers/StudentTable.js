@@ -38,7 +38,7 @@ class StudentTable extends React.Component {
     if(optionValue) {
       return student[optionValue].includes(searchText);
     } else {
-      return student.name.includes(searchText) || student.school.includes(searchText) || student.tel.includes(searchText);
+      return student.name.includes(searchText) || student.school.includes(searchText) || student.phoneNumber.includes(searchText);
     }
   }
   _handleDisabled = (disabled) => {
@@ -49,7 +49,7 @@ class StudentTable extends React.Component {
       { value: "", text: "전체" },
       { value: "name", text: "이름" },
       { value: "school", text: "학교" },
-      { value: "tel", text: "전화번호"}
+      { value: "phoneNumber", text: "전화번호"}
     ]
     const data = this.props.data.toJS().filter(this._filter);
     return (
@@ -72,11 +72,11 @@ class StudentTable extends React.Component {
             },
             {
               header: "학생 번호",
-              component: ({rowData}) => <span>{rowData.tel}</span>
+              component: ({rowData}) => <span>{rowData.phoneNumber}</span>
             },
             {
               header: "부모 번호",
-              component: ({rowData}) => <span>{rowData.ptel}</span>
+              component: ({rowData}) => <span>{rowData.parentPhoneNumber}</span>
             },
             {
               header: "#",

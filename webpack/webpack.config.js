@@ -19,7 +19,7 @@ module.exports = {
       "@layouts": path.resolve(__dirname, "..", "src", "layouts"),
       "@components": path.resolve(__dirname, "..", "src", "components"),
       "@containers": path.resolve(__dirname, "..", "src", "containers"),
-      "@controllers": path.resolve(__dirname, "..", "src", "controllers"),
+      "@services": path.resolve(__dirname, "..", "src", "services"),
       "@redux": path.resolve(__dirname, "..", "src", "redux"),
       "@hoc": path.resolve(__dirname, "..", "src", "hoc"),
       "@models": path.resolve(__dirname, "..", "src", "models"),

@@ -1,8 +1,12 @@
 import { takeEvery, put, select, call } from 'redux-saga/effects';
+import { push } from "connected-react-router";
+import Jwt from "jsonwebtoken";
 
 import { updateUser, userSagaActions } from '@redux/actions/userActions';
 import { updatePage } from '@redux/actions/pageActions';
-import { Student, Auth } from '@models';
+import { Teacher } from "@models";
+import * as TeacherService from "@services/teacher";
+import * as Auth from "@services/auth";
 
 export function* Init() {
   yield takeEvery(userSagaActions.INIT, function* (action) {
@@ -11,27 +15,37 @@ export function* Init() {
 
       params = [{
         path: ["pageLoading"],
-        value: true
+        data: true
       }];
       yield put(updatePage(params));
 
-      const teacher = yield select(state => state.user);
-      yield teacher.getClasses();
-      yield teacher.getStudents();
-      yield teacher.getTeachers();
-
-      params = { teacher };
-      yield put(updateUser(params));
-
-      params = [{
-        path: ["pageLoading"],
-        value: false
-      }];
-
-      yield put(updatePage(params));
-
+      if (yield call(Auth.authIdToken)) {
+        const teacher = yield select(state => state.user);
+        if(!teacher.email) {
+          const decoded = Jwt.decode(localStorage.getItem("id_token"));
+          const result = yield call(TeacherService.getTeachers, decoded.email);
+          if(result.status == 200) {
+            const newTeacher = new Teacher(result.data);
+            params = { teacher: newTeacher };
+            yield put(updateUser(params));  
+          } else {
+            yield push("/login");
+          }
+          // yield teacher.getClasses();
+          // yield teacher.getStudents();
+          // yield teacher.getTeachers();
+        }
+        params = [{
+          path: ["pageLoading"],
+          data: false
+        }];
+        yield put(updatePage(params));
+      }
+      else {
+        yield push("/login");
+      }
     } catch (e) {
-      console.log(e.message);
+      console.log(e);
     }
   });
 }
@@ -39,8 +53,9 @@ export function* Init() {
 export function* UpsertStudent() {
   yield takeEvery(userSagaActions.INSERT_OR_UPSERT_STUDENT, function* (action) {
     const { student } = action.params;
-    if(student.studentId) yield student.update();
+    if (student.studentId) yield student.update();
     else yield student.insert();
     yield put(init());
   });
 }
+ 

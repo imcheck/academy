@@ -65,15 +65,15 @@ class TeacherEditModal extends React.Component {
               <InputForm
                 disabled={disabled}
                 name="강사 번호"
-                value={this.state.teacher.tel}
-                onChange={(e) => this._handleTeacherEdit("tel", e.target.value)}/>
+                value={this.state.teacher.phoneNumber}
+                onChange={(e) => this._handleTeacherEdit("phoneNumber", e.target.value)}/>
             </Col>
             <Col>
               <InputForm
                 disabled={disabled}
                 name="강사 번호2"
-                value={this.state.teacher.ptel}
-                onChange={(e) => this._handleTeacherEdit("ptel", e.target.value)}/>
+                value={this.state.teacher.parentPhoneNumber}
+                onChange={(e) => this._handleTeacherEdit("parentPhoneNumber", e.target.value)}/>
             </Col>
           </Row2>
           <Row2>

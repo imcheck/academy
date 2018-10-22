@@ -3,13 +3,13 @@ import { Students, Classes } from '@models';
 export class Student {
   constructor(props) {
     if (props) {
-      const { studentId="", name="", grade="", school="", tel="", ptel="", rdate="", state="", students="", classes="" } = props;
+      const { studentId="", name="", grade="", school="", phoneNumber="", parentPhoneNumber="", rdate="", state="", students="", classes="" } = props;
       this.studentId = studentId;
       this.name = name;
       this.grade = grade;
       this.school = school;
-      this.tel = tel;
-      this.ptel = ptel;
+      this.phoneNumber = phoneNumber;
+      this.parentPhoneNumber = parentPhoneNumber;
       this.rdate = rdate;
       this.state = state;
       this.students = new Students(students);
@@ -19,8 +19,8 @@ export class Student {
       this.name = "";
       this.grade = "";
       this.school = "";
-      this.tel = "";
-      this.ptel = "";
+      this.phoneNumber = "";
+      this.parentPhoneNumber = "";
       this.rdate = "";
       this.state = "";
       this.students = new Students();
@@ -28,14 +28,14 @@ export class Student {
     }
   }
   toObject() {
-    const { studentId, name, grade, school, tel, ptel, rdate, state, students, classes } = this;
+    const { studentId, name, grade, school, phoneNumber, parentPhoneNumber, rdate, state, students, classes } = this;
     return {
       studentId,
       name,
       grade,
       school,
-      tel,
-      ptel,
+      phoneNumber,
+      parentPhoneNumber,
       rdate,
       state,
       students: students.toJS(),

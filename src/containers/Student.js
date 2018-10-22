@@ -28,6 +28,7 @@ class _Student extends React.Component {
   }
 
   render() {
+    console.log("user", this.props.user.toObject());    
     return (
       <CommonLayout>
         <Header>
@@ -52,7 +53,9 @@ class _Student extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  user: state.user
+});
 const mapDispatchToProps = (dispatch) => ({});
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(_Student));

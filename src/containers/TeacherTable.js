@@ -24,7 +24,7 @@ class TeacherTable extends React.Component {
     if(optionValue) {
       return teacher[optionValue].includes(searchText);
     } else {
-      return teacher.name.includes(searchText) || teacher.tel.includes(searchText);
+      return teacher.name.includes(searchText) || teacher.phoneNumber.includes(searchText);
     }
   }
   _handleSearch = ({optionValue, searchText }) => {
@@ -50,7 +50,7 @@ class TeacherTable extends React.Component {
     const filterOptions = [
       { value: "", text: "전체"},
       { value: "name", text: "이름"},
-      { value: "tel", text: "번호"}
+      { value: "phoneNumber", text: "번호"}
     ];
     const data = this.props.data.toJS().filter(this._filter);
     return (
@@ -65,7 +65,7 @@ class TeacherTable extends React.Component {
             },
             {
               header: "강사 번호",
-              component: ({rowData}) => <span>{rowData.tel}</span>
+              component: ({rowData}) => <span>{rowData.phoneNumber}</span>
             },
             {
               header: "이메일",
