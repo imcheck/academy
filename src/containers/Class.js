@@ -7,20 +7,17 @@ import { faShapes } from '@fortawesome/free-solid-svg-icons';
 import ErrorHOC from '@hoc';
 import ClassTable from '@containers/ClassTable';
 import CommonLayout from '@layouts/CommonLayout';
-import PageLoad from '@containers/PageLoad';
 
 class Class extends React.Component {
   render() {
     return (
-      <PageLoad>
-        <CommonLayout>
-          <Title>
-            <FontAwesomeIcon icon={faShapes}/>
-            &nbsp;클래스 관리
+      <CommonLayout>
+        <Title>
+          <FontAwesomeIcon icon={faShapes} />
+          &nbsp;클래스 관리
           </Title>
-          <ClassTable/>
-        </CommonLayout>
-      </PageLoad>
+        <ClassTable />
+      </CommonLayout>
     )
   }
 }

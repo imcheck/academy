@@ -17,6 +17,7 @@ import Dev from "@layouts/Dev";
 import Student from "@containers/Student";
 import Class from "@containers/Class";
 import Teacher from "@containers/Teacher";
+import PageLoad from "@containers/PageLoad";
 
 
 class App extends React.Component {
@@ -27,10 +28,10 @@ class App extends React.Component {
           <ConnectedRouter history={history}>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/student" component={Student} />
-              <Route path="/class" component={Class} />
+              <Route path="/student" render={() => <PageLoad><Student /></PageLoad>} />
+              <Route path="/class" render={() => <PageLoad><Class /></PageLoad>} />
+              <Route path="/teacher" render={() => <PageLoad><Teacher /></PageLoad>} />
               <Route path="/login" component={Login} />
-              <Route path="/teacher" component={Teacher} />
               <Route path="/components" component={Dev} />
               <Route path="*" component={() => <div>No Match</div>}/>
             </Switch>

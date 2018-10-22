@@ -8,9 +8,8 @@ import ErrorHOC from '@hoc';
 import StudentTable from '@containers/StudentTable';
 import StudentEditModal from '@containers/StudentEditModal';
 import CommonLayout from '@layouts/CommonLayout';
-import { Button, Modal, InputForm, Table } from '@components';
+import { Button } from '@components';
 import { Student } from '@models';
-import PageLoad from '@containers/PageLoad';
 
 class _Student extends React.Component {
   state = {
@@ -30,27 +29,25 @@ class _Student extends React.Component {
 
   render() {
     return (
-      <PageLoad>
-        <CommonLayout>
-          <Header>
-            <Title>
-              <FontAwesomeIcon icon={faUsers}/>
-              &nbsp;학생
+      <CommonLayout>
+        <Header>
+          <Title>
+            <FontAwesomeIcon icon={faUsers} />
+            &nbsp;학생
             </Title>
-            <Container>
-              <Row>학생 추가, 수정, 검색기능을 할 수 있습니다.</Row>
-              <Row>
-                <Button onClick={() => this._handleStudentModal("open")} height="30px" positive>+ 학생 추가</Button>
-              </Row>
-            </Container>
-          </Header>
-          <StudentTable/>
-          <StudentEditModal
-            student={new Student()}
-            visible={this.state.studentModalVisible}
-            onClose={() => this._handleStudentModal("close")}/>
-        </CommonLayout>
-      </PageLoad>
+          <Container>
+            <Row>학생 추가, 수정, 검색기능을 할 수 있습니다.</Row>
+            <Row>
+              <Button onClick={() => this._handleStudentModal("open")} height="30px" positive>+ 학생 추가</Button>
+            </Row>
+          </Container>
+        </Header>
+        <StudentTable />
+        <StudentEditModal
+          student={new Student()}
+          visible={this.state.studentModalVisible}
+          onClose={() => this._handleStudentModal("close")} />
+      </CommonLayout>
     )
   }
 }

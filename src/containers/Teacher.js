@@ -16,7 +16,7 @@ class Teacher extends React.Component {
     teacherModalVisible: false
   }
   _handleTeacherModal = (type) => {
-    if( type === "open") {
+    if (type === "open") {
       this.setState(state => ({
         teacherModalVisible: true
       }))
@@ -28,27 +28,25 @@ class Teacher extends React.Component {
   }
   render() {
     return (
-      <PageLoad>
-        <CommonLayout>
-          <Header>
-            <Title>
-              <FontAwesomeIcon icon={faChalkboardTeacher}/>
-              &nbsp;강사
+      <CommonLayout>
+        <Header>
+          <Title>
+            <FontAwesomeIcon icon={faChalkboardTeacher} />
+            &nbsp;강사
             </Title>
-            <Container>
-              <Row>강사 추가, 수정, 검색기능을 할 수 있습니다.</Row>
-              <Row>
-                <Button onClick={() => this._handleTeacherModal("open")} height="30px" positive>+ 강사 추가</Button>
-              </Row>
-            </Container>
-          </Header>
-          <TeacherTable/>
-          {/*<StudentEditModal*/}
-            {/*student={new Student()}*/}
-            {/*visible={this.state.studentModalVisible}*/}
-            {/*onClose={() => this._handleStudentModal("close")}/>*/}
-        </CommonLayout>
-      </PageLoad>
+          <Container>
+            <Row>강사 추가, 수정, 검색기능을 할 수 있습니다.</Row>
+            <Row>
+              <Button onClick={() => this._handleTeacherModal("open")} height="30px" positive>+ 강사 추가</Button>
+            </Row>
+          </Container>
+        </Header>
+        <TeacherTable />
+        {/*<StudentEditModal*/}
+        {/*student={new Student()}*/}
+        {/*visible={this.state.studentModalVisible}*/}
+        {/*onClose={() => this._handleStudentModal("close")}/>*/}
+      </CommonLayout>
     )
   }
 }
