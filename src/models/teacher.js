@@ -85,9 +85,7 @@ export class Teacher {
         Authorization: localStorage.getItem("id_token")
       }
     });
-    if(result.data.status === 401) { // 권한이 없습니다.
-    }
-    else if(result.data.status === 200) {
+    if(result.data.status === 200) {
       return new Students(result.data.data);
     }
   }
