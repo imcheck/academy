@@ -30,9 +30,9 @@ class StudentEditModal extends React.Component {
   _handleClassSelectModal = (type) => {
     if (type === "open") {
       this.props.getClasses(this.props.user);
-      this.setState(state => ({ miniClassModalVisible: true}));
+      this.setState(state => ({ miniClassModalVisible: true }));
     } else {
-      this.setState(state => ({ miniClassModalVisible: false}));
+      this.setState(state => ({ miniClassModalVisible: false }));
     }
   }
   _handleClassSelect = (classes) => {
@@ -41,9 +41,9 @@ class StudentEditModal extends React.Component {
   }
   _handleStudentSelectModal = (type) => {
     if (type === "open") {
-      this.setState(state => ({ miniStudentModalVisible: true}));
+      this.setState(state => ({ miniStudentModalVisible: true }));
     } else {
-      this.setState(state => ({ miniStudentModalVisible: false}));
+      this.setState(state => ({ miniStudentModalVisible: false }));
     }
   }
   _handleStudentSelect = (students) => {
@@ -53,7 +53,7 @@ class StudentEditModal extends React.Component {
   render() {
     const { disabled } = this.props;
     const buttons = [];
-    if(!disabled) buttons.push(<Button key="save" onClick={this._handleSaveClick} positive>저장</Button>);
+    if (!disabled) buttons.push(<Button key="save" onClick={this._handleSaveClick} positive>저장</Button>);
     else buttons.push(<Button key="edit" onClick={() => this.props.onChangeDisabled(false)} positive>수정</Button>);
     buttons.push(<Button key="close" onClick={this.props.onClose} negative>취소</Button>);
     return (
@@ -73,7 +73,7 @@ class StudentEditModal extends React.Component {
                 disabled={disabled}
                 name="이름"
                 value={this.state.student.name}
-                onChange={(e) => this._handleStudentEdit("name", e.target.value)}/>
+                onChange={(e) => this._handleStudentEdit("name", e.target.value)} />
             </Col>
           </Row2>
           <Row2>
@@ -82,7 +82,7 @@ class StudentEditModal extends React.Component {
                 disabled={disabled}
                 name="학교"
                 value={this.state.student.school}
-                onChange={(e) => this._handleStudentEdit("school", e.target.value)}/>
+                onChange={(e) => this._handleStudentEdit("school", e.target.value)} />
             </Col>
             <Col>
               <InputForm
@@ -90,7 +90,7 @@ class StudentEditModal extends React.Component {
                 name="학년"
                 placeholder="예) 중1, 고2"
                 value={this.state.student.grade}
-                onChange={(e) => this._handleStudentEdit("grade", e.target.value)}/>
+                onChange={(e) => this._handleStudentEdit("grade", e.target.value)} />
             </Col>
           </Row2>
           <Row2>
@@ -99,14 +99,14 @@ class StudentEditModal extends React.Component {
                 disabled={disabled}
                 name="학생 번호"
                 value={this.state.student.phoneNumber}
-                onChange={(e) => this._handleStudentEdit("phoneNumber", e.target.value)}/>
+                onChange={(e) => this._handleStudentEdit("phoneNumber", e.target.value)} />
             </Col>
             <Col>
               <InputForm
                 disabled={disabled}
                 name="부모 번호"
                 value={this.state.student.parentPhoneNumber}
-                onChange={(e) => this._handleStudentEdit("parentPhoneNumber", e.target.value)}/>
+                onChange={(e) => this._handleStudentEdit("parentPhoneNumber", e.target.value)} />
             </Col>
           </Row2>
           <Row2>
@@ -116,14 +116,14 @@ class StudentEditModal extends React.Component {
                 name="등록일"
                 placeholder="예) 2018-07-08"
                 value={this.state.student.rdate}
-                onChange={(e) => this._handleStudentEdit("rdate", e.target.value)}/>
+                onChange={(e) => this._handleStudentEdit("rdate", e.target.value)} />
             </Col>
           </Row2>
           <Wrapper>
             <SubTitle>가족 관계</SubTitle>
             {!disabled ? (
               <FloatRight><Button onClick={() => this._handleStudentSelectModal("open")} height="30px" positive>+ 추가</Button></FloatRight>
-              ) : null }
+            ) : null}
           </Wrapper>
           <Table
             data={this.state.student.students.toJS()}
@@ -144,14 +144,16 @@ class StudentEditModal extends React.Component {
                 header: "상태",
                 component: ({ rowData }) => <span>{rowData.state}</span>
               },
-            ]}/>
+            ]} />
           <Wrapper>
             <SubTitle>클래스</SubTitle>
-            {!disabled ? ( <FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px" positive>+ 추가</Button></FloatRight>
-              ) : null }
+            {!disabled ? (<FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px" positive>+ 추가</Button></FloatRight>
+            ) : null}
           </Wrapper>
           <Table
             data={this.state.student.classes.toJS()}
+            headerStyle={{ height: "40px", lineHeight: "40px" }}
+            rowStyle={{ height: "50px", lineHeight: "50px" }}
             columns={[
               {
                 header: "클래스",
@@ -159,15 +161,17 @@ class StudentEditModal extends React.Component {
               },
               {
                 header: "선생님",
-                component: ({ rowData }) => <span>{rowData.teachers.getTeachers()}</span>
+                component: ({ rowData }) => <span>{rowData.teachers.map(teacher => teacher.name).join(",")}</span>
               },
               {
                 header: "수업 시간",
                 component: ({ rowData }) => {
-                  return rowData.times.map((time, index) => <div key={index}>{time.day} ( {time.stime} ~ {time.etime} )</div>)
+                  const size = rowData.times.length;
+                  const height = 50 / size;
+                  return rowData.times.map((time, index) => <div key={index} style={{ lineHeight: height + "px", height: height + "px" }}>{time.day} ( {time.stime} ~ {time.etime} )</div>)
                 }
               }
-            ]}/>
+            ]} />
         </Modal>
         <MiniClassSelectModal
           visible={this.state.miniClassModalVisible}

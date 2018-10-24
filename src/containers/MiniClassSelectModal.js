@@ -19,11 +19,11 @@ class MiniClassSelectModal extends React.Component {
   }
   _handleCheck = (v, _classId) => {
     const { classIds } = this.state;
-    if(v) {
+    if (v) {
       classIds.push(_classId);
     } else {
-      const index = this.state.classIds.findIndex( classId => {
-        if(classId === _classId) return true;
+      const index = this.state.classIds.findIndex(classId => {
+        if (classId === _classId) return true;
         return false;
       });
       classIds.splice(index, 1);
@@ -37,7 +37,7 @@ class MiniClassSelectModal extends React.Component {
     this.props.onSelectClick(new Classes(classes));
   }
   render() {
-    const classes = this.props.classes.toJS().filter(_class => _class.name.includes(this.state.searchText) || _class.teacher.includes(this.state.searchText));
+    const classes = this.props.classes.toJS().filter(_class => _class.name.includes(this.state.searchText) || _class.teachers.map(teacher => teacher.name).join(",").includes(this.state.searchText));
     return (
       <Modal
         title="클래스 선택"
@@ -47,36 +47,33 @@ class MiniClassSelectModal extends React.Component {
         footer={[<Button key="select" onClick={this._handleFinishSelect} positive>선택</Button>, <Button key="close" onClick={this.props.onClose} negative>취소</Button>]}>
         <Wrapper><SubTitle>선택 가능한 클래스</SubTitle></Wrapper>
         {this.state.classIds.length ? <Result>선택된 개수: {this.state.classIds.length}</Result> : null}
-        <Input placeholder="검색" value={this.state.searchText} onChange={this._handleSearchTextChange}/>
+        <Input placeholder="검색" value={this.state.searchText} onChange={this._handleSearchTextChange} />
         <Table
-          rowStyle={{
-            height: "50px",
-            lineHeight: "50px"
-          }}
+          rowStyle={{ height: "50px", lineHeight: "50px" }}
           data={classes}
           columns={[
             {
               header: "",
               width: "40px",
-              component: ({rowData}) => <input type="checkbox" checked={this.state.classIds.indexOf(rowData.classId) >= 0} onChange={(e) => this._handleCheck(e.target.checked, rowData.classId)}/>
+              component: ({ rowData }) => <input type="checkbox" checked={this.state.classIds.indexOf(rowData.classId) >= 0} onChange={(e) => this._handleCheck(e.target.checked, rowData.classId)} />
             },
             {
               header: "클래스",
-              component: ({rowData}) => <span>{rowData.name}</span>
+              component: ({ rowData }) => <span>{rowData.name}</span>
             },
             {
               header: "선생님",
-              component: ({rowData}) => {
+              component: ({ rowData }) => {
                 return <span>{rowData.teachers.map(teacher => teacher.name).join(",")}</span>
               }
             },
             {
               header: "수업 시간",
-              component: ({rowData}) => {
+              component: ({ rowData }) => {
                 const size = rowData.times.length;
                 const height = 50 / size;
-                if(size) {
-                  return rowData.times.map((time, index) => <div key={index} style={{lineHeight: height + "px", height: height + "px"}}>{time.day} ( {time.stime} ~ {time.etime} )</div>);
+                if (size) {
+                  return rowData.times.map((time, index) => <div key={index} style={{ lineHeight: height + "px", height: height + "px" }}>{time.day} ( {time.stime} ~ {time.etime} )</div>);
                 } else {
                   return null;
                 }
@@ -88,7 +85,7 @@ class MiniClassSelectModal extends React.Component {
     )
   }
   static getDerivedStateFromProps(props) {
-    if(!props.visible) {
+    if (!props.visible) {
       return {
         searchText: "",
         classIds: []

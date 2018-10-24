@@ -23,7 +23,7 @@ export class Class {
     return {
       classId,
       name,
-      teachers: teachers ? teachers.toJS() : [],
+      teachers: teachers.toJS(),
       sdate,
       times
     };
