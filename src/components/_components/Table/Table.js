@@ -15,7 +15,7 @@ export class Table extends React.Component {
   state = { pageSize: Table.DefaultPageSize, page: Table.DefaultStartPage };
   /*-------------------------------------------------------------------------*/
   _getHeaders = () => {
-    const { columns, rowStyle } = this.state;
+    const { columns, headerStyle } = this.state;
     const _columns = columns.map((column, index) => {
       const { header, width, widthRatio } = column;
       if(width) {
@@ -28,7 +28,7 @@ export class Table extends React.Component {
 
       return <Column key={index}>{header}</Column>;
     })
-    return <Row rowStyle={rowStyle}>{_columns}</Row>;
+    return <Row rowStyle={headerStyle}>{_columns}</Row>;
   }
   _filter = ((rowData, rowIndex) => {
     const { page, pageSize } = this.state;
