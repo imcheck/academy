@@ -18,4 +18,7 @@ export class Teachers {
     if(index < 0 || this.teachers.length <= index) return -1;
     return this.teachers[index];
   }
+  getTeachers() {
+    return this.teachers.map(teacher => teacher.name).join(",");
+  }
 }

@@ -159,12 +159,13 @@ class StudentEditModal extends React.Component {
               },
               {
                 header: "선생님",
-                component: ({ rowData }) => <span>{rowData.teacher}</span>
+                component: ({ rowData }) => <span>{rowData.teachers.getTeachers()}</span>
               },
               {
                 header: "수업 시간",
-                component: ({ rowData }) =>
-                  <span>{rowData.times[0].day} ( {rowData.times[0].stime} ~ {rowData.times[0].etime} )</span>
+                component: ({ rowData }) => {
+                  return rowData.times.map((time, index) => <div key={index}>{time.day} ( {time.stime} ~ {time.etime} )</div>)
+                }
               }
             ]}/>
         </Modal>

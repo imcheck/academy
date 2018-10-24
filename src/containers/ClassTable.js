@@ -29,7 +29,7 @@ class ClassTable extends React.Component {
             },
             {
               header: "선생님",
-              component: ({rowData}) => <span>{rowData.teacher}</span>
+              component: ({rowData}) => <span>{rowData.teachers.getTeachers()}</span>
             },
             {
               header: "시작날짜",

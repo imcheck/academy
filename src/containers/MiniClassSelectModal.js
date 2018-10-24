@@ -49,6 +49,10 @@ class MiniClassSelectModal extends React.Component {
         {this.state.classIds.length ? <Result>선택된 개수: {this.state.classIds.length}</Result> : null}
         <Input placeholder="검색" value={this.state.searchText} onChange={this._handleSearchTextChange}/>
         <Table
+          rowStyle={{
+            height: "50px",
+            lineHeight: "50px"
+          }}
           data={classes}
           columns={[
             {
@@ -62,11 +66,21 @@ class MiniClassSelectModal extends React.Component {
             },
             {
               header: "선생님",
-              component: ({rowData}) => <span>{rowData.teacher}</span>
+              component: ({rowData}) => {
+                return <span>{rowData.teachers.map(teacher => teacher.name).join(",")}</span>
+              }
             },
             {
               header: "수업 시간",
-              component: ({rowData}) => <span>{rowData.times[0].day} ( {rowData.times[0].stime} ~ {rowData.times[0].etime} )</span>
+              component: ({rowData}) => {
+                const size = rowData.times.length;
+                const height = 50 / size;
+                if(size) {
+                  return rowData.times.map((time, index) => <div key={index} style={{lineHeight: height + "px", height: height + "px"}}>{time.day} ( {time.stime} ~ {time.etime} )</div>);
+                } else {
+                  return null;
+                }
+              }
             }
           ]}
         />

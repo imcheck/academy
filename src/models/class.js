@@ -1,27 +1,29 @@
+import { Teachers } from "@models";
+
 export class Class {
   constructor(props) {
     if(props) {
-      const {classId, name, teacher, sdate, times} = props;
+      const {classId, name, teachers, sdate, times} = props;
       this.classId = classId;
       this.name = name;
-      this.teacher = teacher;
+      this.teachers = new Teachers(teachers);
       this.sdate = sdate;
       if(!Array.isArray(times)) this.times = JSON.parse(times);
       else this.times = times;
     } else {
       this.classId = '';
       this.name = '';
-      this.teacher = '';
+      this.teachers = new Teachers();
       this.sdate = "";
       this.times = [];
     }
   }
   toObject() {
-    const { classId, name, teacher, sdate, times } = this;
+    const { classId, name, teachers, sdate, times } = this;
     return {
       classId,
       name,
-      teacher,
+      teachers: teachers ? teachers.toJS() : [],
       sdate,
       times
     };
