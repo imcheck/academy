@@ -126,6 +126,7 @@ class StudentEditModal extends React.Component {
             ) : null}
           </Wrapper>
           <Table
+            headerStyle={{ height: "40px", lineHeight: "40px" }}
             data={this.state.student.students.toJS()}
             columns={[
               {
