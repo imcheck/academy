@@ -13,12 +13,6 @@ export function updateUser(params) {
     params
   }
 }
-export function upsertStudent(params) {
-  return {
-    type: userSagaActions.INSERT_OR_UPSERT_STUDENT,
-    params
-  }
-}
 export function init() {
   return {
     type: userSagaActions.INIT

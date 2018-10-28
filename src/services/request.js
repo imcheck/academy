@@ -41,3 +41,22 @@ export async function get(path) {
     return null;
   }
 }
+
+export async function put(path, data) {
+  await service.authIdToken();
+  const URL = config.SERVER_URI + path;
+  const result = await Axios.put(URL, data, {
+    headers: {
+      Authorization: localStorage.getItem("id_token")
+    }
+  });
+  if(result.status == 200) {
+    if(result.data.status === 200) {
+      return true;
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+}

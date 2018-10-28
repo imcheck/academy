@@ -45,13 +45,3 @@ export function* Init() {
     }
   });
 }
-
-export function* UpsertStudent() {
-  yield takeEvery(userSagaActions.INSERT_OR_UPSERT_STUDENT, function* (action) {
-    const { student } = action.params;
-    if (student.studentId) yield student.update();
-    else yield student.insert();
-    yield put(init());
-  });
-}
- 

@@ -10,7 +10,7 @@ export default function* SagaRunner() {
   yield all([
     call(Page.Init),
     call(User.Init),
-    call(User.UpsertStudent),
+    call(Student.UpsertStudent),
     call(Student.GetStudents),
     call(Class.GetClasses)
   ])

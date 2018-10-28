@@ -90,7 +90,7 @@ class MiniStudentSelectModal extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  students: state.user.students
+  students: state.page.student.students
 });
 const mapDispatchToProps = (dispatch) => ({});
 

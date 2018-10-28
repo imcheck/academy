@@ -1,4 +1,5 @@
 import { Students, Classes } from '@models';
+import * as request from "@services/request";
 
 export class Student {
   constructor(props) {
@@ -42,10 +43,10 @@ export class Student {
       classes: classes.toJS()
     };
   }
-  async update() {
-    console.log("Update", this);
-  }
-  async insert() {
-    console.log("Insert", this);
+  async getMoreInfo() {
+    const path = "/student/" + this.studentId;
+    const student = await request.get(path);
+    this.classes = new Classes(student.classes);
+    this.students = new Students(student.students);
   }
 }

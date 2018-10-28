@@ -4,7 +4,9 @@ export class Students {
   constructor(studentList) {
     if(studentList) {
       if(studentList instanceof Students) this.students = studentList.students;
-      else this.students = studentList.map((student) => new Student(student));
+      else {
+        this.students = studentList.map((student) => new Student(student));
+      }
     } else {
       this.students = [];
     }

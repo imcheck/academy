@@ -99,4 +99,12 @@ export class Teacher {
       return teachers;
     }
   }
+  createStudent = async(student) => {
+    const result = await request.put("/student", student);
+    if(result) {
+      return true;
+    } else {
+      alert("학생을 만드는데 문제가 발생했습니다.");
+    }
+  }
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
 import { Student } from '@models';
-// import { upsertStudent } from '@redux/actions/userActions';
+import { upsertStudent } from '@redux/actions/studentActions';
 import { getClasses } from "@redux/actions/classActions";
 import { Modal, Button, InputForm, Table } from '@components';
 import MiniClassSelectModal from '@containers/MiniClassSelectModal';
@@ -24,8 +24,8 @@ class StudentEditModal extends React.Component {
   }
   _handleSaveClick = () => {
     const { student } = this.state;
-    const params = { student };
-    // this.props.upsertStudent(params);
+    this.props.upsertStudent(student);
+    this.props.onClose();
   }
   _handleClassSelectModal = (type) => {
     if (type === "open") {
@@ -195,7 +195,8 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 const mapDispatchToProps = (dispatch) => ({
-  getClasses: (teacher) => dispatch(getClasses(teacher))
+  getClasses: (teacher) => dispatch(getClasses(teacher)),
+  upsertStudent: (student) => dispatch(upsertStudent(student))
 });
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentEditModal));
