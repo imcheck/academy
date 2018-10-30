@@ -32,8 +32,13 @@ const Title = styled.div`
   height: 40px;
   line-height: 40px;
   font-size: 30px;
-  color: #4286f4;
+  font-weight: bold;
   border-bottom: 1px solid black;
+  padding: 0px 10px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+
 `
 
 const appear = keyframes`
@@ -48,7 +53,6 @@ const appear = keyframes`
 const Container = styled.div`
   position: relative;
   width: 250px;
-  height: 120px;
   margin-bottom: 20px;
   background-color: white;
   box-shadow: 5px 5px 5px lightgray;
@@ -60,4 +64,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   padding: 10px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
 `
