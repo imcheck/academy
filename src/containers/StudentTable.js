@@ -22,8 +22,8 @@ class StudentTable extends React.Component {
   _handleModal = async (type, student) => {
     if (type === "open") {
       const _student = new Student(student);
-      await student.getMoreInfo();
-      this.setState(state => ({ visible: true, student }));
+      await _student.getMoreInfo();
+      this.setState(state => ({ visible: true, student: _student }));
     } else {
       this.setState(state => ({ visible: false }));
     }
