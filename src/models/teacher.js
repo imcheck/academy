@@ -107,4 +107,13 @@ export class Teacher {
       alert("학생을 만드는데 문제가 발생했습니다.");
     }
   }
+  updateStudent = async(student) => {
+    const path = "/student/" + student.studentId;
+    const result = await request.post(path, student);
+    if(result) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

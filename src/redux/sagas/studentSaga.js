@@ -40,6 +40,9 @@ export function* UpsertStudent() {
     console.log(student);
     const teacher = yield select(state => state.user);
     if(student.studentId) { // Edit
+      if(yield call(teacher.updateStudent, student)) {
+        yield put(getStudents(teacher));
+      }
     } else { // Create
       if(yield call(teacher.createStudent, student)) {
         yield put(getStudents(teacher));

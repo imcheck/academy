@@ -52,7 +52,7 @@ export async function put(path, data) {
   });
   if(result.status == 200) {
     if(result.data.status === 200) {
-      return true;
+      return result.data.data;
     } else {
       return null;
     }
