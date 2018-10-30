@@ -35,12 +35,12 @@ class _Student extends React.Component {
             <FontAwesomeIcon icon={faUsers} />
             &nbsp;학생
             </Title>
-          <Container>
+          <Search>
             <Row>학생 추가, 수정, 검색기능을 할 수 있습니다.</Row>
             <Row>
               <Button onClick={() => this._handleStudentModal("open")} height="30px" positive>+ 학생 추가</Button>
             </Row>
-          </Container>
+          </Search>
         </Header>
         <StudentTable />
         <StudentEditModal
@@ -66,7 +66,7 @@ const Title = styled.div`
   line-height: 48px;
   float: left;
 `
-const Container = styled.div`
+const Search = styled.div`
   color: ${props => props.theme._components.gray}
   float: left;
   margin-left: 20px;

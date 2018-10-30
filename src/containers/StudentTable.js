@@ -19,11 +19,10 @@ class StudentTable extends React.Component {
     },
     disabled: true
   }
-  _handleModal = async (type, student) => {
+  _handleModal = async (type, _student) => {
     if (type === "open") {
-      const _student = new Student(student);
-      await _student.getMoreInfo();
-      this.setState(state => ({ visible: true, student: _student }));
+      const student = await _student.getMoreInfo();
+      this.setState(state => ({ visible: true, student: student }));
     } else {
       this.setState(state => ({ visible: false }));
     }
@@ -54,7 +53,7 @@ class StudentTable extends React.Component {
       { value: "school", text: "학교" },
       { value: "phoneNumber", text: "전화번호" }
     ];
-    const data = this.props.data.toJS().filter(this._filter);
+    const data = this.props.data.students.filter(this._filter);
     return (
       <Container>
         <Filter filterOptions={filterOptions} onSearch={this._handleSearch} />
@@ -83,6 +82,7 @@ class StudentTable extends React.Component {
             },
             {
               header: "#",
+              width: "100px",
               component: ({ rowData }) => <BorderBtn onClick={() => this._handleModal("open", rowData)}>상세</BorderBtn>
             }
           ]}
@@ -97,17 +97,16 @@ class StudentTable extends React.Component {
     )
   }
   componentDidMount() {
-    this.props.getStudents(this.props.user)
+    this.props.getStudents()
   }
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user,
   data: state.page.student.students
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getStudents: (teacher) => dispatch(getStudents(teacher))
+  getStudents: () => dispatch(getStudents())
 });
 
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentTable));

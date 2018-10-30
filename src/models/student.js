@@ -46,7 +46,6 @@ export class Student {
   async getMoreInfo() {
     const path = "/student/" + this.studentId;
     const student = await request.get(path);
-    this.classes = new Classes(student.classes);
-    this.students = new Students(student.students);
+    return new Student(student);
   }
 }
