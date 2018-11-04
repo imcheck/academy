@@ -60,8 +60,8 @@ class ClassTable extends React.Component {
               header: "수업 시간",
               component: ({ rowData }) => (
                 <span>
-                  {rowData.times.map(time => {
-                    return <span>{time.day + "(" + time.stime + " ~ " + time.etime + ")"}</span>
+                  {rowData.times.map((time, id) => {
+                    return <span key={id}>{time.day + "(" + time.stime + " ~ " + time.etime + ")"} </span>
                   })}
                 </span>
               )

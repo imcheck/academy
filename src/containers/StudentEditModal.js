@@ -29,7 +29,7 @@ class StudentEditModal extends React.Component {
   }
   _handleClassSelectModal = (type) => {
     if (type === "open") {
-      this.props.getClasses(this.props.user);
+      this.props.getClasses();
       this.setState(state => ({ miniClassModalVisible: true }));
     } else {
       this.setState(state => ({ miniClassModalVisible: false }));
@@ -50,6 +50,7 @@ class StudentEditModal extends React.Component {
     this._handleStudentEdit("students", students);
     this._handleStudentSelectModal("close");
   }
+
   render() {
     const { disabled } = this.props;
     const buttons = [];
@@ -67,22 +68,22 @@ class StudentEditModal extends React.Component {
           <Wrapper>
             <SubTitle>개인 정보</SubTitle>
           </Wrapper>
-          <Row2>
+          <Row>
             <Col>
               <InputForm
                 disabled={disabled}
                 name="이름"
                 value={this.state.student.name}
-                onChange={(e) => this._handleStudentEdit("name", e.target.value)} />
+                onChange={(e) => this._handleStudentEdit("name", e.target.value)}/>
             </Col>
-          </Row2>
-          <Row2>
+          </Row>
+          <Row>
             <Col>
               <InputForm
                 disabled={disabled}
                 name="학교"
                 value={this.state.student.school}
-                onChange={(e) => this._handleStudentEdit("school", e.target.value)} />
+                onChange={(e) => this._handleStudentEdit("school", e.target.value)}/>
             </Col>
             <Col>
               <InputForm
@@ -90,39 +91,40 @@ class StudentEditModal extends React.Component {
                 name="학년"
                 placeholder="예) 중1, 고2"
                 value={this.state.student.grade}
-                onChange={(e) => this._handleStudentEdit("grade", e.target.value)} />
+                onChange={(e) => this._handleStudentEdit("grade", e.target.value)}/>
             </Col>
-          </Row2>
-          <Row2>
+          </Row>
+          <Row>
             <Col>
               <InputForm
                 disabled={disabled}
                 name="학생 번호"
                 value={this.state.student.phoneNumber}
-                onChange={(e) => this._handleStudentEdit("phoneNumber", e.target.value)} />
+                onChange={(e) => this._handleStudentEdit("phoneNumber", e.target.value)}/>
             </Col>
             <Col>
               <InputForm
                 disabled={disabled}
                 name="부모 번호"
                 value={this.state.student.parentPhoneNumber}
-                onChange={(e) => this._handleStudentEdit("parentPhoneNumber", e.target.value)} />
+                onChange={(e) => this._handleStudentEdit("parentPhoneNumber", e.target.value)}/>
             </Col>
-          </Row2>
-          <Row2>
+          </Row>
+          <Row>
             <Col>
               <InputForm
                 disabled={disabled}
                 name="등록일"
                 placeholder="예) 2018-07-08"
                 value={this.state.student.rdate}
-                onChange={(e) => this._handleStudentEdit("rdate", e.target.value)} />
+                onChange={(e) => this._handleStudentEdit("rdate", e.target.value)}/>
             </Col>
-          </Row2>
+          </Row>
           <Wrapper>
             <SubTitle>가족 관계</SubTitle>
             {!disabled ? (
-              <FloatRight><Button onClick={() => this._handleStudentSelectModal("open")} height="30px" positive>+ 추가</Button></FloatRight>
+              <FloatRight><Button onClick={() => this._handleStudentSelectModal("open")} height="30px" positive>+
+                추가</Button></FloatRight>
             ) : null}
           </Wrapper>
           <Table
@@ -145,10 +147,12 @@ class StudentEditModal extends React.Component {
                 header: "상태",
                 component: ({ rowData }) => <span>{rowData.state}</span>
               },
-            ]} />
+            ]}/>
           <Wrapper>
             <SubTitle>클래스</SubTitle>
-            {!disabled ? (<FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px" positive>+ 추가</Button></FloatRight>
+            {!disabled ? (
+              <FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px" positive>+
+                추가</Button></FloatRight>
             ) : null}
           </Wrapper>
           <Table
@@ -169,19 +173,22 @@ class StudentEditModal extends React.Component {
                 component: ({ rowData }) => {
                   const size = rowData.times.length;
                   const height = 50 / size;
-                  return rowData.times.map((time, index) => <div key={index} style={{ lineHeight: height + "px", height: height + "px" }}>{time.day} ( {time.stime} ~ {time.etime} )</div>)
+                  return rowData.times.map((time, index) => <div key={index} style={{
+                    lineHeight: height + "px",
+                    height: height + "px"
+                  }}>{time.day} ( {time.stime} ~ {time.etime} )</div>)
                 }
               }
-            ]} />
+            ]}/>
         </Modal>
         <MiniClassSelectModal
           visible={this.state.miniClassModalVisible}
           onSelectClick={this._handleClassSelect}
-          onClose={() => this._handleClassSelectModal("close")} />
+          onClose={() => this._handleClassSelectModal("close")}/>
         <MiniStudentSelectModal
           visible={this.state.miniStudentModalVisible}
           onSelectClick={this._handleStudentSelect}
-          onClose={() => this._handleStudentSelectModal("close")} />
+          onClose={() => this._handleStudentSelectModal("close")}/>
       </React.Fragment>
     )
   }
@@ -191,9 +198,7 @@ class StudentEditModal extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-});
+const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({
   getClasses: (teacher) => dispatch(getClasses(teacher)),
   upsertStudent: (student) => dispatch(upsertStudent(student))
@@ -202,7 +207,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(StudentEditModal));
 
 
-const Row2 = styled.div`
+const Row = styled.div`
   margin-bottom: 10px;
   display: flex;
 `

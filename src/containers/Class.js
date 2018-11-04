@@ -8,8 +8,10 @@ import ErrorHOC from '@hoc';
 import ClassTable from '@containers/ClassTable';
 import CommonLayout from '@layouts/CommonLayout';
 import { Button } from "@components";
+import { Class } from '@models';
+import ClassEditModal from "@containers/ClassEditModal";
 
-class Class extends React.Component {
+class _Class extends React.Component {
   state = {
     classModalVisible: false
   }
@@ -40,6 +42,9 @@ class Class extends React.Component {
           </Search>
         </Header>
         <ClassTable/>
+        <ClassEditModal
+          visible={this.state.classModalVisible}
+          class={new Class()}/>
       </CommonLayout>
     )
   }
@@ -48,7 +53,7 @@ class Class extends React.Component {
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({});
 
-export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(Class));
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(_Class));
 
 const Header = styled.div`
   height: 60px;
