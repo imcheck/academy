@@ -6,7 +6,7 @@ import ErrorHOC from '@hoc';
 import { Student } from '@models';
 import { upsertStudent } from '@redux/actions/userActions';
 import { Modal, Button, InputForm, Table } from '@components';
-import MiniClassSelectModal from '@containers/MiniClassSelectModal';
+import MiniLectureSelectModal from '@containers/MiniLectureSelectModal';
 
 class TeacherEditModal extends React.Component {
   state = {
@@ -100,7 +100,7 @@ class TeacherEditModal extends React.Component {
             ) : null }
           </Wrapper>
           <Table
-            data={this.state.teacher.classes.toJS()}
+            data={this.state.teacher.lectures.toJS()}
             columns={[
               {
                 header: "클래스",
@@ -117,10 +117,10 @@ class TeacherEditModal extends React.Component {
               }
             ]}/>
         </Modal>
-        <MiniClassSelectModal
+        <MiniLectureSelectModal
           visible={this.state.miniClassModalVisible}
-          onSelectClick={this._handleClassSelect}
-          onClose={() => this._handleClassSelectModal("close")} />
+          onSelectClick={this._handleLectureSelect}
+          onClose={() => this._handleLectureSelectModal("close")} />
       </React.Fragment>
     )
   }

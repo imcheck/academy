@@ -31,7 +31,7 @@ export function* GetStudents() {
 export function* UpsertStudent() {
   yield takeEvery(studentSagaActions.UPSERT_STUDENT, function* (action) {
     const student = action.student.toObject();
-    student.classes = student.classes.map(_class => _class.classId);
+    student.lectures = student.lectures.map(lecture => lecture.lectureId);
     student.students = student.students.map(student => student.studentId);
     const teacher = yield select(state => state.user);
     if (student.studentId) { // Edit

@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ErrorHOC from '@hoc';
-import { Classes } from '@models';
+import { Lectures } from '@models';
 import { Modal, Button, Table, Input } from '@components';
 
-class MiniClassSelectModal extends React.Component {
+class MiniLectureSelectModal extends React.Component {
   state = {
     searchText: "",
-    classIds: []
+    lectureIds: []
   }
   _handleSearchTextChange = (e) => {
     const { value } = e.target;
@@ -17,27 +17,27 @@ class MiniClassSelectModal extends React.Component {
       searchText: value
     }));
   }
-  _handleCheck = (v, _classId) => {
-    const { classIds } = this.state;
+  _handleCheck = (v, _lectureId) => {
+    const { lectureIds } = this.state;
     if (v) {
-      classIds.push(_classId);
+      lectureIds.push(_lectureId);
     } else {
-      const index = this.state.classIds.findIndex(classId => {
-        if (classId === _classId) return true;
+      const index = this.state.lectureIds.findIndex(lectureId => {
+        if (lectureId === _lectureId) return true;
         return false;
       });
-      classIds.splice(index, 1);
+      lectureIds.splice(index, 1);
     }
     this.setState(state => ({
-      classIds
+      lectureIds
     }));
   }
   _handleFinishSelect = () => {
-    const classes = this.state.classIds.map(classId => this.props.classes.getById(classId));
-    this.props.onSelectClick(new Classes(classes));
+    const lectures = this.state.lectureIds.map(lectureId => this.props.lectures.getById(lectureId));
+    this.props.onSelectClick(new Lectures(lectures));
   }
   render() {
-    const classes = this.props.classes.toJS().filter(_class => _class.name.includes(this.state.searchText) || _class.teachers.map(teacher => teacher.name).join(",").includes(this.state.searchText));
+    const lectures = this.props.lectures.toJS().filter(lecture => lecture.name.includes(this.state.searchText) || lecture.teachers.map(teacher => teacher.name).join(",").includes(this.state.searchText));
     return (
       <Modal
         title="클래스 선택"
@@ -46,16 +46,16 @@ class MiniClassSelectModal extends React.Component {
         height={400}
         footer={[<Button key="select" onClick={this._handleFinishSelect} positive>선택</Button>, <Button key="close" onClick={this.props.onClose} negative>취소</Button>]}>
         <Wrapper><SubTitle>선택 가능한 클래스</SubTitle></Wrapper>
-        {this.state.classIds.length ? <Result>선택된 개수: {this.state.classIds.length}</Result> : null}
+        {this.state.lectureIds.length ? <Result>선택된 개수: {this.state.lectureIds.length}</Result> : null}
         <Input placeholder="검색" value={this.state.searchText} onChange={this._handleSearchTextChange} />
         <Table
           rowStyle={{ height: "50px", lineHeight: "50px" }}
-          data={classes}
+          data={lectures}
           columns={[
             {
               header: "",
               width: "40px",
-              component: ({ rowData }) => <input type="checkbox" checked={this.state.classIds.indexOf(rowData.classId) >= 0} onChange={(e) => this._handleCheck(e.target.checked, rowData.classId)} />
+              component: ({ rowData }) => <input type="checkbox" checked={this.state.lectureIds.indexOf(rowData.lectureId) >= 0} onChange={(e) => this._handleCheck(e.target.checked, rowData.lectureId)} />
             },
             {
               header: "클래스",
@@ -88,7 +88,7 @@ class MiniClassSelectModal extends React.Component {
     if (!props.visible) {
       return {
         searchText: "",
-        classIds: []
+        lectureIds: []
       }
     } else {
       return null;
@@ -97,11 +97,11 @@ class MiniClassSelectModal extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  classes: state.page.class.classes
+  lectures: state.page.lecture.lectures
 });
 const mapDispatchToProps = (dispatch) => ({});
 
-export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(MiniClassSelectModal));
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(MiniLectureSelectModal));
 
 const SubTitle = styled.div`
   font-weight: bold;

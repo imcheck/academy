@@ -18,7 +18,7 @@ class Home extends React.Component {
               <Text>학생 관리</Text>
             </StudentManagement>
           </Link>
-          <Link to="/class">
+          <Link to="/lecture">
             <ClassManagement>
               <FontAwesomeIcon icon={faShapes} size="7x" />
               <Text>클래스 관리</Text>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import StudentMenuIcon from "@components/StudentMenuIcon";
-import ClassMenuIcon from "@components/ClassMenuIcon";
+import LectureMenuIcon from "@components/LectureMenuIcon";
 import ReceiptMenuIcon from "@components/ReceiptMenuIcon";
 import FinancialMenuIcon from "@components/FinancialMenuIcon";
 import TeacherMenuIcon from "@components/TeacherMenuIcon";
@@ -10,7 +10,7 @@ import TeacherMenuIcon from "@components/TeacherMenuIcon";
 const Navigation = (props) => (
   <Menu>
     <StudentMenuIcon />
-    <ClassMenuIcon/>
+    <LectureMenuIcon/>
     <TeacherMenuIcon/>
     <ReceiptMenuIcon/>
     <FinancialMenuIcon/>

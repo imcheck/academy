@@ -1,10 +1,10 @@
-import { Classes, Student, Class, Teacher } from '@models';
+import { Lectures, Student, Lecture, Teacher } from '@models';
 import moment from 'moment';
-export async function getClassData(by) {
+export async function getLectureData(by) {
   if(by instanceof Student) {
 
-  } else if( by instanceof Class) {
-    return new Classes([{
+  } else if( by instanceof Lecture) {
+    return new Lectures([{
       classId: 1,
       name: "중1-1 기초반",
       teacher: "Matthew",

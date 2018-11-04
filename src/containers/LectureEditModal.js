@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Modal, Button, InputForm, Table } from '@components';
 
-class ClassEditModal extends React.Component {
+class LectureEditModal extends React.Component {
   state = {}
   _handleClassEdit = (key, value) => {
   }
@@ -12,7 +12,7 @@ class ClassEditModal extends React.Component {
     const buttons = [];
     if(disabled) buttons.push(<Button key="edit" positive>수정</Button>);
     else buttons.push(<Button key="save" positive>저장</Button>);
-    buttons.push(<Button key="save" negative>취소</Button>);
+    buttons.push(<Button key="cancel" negative>취소</Button>);
     const { disabled } = this.props;
     return (
       <Modal
@@ -102,7 +102,7 @@ class ClassEditModal extends React.Component {
   }
 }
 
-export default ClassEditModal;
+export default LectureEditModal;
 
 const Container = styled.div``;
 const Row = styled.div`

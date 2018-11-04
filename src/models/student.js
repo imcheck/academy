@@ -1,10 +1,10 @@
-import { Students, Classes } from '@models';
+import { Students, Lectures } from '@models';
 import * as request from "@services/request";
 
 export class Student {
   constructor(props) {
     if (props) {
-      const { studentId="", name="", grade="", school="", phoneNumber="", parentPhoneNumber="", rdate="", state="", students="", classes="" } = props;
+      const { studentId="", name="", grade="", school="", phoneNumber="", parentPhoneNumber="", rdate="", state="", students="", lectures="" } = props;
       this.studentId = studentId;
       this.name = name;
       this.grade = grade;
@@ -14,7 +14,7 @@ export class Student {
       this.rdate = rdate;
       this.state = state;
       this.students = new Students(students);
-      this.classes = new Classes(classes);
+      this.lectures = new Lectures(lectures);
     } else {
       this.studentId = "";
       this.name = "";
@@ -25,11 +25,11 @@ export class Student {
       this.rdate = "";
       this.state = "";
       this.students = new Students();
-      this.classes = new Classes();
+      this.lectures = new Lectures();
     }
   }
   toObject() {
-    const { studentId, name, grade, school, phoneNumber, parentPhoneNumber, rdate, state, students, classes } = this;
+    const { studentId, name, grade, school, phoneNumber, parentPhoneNumber, rdate, state, students, lectures } = this;
     return {
       studentId,
       name,
@@ -39,8 +39,8 @@ export class Student {
       parentPhoneNumber,
       rdate,
       state,
-      students: students.toJS(),
-      classes: classes.toJS()
+      students: students ? students.toJS() : [],
+      lectures: lectures ? lectures.toJS() : []
     };
   }
   async getMoreInfo() {

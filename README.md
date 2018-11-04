@@ -1,5 +1,6 @@
 # Academy Project
-This project for helping managers of academy to manage students, teachers, classes.  
+This project for helping managers of academy to manage students, teachers, 
+classes.  
 
 ## How to start
 ```console

@@ -15,7 +15,7 @@ import Dev from "@layouts/Dev";
 
 // CommonLayout 을 사용하는 컴포넌트들
 import Student from "@containers/Student";
-import Class from "@containers/Class";
+import Lecture from "@containers/Lecture";
 import Teacher from "@containers/Teacher";
 import PageLoad from "@containers/PageLoad";
 
@@ -29,7 +29,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" render={() => <PageLoad><Home /></PageLoad>} />
               <Route path="/student" render={() => <PageLoad><Student /></PageLoad>} />
-              <Route path="/class" render={() => <PageLoad><Class /></PageLoad>} />
+              <Route path="/lecture" render={() => <PageLoad><Lecture /></PageLoad>} />
               <Route path="/teacher" render={() => <PageLoad><Teacher /></PageLoad>} />
               <Route path="/login" component={Login} />
               <Route path="/components" component={Dev} />

@@ -12,7 +12,7 @@ export async function getTeacherData(by) {
       rdate: "2018-08-94",
       state: "휴원",
       students: [],
-      classes: []
+      lectures: []
     }]);
   }
 }

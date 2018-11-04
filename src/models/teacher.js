@@ -1,5 +1,5 @@
-import { Students, Classes, Teachers } from "@models";
-import { getClassData } from "@services/class";
+import { Students, Lectures, Teachers } from "@models";
+import { getLectureData } from "@services/lecture";
 import { getTeacherData } from "@services/teacher";
 import * as request from "@services/request";
 
@@ -16,7 +16,7 @@ export class Teacher {
         bankingAccount,
         academyCode,
         students,
-        classes,
+        lectures,
         teachers
       } = props;
       this.name = name;
@@ -28,7 +28,7 @@ export class Teacher {
       this.bankingAccount = bankingAccount;
       this.academyCode = academyCode;
       this.students = new Students(students);
-      this.classes = new Classes(classes);
+      this.lectures = new Lectures(lectures);
       this.teachers = new Teachers(teachers);
     } else {
       this.name = "";
@@ -40,7 +40,7 @@ export class Teacher {
       this.bankingAccount = "";
       this.academyCode = "";
       this.students = new Students();
-      this.classes = new Classes();
+      this.lectures = new Lectures();
       this.teachers = new Teachers();
     }
   }
@@ -56,7 +56,7 @@ export class Teacher {
       bankingAccount,
       academyCode,
       students,
-      classes,
+      lectures,
       teachers
     } = this;
     return {
@@ -69,15 +69,15 @@ export class Teacher {
       bankingAccount,
       academyCode,
       students: students.toJS(),
-      classes: classes.toJS(),
+      lectures: lectures.toJS(),
       teachers: teachers.toJS()
     };
   }
 
-  getClasses = async () => {
-    const data = await request.get("/class");
+  getLectures = async () => {
+    const data = await request.get("/lecture");
     if(data) {
-      return new Classes(data);
+      return new Lectures(data);
     } else {
       alert("학생들 정보를 가져오는데 문제가 발생했습니다.");
     }

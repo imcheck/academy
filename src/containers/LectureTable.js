@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import ErrorHOC from '@hoc';
 import { Table } from '@components';
 import Filter from '@components/TableFilter';
-import { getClasses } from "@redux/actions/classActions";
+import { getLectures } from "@redux/actions/lectureActions";
 
-class ClassTable extends React.Component {
+class LectureTable extends React.Component {
   state = {
     filter: {
       optionValue: "",
@@ -45,7 +45,7 @@ class ClassTable extends React.Component {
       { value: "name", text: "수업명" },
       { value: "teacher", text: "강사" }
     ]
-    const data = this.props.data.classes.filter(this._filter);
+    const data = this.props.data.lectures.filter(this._filter);
     return (
       <Container>
         <Filter filterOptions={filterOptions} onSearch={this._handleSearch}/>
@@ -82,20 +82,20 @@ class ClassTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getClasses();
+    this.props.getLectures();
   }
 }
 
 const mapStateToProps = (state) => ({
-  data: state.page.class.classes
+  data: state.page.lecture.lectures
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getClasses: () => dispatch(getClasses())
+  getLectures: () => dispatch(getLectures())
 
 });
 
-export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(ClassTable));
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(LectureTable));
 
 const Container = styled.div`
 `

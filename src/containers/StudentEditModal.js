@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import ErrorHOC from '@hoc';
 import { Student } from '@models';
 import { upsertStudent } from '@redux/actions/studentActions';
-import { getClasses } from "@redux/actions/classActions";
 import { Modal, Button, InputForm, Table } from '@components';
-import MiniClassSelectModal from '@containers/MiniClassSelectModal';
+import { getLectures } from "@redux/actions/lectureActions";
+import MiniLectureSelectModal from '@containers/MiniLectureSelectModal';
 import MiniStudentSelectModal from '@containers/MiniStudentSelectModal';
 
 class StudentEditModal extends React.Component {
   state = {
-    miniClassModalVisible: false,
+    miniLectureModalVisible: false,
     miniStudentModalVisible: false
   }
   _handleStudentEdit = (key, value) => {
@@ -27,17 +27,17 @@ class StudentEditModal extends React.Component {
     this.props.upsertStudent(student);
     this.props.onClose();
   }
-  _handleClassSelectModal = (type) => {
+  _handleLectureSelectModal = (type) => {
     if (type === "open") {
-      this.props.getClasses();
-      this.setState(state => ({ miniClassModalVisible: true }));
+      this.props.getLectures();
+      this.setState(state => ({ miniLectureModalVisible: true }));
     } else {
-      this.setState(state => ({ miniClassModalVisible: false }));
+      this.setState(state => ({ miniLectureModalVisible: false }));
     }
   }
-  _handleClassSelect = (classes) => {
-    this._handleStudentEdit("classes", classes);
-    this._handleClassSelectModal("close");
+  _handleLectureSelect = (lectures) => {
+    this._handleStudentEdit("lectures", lectures);
+    this._handleLectureSelectModal("close");
   }
   _handleStudentSelectModal = (type) => {
     if (type === "open") {
@@ -151,12 +151,12 @@ class StudentEditModal extends React.Component {
           <Wrapper>
             <SubTitle>클래스</SubTitle>
             {!disabled ? (
-              <FloatRight><Button onClick={() => this._handleClassSelectModal("open")} height="30px" positive>+
+              <FloatRight><Button onClick={() => this._handleLectureSelectModal("open")} height="30px" positive>+
                 추가</Button></FloatRight>
             ) : null}
           </Wrapper>
           <Table
-            data={this.state.student.classes.toJS()}
+            data={this.state.student.lectures.toJS()}
             headerStyle={{ height: "40px", lineHeight: "40px" }}
             rowStyle={{ height: "50px", lineHeight: "50px" }}
             columns={[
@@ -181,10 +181,10 @@ class StudentEditModal extends React.Component {
               }
             ]}/>
         </Modal>
-        <MiniClassSelectModal
-          visible={this.state.miniClassModalVisible}
-          onSelectClick={this._handleClassSelect}
-          onClose={() => this._handleClassSelectModal("close")}/>
+        <MiniLectureSelectModal
+          visible={this.state.miniLectureModalVisible}
+          onSelectClick={this._handleLectureSelect}
+          onClose={() => this._handleLectureSelectModal("close")}/>
         <MiniStudentSelectModal
           visible={this.state.miniStudentModalVisible}
           onSelectClick={this._handleStudentSelect}
@@ -200,7 +200,7 @@ class StudentEditModal extends React.Component {
 
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({
-  getClasses: (teacher) => dispatch(getClasses(teacher)),
+  getLectures: () => dispatch(getLectures()),
   upsertStudent: (student) => dispatch(upsertStudent(student))
 });
 

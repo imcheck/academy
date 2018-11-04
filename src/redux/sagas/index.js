@@ -3,7 +3,7 @@ import { all, call } from "redux-saga/effects";
 import * as Page from "./pageSaga";
 import * as User from "./userSaga";
 import * as Student from "./studentSaga";
-import * as Class from "./classSaga";
+import * as Lecture from "./lectureSaga";
 
 
 export default function* SagaRunner() {
@@ -12,6 +12,6 @@ export default function* SagaRunner() {
     call(User.Init),
     call(Student.UpsertStudent),
     call(Student.GetStudents),
-    call(Class.GetClasses)
+    call(Lecture.GetLectures)
   ])
 }

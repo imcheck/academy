@@ -1,13 +1,13 @@
 import { Record } from 'immutable';
-import { Students, Classes, Teachers } from '@models';
+import { Students, Lectures, Teachers } from '@models';
 
 
 import { pageActions } from '@redux/actions/pageActions';
 
 
-const classRecord = Record({
+const lectureRecord = Record({
   pageLoading: true,
-  classes: new Classes()
+  lectures: new Lectures()
 })
 const studentRecord = Record({
   pageLoading: true,
@@ -16,7 +16,7 @@ const studentRecord = Record({
 const pageRecord = Record({
   pageLoading: true,
   student: studentRecord(),
-  class: classRecord()
+  lecture: lectureRecord()
 })
 
 const initState = pageRecord();

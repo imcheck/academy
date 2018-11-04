@@ -1,25 +1,25 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects';
 
-import { classSagaActions } from "@redux/actions/classActions";
+import { lectureSagaActions } from "@redux/actions/lectureActions";
 import { updatePage } from "@redux/actions/pageActions";
 
-export function* GetClasses() {
-  yield takeEvery(classSagaActions.GET_CLASSES, function* (action) {
+export function* GetLectures() {
+  yield takeEvery(lectureSagaActions.GET_LECTURES, function* (action) {
 
     let params;
     params = [{
-      path: ["class", "pageLoading"],
+      path: ["lecture", "pageLoading"],
       data: true
     }]
     yield put(updatePage(params));
 
     const teacher = yield select(state => state.user);
-    const classes = yield call(teacher.getClasses);
+    const lectures = yield call(teacher.getLectures);
     params = [{
-      path: ["class", "classes"],
-      data: classes
+      path: ["lecture", "lectures"],
+      data: lectures
     }, {
-      path: ["class", "pageLoading"],
+      path: ["lecture", "pageLoading"],
       data: false
     }];
     yield put(updatePage(params));

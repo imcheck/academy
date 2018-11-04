@@ -1,10 +1,10 @@
 import { Teachers, Students } from "@models";
 
-export class Class {
+export class Lecture {
   constructor(props) {
     if(props) {
-      const {classId, name, teachers, sdate, edate, times, students, tuition} = props;
-      this.classId = classId;
+      const {lectureId, name, teachers, sdate, edate, times, students, tuition} = props;
+      this.lectureId = lectureId;
       this.name = name;
       this.teachers = new Teachers(teachers);
       this.sdate = sdate;
@@ -14,7 +14,7 @@ export class Class {
       else this.times = times;
       this.students = students;
     } else {
-      this.classId = '';
+      this.lectureId = '';
       this.name = '';
       this.teachers = new Teachers();
       this.sdate = "";
@@ -25,16 +25,16 @@ export class Class {
     }
   }
   toObject() {
-    const { classId, name, teachers, sdate, edate, times, students, tuition } = this;
+    const { lectureId, name, teachers, sdate, edate, times, students, tuition } = this;
     return {
-      classId,
+      lectureId,
       name,
-      teachers: teachers.toJS(),
+      teachers: teachers ? teachers.toJS() : [],
       sdate,
       edate,
       times,
       tuition,
-      students: students.toJS()
+      students: students ? students.toJS() : []
     };
   }
 }

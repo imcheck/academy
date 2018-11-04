@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShapes } from "@fortawesome/free-solid-svg-icons";
 
-const ClassMenuIcon = (props) => {
+const LectureMenuIcon = (props) => {
   return (
-    <Link to="/class">
+    <Link to="/lecture">
       <Container>
         <FontAwesomeIcon icon={faShapes} size="3x"/>
         <Text>클래스 관리</Text>
@@ -15,7 +15,7 @@ const ClassMenuIcon = (props) => {
     </Link>
   )
 }
-export default ClassMenuIcon;
+export default LectureMenuIcon;
 
 const Container = styled.div`
   display: inline-block;
