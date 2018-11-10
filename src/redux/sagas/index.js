@@ -4,6 +4,7 @@ import * as Page from "./pageSaga";
 import * as User from "./userSaga";
 import * as Student from "./studentSaga";
 import * as Lecture from "./lectureSaga";
+import * as Teacher from "./teacherSaga";
 
 
 export default function* SagaRunner() {
@@ -12,6 +13,7 @@ export default function* SagaRunner() {
     call(User.Init),
     call(Student.UpsertStudent),
     call(Student.GetStudents),
-    call(Lecture.GetLectures)
+    call(Lecture.GetLectures),
+    call(Teacher.GetTeachers)
   ])
 }

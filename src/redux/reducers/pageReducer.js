@@ -13,10 +13,15 @@ const studentRecord = Record({
   pageLoading: true,
   students: new Students()
 })
+const teacherRecord = Record({
+  pageLoading: true,
+  teachers: new Teachers()
+})
 const pageRecord = Record({
   pageLoading: true,
   student: studentRecord(),
-  lecture: lectureRecord()
+  lecture: lectureRecord(),
+  teacher: teacherRecord()
 })
 
 const initState = pageRecord();

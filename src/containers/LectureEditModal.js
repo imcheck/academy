@@ -1,18 +1,66 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Modal, Button, InputForm, Table } from '@components';
+
+import { Button, InputForm, Modal, Table } from '@components';
+import { Lecture } from "@models";
+import MiniStudentSelectModal from '@containers/MiniStudentSelectModal';
+import MiniTeacherSelectModal from '@containers/MiniTeacherSelectModal';
+import { getStudents } from '@redux/actions/studentActions';
+import { getTeachers } from '@redux/actions/teacherActions';
+import ErrorHOC from "@hoc";
 
 class LectureEditModal extends React.Component {
-  state = {}
-  _handleClassEdit = (key, value) => {
+  state = {
+    miniTeacherModalVisible: false,
+    miniStudentModalVisible: false
+  }
+  _handleEditLecture = (key, value) => {
+    const { lecture } = this.state;
+    lecture[key] = value;
+    this.setState(state => ({
+      lecture
+    }));
+  }
+
+  _handleClickSave = () => {
+    console.log(this.props.lecture);
+  }
+
+  _handleStudentSelectModal = (type) => {
+    if (type === "open") {
+      this.props.getStudents();
+      this.setState(state => ({ miniStudentModalVisible: true }));
+    } else {
+      this.setState(state => ({ miniStudentModalVisible: false }));
+    }
+  }
+  _handleStudentSelect = (students) => {
+    this._handleEditLecture("students", students);
+    this._handleStudentSelectModal("close");
+  }
+
+  _handleTeacherSelectModal = (type) => {
+    if (type === "open") {
+      this.props.getTeachers();
+      this.setState(state => ({ miniTeacherModalVisible: true }));
+    } else {
+      this.setState(state => ({ miniTeacherModalVisible: false }));
+    }
+  }
+
+  _handleTeacherSelect = (teachers) => {
+
+  }
+  static getDerivedStateFromProps(props, state) {
+    return { ...props };
   }
 
   render() {
     const buttons = [];
-    if(disabled) buttons.push(<Button key="edit" positive>수정</Button>);
-    else buttons.push(<Button key="save" positive>저장</Button>);
-    buttons.push(<Button key="cancel" negative>취소</Button>);
+    if (disabled) buttons.push(<Button key="edit" positive>수정</Button>);
+    else buttons.push(<Button key="save" onClick={this._handleClickSave} positive>저장</Button>);
+    buttons.push(<Button key="cancel" onClick={this.props.onClose} negative>취소</Button>);
     const { disabled } = this.props;
     return (
       <Modal
@@ -29,34 +77,42 @@ class LectureEditModal extends React.Component {
             <InputForm
               disabled={disabled}
               name="이름"
-              value={this.state.class.name}
-              onChange={(e) => this._handleClassEdit("name", e.target.value)}/>
+              value={this.state.lecture.name}
+              onChange={(e) => this._handleEditLecture("name", e.target.value)}/>
           </Col>
         </Row>
         <Row>
           <Col>
             <InputForm
-              disabled={disabled}
+              disabled={true}
               name="선생님"
-              value={this.state.class.school}
-              onChange={(e) => this._handleClassEdit("school", e.target.value)}/>
+              value={this.state.lecture.teachers.getTeachers()}/>
           </Col>
-          <Button height="30px"> + 강사</Button>
+          <Button height="30px" onClick={() => this._handleTeacherSelectModal("open")}> + 강사</Button>
+        </Row>
+        <Row>
+          <Col>
+            <InputForm
+              disabled={disabled}
+              name="수업 시간"
+              value={this.state.lecture.times.toString()}
+              onChange={(e) => this._handleEditLecture("sdate", e.target.value)}/>
+          </Col>
         </Row>
         <Row>
           <Col>
             <InputForm
               disabled={disabled}
               name="시작 날짜"
-              value={this.state.class.sdate}
-              onChange={(e) => this._handleClassEdit("sdate", e.target.value)}/>
+              value={this.state.lecture.sdate}
+              onChange={(e) => this._handleEditLecture("sdate", e.target.value)}/>
           </Col>
           <Col>
             <InputForm
               disabled={disabled}
               name="종료 날짜"
-              value={this.state.class.edate}
-              onChange={(e) => this._handleClassEdit("edate", e.target.value)}/>
+              value={this.state.lecture.edate}
+              onChange={(e) => this._handleEditLecture("edate", e.target.value)}/>
           </Col>
         </Row>
         <Row>
@@ -64,19 +120,22 @@ class LectureEditModal extends React.Component {
             <InputForm
               disabled={disabled}
               name="수강료"
-              value={this.state.class.tuition}
-              onChange={(e) => this._handleClassEdit("tuition", e.target.value)}/>
+              value={this.state.lecture.tuition}
+              onChange={(e) => this._handleEditLecture("tuition", e.target.value)}/>
           </Col>
         </Row>
         <Wrapper>
           <SubTitle>학생</SubTitle>
           {!disabled ? (
-            <FloatRight><Button height="30px" positive>+
-              추가</Button></FloatRight>
+            <FloatRight>
+              <Button onClick={() => this._handleStudentSelectModal("open")} height="30px" positive>
+                + 추가
+              </Button>
+            </FloatRight>
           ) : null}
         </Wrapper>
         <Table
-          data={this.state.class.students.toJS()}
+          data={this.state.lecture.students.toJS()}
           headerStyle={{ height: "40px", lineHeight: "40px" }}
           rowStyle={{ height: "50px", lineHeight: "50px" }}
           columns={[
@@ -93,16 +152,27 @@ class LectureEditModal extends React.Component {
               component: ({ rowData }) => <span>{rowData.school}</span>
             }
           ]}/>
+        <MiniStudentSelectModal
+          visible={this.state.miniStudentModalVisible}
+          onSelectClick={this._handleStudentSelect}
+          onClose={() => this._handleStudentSelectModal("close")}/>
+        <MiniTeacherSelectModal
+          visible={this.state.miniTeacherModalVisible}
+          onSelectClick={this._handleTeacherSelect}
+          onClose={() => this._handleTeacherSelectModal("close")}/>
       </Modal>
     )
   }
-
-  static getDerivedStateFromProps(props, state) {
-    return { ...props };
-  }
 }
 
-export default LectureEditModal;
+const mapStateToProps = state => ({
+
+});
+const mapDispatchToProps = dispatch => ({
+  getStudents: () => dispatch(getStudents()),
+  getTeachers: () => dispatch(getTeachers())
+})
+export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(LectureEditModal));
 
 const Container = styled.div``;
 const Row = styled.div`

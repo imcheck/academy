@@ -97,7 +97,7 @@ class StudentTable extends React.Component {
     )
   }
   componentDidMount() {
-    this.props.getStudents()
+    this.props.getStudents();
   }
 }
 

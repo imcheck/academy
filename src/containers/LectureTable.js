@@ -38,7 +38,9 @@ class LectureTable extends React.Component {
     //   this.setState(state => ({ visible: false }));
     // }
   }
+  _handleAttendModal = (type) => {
 
+  }
   render() {
     const filterOptions = [
       { value: "", text: "전체" },
@@ -72,8 +74,13 @@ class LectureTable extends React.Component {
             },
             {
               header: "#",
-              width: "100px",
-              component: ({ rowData }) => <BorderBtn onClick={() => this._handleModal("open", rowData)}>상세</BorderBtn>
+              width: "140px",
+              component: ({ rowData }) => (
+                <React.Fragment>
+                  <BorderBtn onClick={() => this._handleModal("open", rowData)}>상세</BorderBtn>
+                  <AttendBtn onClick={() => this._handleAttendModal("open")}>출석</AttendBtn>
+                </React.Fragment>
+              )
             }
           ]}
         />
@@ -100,7 +107,7 @@ export default ErrorHOC(connect(mapStateToProps, mapDispatchToProps)(LectureTabl
 const Container = styled.div`
 `
 const BorderBtn = styled.div`
-  width: 70px;
+  width: 60px;
   height: 30px;
   line-height: 30px;
   margin-top: 5px;
@@ -111,6 +118,22 @@ const BorderBtn = styled.div`
   &:hover {
     color: ${props => props.theme._components.blue2};
     border: 1px solid ${props => props.theme._components.blue2};
+  }
+  cursor: pointer;
+  margin-right: 10px;
+`
+const AttendBtn = styled.div`
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 5px;
+  border: 1px solid ${props => props.theme._components.green};
+  color: ${props => props.theme._components.green};
+  border-radius: 3px;
+  display: inline-block;
+  &:hover {
+    color: ${props => props.theme._components.green2};
+    border: 1px solid ${props => props.theme._components.green2};
   }
   cursor: pointer;
 `

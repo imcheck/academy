@@ -44,7 +44,8 @@ class _Lecture extends React.Component {
         <LectureTable/>
         <LectureEditModal
           visible={this.state.classModalVisible}
-          class={new Lecture()}/>
+          onClose={() => this._handleLectureModal("close")}
+          lecture={new Lecture()}/>
       </CommonLayout>
     )
   }

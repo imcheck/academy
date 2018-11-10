@@ -7,6 +7,7 @@ export class Teacher {
   constructor(props) {
     if (props) {
       const {
+        teacherId,
         name,
         phoneNumber,
         parentPhoneNumber,
@@ -19,6 +20,7 @@ export class Teacher {
         lectures,
         teachers
       } = props;
+      this.teacherId = teacherId;
       this.name = name;
       this.phoneNumber = phoneNumber;
       this.parentPhoneNumber = parentPhoneNumber;
@@ -31,6 +33,7 @@ export class Teacher {
       this.lectures = new Lectures(lectures);
       this.teachers = new Teachers(teachers);
     } else {
+      this.teacherId = "";
       this.name = "";
       this.phoneNumber = "";
       this.parentPhoneNumber = "";
@@ -47,6 +50,7 @@ export class Teacher {
 
   toObject() {
     const {
+      teacherId,
       name,
       phoneNumber,
       parentPhoneNumber,
@@ -60,6 +64,7 @@ export class Teacher {
       teachers
     } = this;
     return {
+      teacherId,
       name,
       phoneNumber,
       parentPhoneNumber,
@@ -93,10 +98,11 @@ export class Teacher {
   }
 
   getTeachers = async () => {
-    if (this.teachers.size()) return this.teachers;
-    else {
-      const teachers = await getTeacherData(this);
-      return teachers;
+    const data = await request.get("/teacher");
+    if(data) {
+      return new Teachers(data);
+    } else {
+      alert("강사들 정보를 가져오는데 문제가 발생했습니다.");
     }
   }
   createStudent = async(student) => {
